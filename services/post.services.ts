@@ -3,14 +3,14 @@
  */
 
 import api from '@/core/services/api'
-import urls from '@/app/common/urls'
+import urls from '@/core/lib/urls'
 import { AxiosError, AxiosResponse } from 'axios'
-import exceptions from '@/app/common/exceptions'
+import exceptions from '@/core/lib/collections/exceptions'
 import { IRule } from '@/core/models/interfaces/lib/IRule'
 import { IPost } from '@/core/models/interfaces/article/IPost'
-import { handlerError, responseHandler } from '@/app/common/response-handler'
+import { handlerError, responseHandler } from '@/core/lib/response-handler'
 import Post from '@/core/models/classes/article/Post'
-import { snackbarStore } from '@/app/store/index.store'
+import snackbarStore from '@/core/store/app/snackbar.store'
 
 const getInValidPostFields = (post: IPost) => {
     const rules: IRule[] = [

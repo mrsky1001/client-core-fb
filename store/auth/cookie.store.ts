@@ -4,19 +4,17 @@
 
 import Vuex, { Store } from 'vuex'
 import Vue from 'vue'
-import ServiceStorage from '@/app/common/service-storage'
+import ServiceStorage from '@/core/lib/service-storage'
 Vue.use(Vuex)
 
-const cookieClassStore = (): Store<any> =>
-    new Vuex.Store({
-        state: {
-            isAgreeCookie: ServiceStorage.getProp('isAgreeCookie'),
+export default new Vuex.Store({
+    state: {
+        isAgreeCookie: ServiceStorage.getProp('isAgreeCookie'),
+    },
+    mutations: {
+        setAgreeCookie(state) {
+            ServiceStorage.setProp('isAgreeCookie', true)
+            state.isAgreeCookie = ServiceStorage.getProp('isAgreeCookie')
         },
-        mutations: {
-            setAgreeCookie(state) {
-                ServiceStorage.setProp('isAgreeCookie', true)
-                state.isAgreeCookie = ServiceStorage.getProp('isAgreeCookie')
-            },
-        },
-    })
-export default cookieClassStore
+    },
+})

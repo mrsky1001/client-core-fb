@@ -3,8 +3,8 @@
  */
 
 import api from '@/core/services/api'
-import urls from '@/app/common/urls'
-import { handlerError, responseHandler } from '@/app/common/response-handler'
+import urls from '@/core/lib/urls'
+import { handlerError, responseHandler } from '@/core/lib/response-handler'
 import { ILogin } from '@/core/models/interfaces/auth/ILogin'
 import { AxiosError, AxiosResponse } from 'axios'
 // @ts-ignore
@@ -12,7 +12,7 @@ import sha1 from 'sha1'
 import { IRegistration } from '@/core/models/interfaces/auth/IRegistration'
 import IAccount from '@/core/models/classes/auth/Account'
 import GenericModel from '@/core/models/classes/app/GenericModel'
-import { authStore } from '@/app/store/index.store'
+import authStore from '@/core/store/auth/auth.store'
 import { IUser } from '@/core/models/interfaces/auth/IUser'
 
 export const isAuthorized = (isRedirectToLogin = false): Promise<boolean> => {

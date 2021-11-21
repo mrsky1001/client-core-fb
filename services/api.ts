@@ -4,7 +4,7 @@
 
 import config from '../../config/config'
 import axios, { AxiosInstance } from 'axios'
-import { authStore } from '@/app/store/index.store'
+import authStore from '@/core/store/auth/auth.store'
 
 export default (): AxiosInstance => {
     return axios.create({

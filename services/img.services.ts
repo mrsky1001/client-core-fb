@@ -3,12 +3,12 @@
  */
 
 import Post from '../models/classes/article/Post'
-import { handlerError, responseHandler } from '@/app/common/response-handler'
+import { handlerError, responseHandler } from '@/core/lib/response-handler'
 import api from '@/core/services/api'
-import urls from '@/app/common/urls'
+import urls from '@/core/lib/urls'
 import { AxiosError, AxiosResponse } from 'axios'
 import GenericModel from '@/core/models/classes/app/GenericModel'
-import { authStore } from '@/app/store/index.store'
+import authStore from '@/core/store/auth/auth.store'
 
 export const uploadPostImage = (image: File, post: Post): Promise<string> => {
     return new Promise<string>((resolve, reject) => {

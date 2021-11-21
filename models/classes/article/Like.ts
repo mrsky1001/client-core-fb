@@ -2,7 +2,7 @@
  * Copyright (c) 21.11.2021, 23:32  Kolyada Nikita Vladimirovich nikita.nk16@yandex.ru
  */
 
-import serviceStorage from '../../../../app/common/service-storage'
+import serviceStorage from '../../../lib/service-storage'
 import { ILike } from '@/core/models/interfaces/article/ILike'
 import GenericModel from '@/core/models/classes/app/GenericModel'
 
