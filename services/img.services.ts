@@ -1,0 +1,104 @@
+/*
+ * Copyright (©) 09.07.2021, 17:13. Kolyada Nikita Vladimirovich (nikita.nk16@yandex.ru)
+ */
+
+import Post from '../models/classes/article/Post'
+import { handlerError, responseHandler } from '@/app/common/response-handler'
+import api from '@/core/services/api'
+import urls from '@/app/common/urls'
+import { AxiosError, AxiosResponse } from 'axios'
+import GenericModel from '@/core/models/classes/app/GenericModel'
+import { authStore } from '@/app/store/index.store'
+
+export const uploadPostImage = (image: File, post: Post): Promise<string> => {
+    return new Promise<string>((resolve, reject) => {
+        const fd = new FormData()
+
+        fd.append('urlTitle', post.urlTitle)
+        fd.append('postId', post.id ? post.id : '')
+        fd.append('image', image)
+
+        api()
+            .post(urls.UPLOAD_POST_IMG, fd)
+            .then((res: AxiosResponse) => {
+                responseHandler(res)
+                    .then((data) => resolve(data.imgUrl))
+                    .catch((err: AxiosError) => {
+                        handlerError(err)
+                        reject(err)
+                    })
+            })
+            .catch((err: AxiosError) => {
+                handlerError(err)
+                reject(err)
+            })
+    })
+}
+
+export const uploadAvatarImage = (image: Blob | string, description: string): Promise<string> => {
+    return new Promise<string>((resolve, reject) => {
+        const fd = new FormData()
+
+        fd.append('description', description)
+        fd.append('image', image)
+
+        api()
+            .post(urls.UPLOAD_AVATAR_IMG, fd)
+            .then((res: AxiosResponse) => {
+                responseHandler(res)
+                    .then((data) => resolve(data.imgUrl))
+                    .catch((err: AxiosError) => {
+                        handlerError(err)
+                        reject(err)
+                    })
+            })
+            .catch((err: AxiosError) => {
+                handlerError(err)
+                reject(err)
+            })
+    })
+}
+
+export const deleteAvatarImage = (): Promise<void> => {
+    return new Promise<void>((resolve, reject) => {
+        api()
+            .delete(urls.DELETE_AVATAR_IMG)
+            .then((res: AxiosResponse) => {
+                responseHandler(res)
+                    .then((data) => {
+                        const user = GenericModel.assign(authStore.state.user, data.user)
+                        authStore.commit('saveUser', user)
+                        resolve(data)
+                    })
+                    .catch((err: AxiosError) => {
+                        handlerError(err)
+                        reject(err)
+                    })
+            })
+            .catch((err: AxiosError) => {
+                handlerError(err)
+                reject(err)
+            })
+    })
+}
+
+export const deletePostImage = (imgUrl: string, postId: string): Promise<void> => {
+    return new Promise<void>((resolve, reject) => {
+        const reqData = { imgUrl, postId }
+
+        api()
+            .post(urls.DELETE_POST_IMG, reqData)
+            .then((res: AxiosResponse) => {
+                responseHandler(res)
+                    .then(() => resolve())
+                    .catch((err: AxiosError) => {
+                        handlerError(err)
+                        reject(err)
+                    })
+            })
+            .catch((err: AxiosError) => {
+                handlerError(err)
+                reject(err)
+            })
+    })
+}

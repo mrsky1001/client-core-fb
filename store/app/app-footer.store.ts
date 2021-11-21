@@ -5,7 +5,7 @@
 import Vuex, { Store } from 'vuex'
 import Vue from 'vue'
 import config from '../../../config/config'
-import { IRoute } from '@/app/router/routes/routes-obj'
+import { IRoute } from '@/core/models/interfaces/app/IRoute'
 Vue.use(Vuex)
 
 const appFooterClassStore = (routes: IRoute[]): Store<any> =>

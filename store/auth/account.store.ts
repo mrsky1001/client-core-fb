@@ -4,8 +4,8 @@
 
 import Vuex, { Store } from 'vuex'
 import Vue from 'vue'
-import { deleteAccount, getUser, logout, saveAccount } from '@/app/services/auth.services'
-import { deleteAvatarImage, uploadAvatarImage } from '@/app/services/img.services'
+import { deleteAccount, getUser, logout, saveAccount } from '@/core/services/auth.services'
+import { deleteAvatarImage, uploadAvatarImage } from '@/core/services/img.services'
 import reCaptchaLib from '@/app/common/reCaptcha.lib'
 import { getTimeSalt } from '@/core/lib/tools.lib'
 import { authStore } from '@/app/store/index.store'

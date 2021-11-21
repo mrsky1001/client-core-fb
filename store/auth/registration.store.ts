@@ -4,7 +4,7 @@
 
 import Vuex, { Store } from 'vuex'
 import Vue from 'vue'
-import { registration } from '@/app/services/auth.services'
+import { registration } from '@/core/services/auth.services'
 import reCaptchaLib from '@/app/common/reCaptcha.lib'
 import { authStore } from '@/app/store/index.store'
 Vue.use(Vuex)

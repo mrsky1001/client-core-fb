@@ -4,10 +4,10 @@
 
 import Vuex, { Store } from 'vuex'
 import Vue from 'vue'
-import routesObj, { IRoute } from '@/app/router/routes/routes-obj'
 import { RouteConfig } from 'vue-router'
 import { routes } from '@/app/router/routes/routes'
 import { authStore, routerStore } from '@/app/store/index.store'
+import { IRoute } from '@/core/models/interfaces/app/IRoute'
 Vue.use(Vuex)
 
 interface IAppBarStore {
@@ -22,7 +22,8 @@ interface IAppBarStore {
     noteRoute: IRoute
 }
 
-const appNavbarClassStore = (): Store<any> =>
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+const appNavbarClassStore = (routesObj: any): Store<any> =>
     new Vuex.Store<IAppBarStore>({
         state: {
             routes: routes,
