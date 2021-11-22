@@ -2,7 +2,7 @@
  * Copyright (c) 21.11.2021, 23:34  Kolyada Nikita Vladimirovich nikita.nk16@yandex.ru
  */
 
-import roles from '@/core/lib/collections/roles'
+import roles from '@/core/collections/roles'
 import { IRole } from '@/core/models/interfaces/auth/IRole'
 import GenericModel from '@/core/models/classes/app/GenericModel'
 

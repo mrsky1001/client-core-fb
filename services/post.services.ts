@@ -5,7 +5,7 @@
 import api from '@/core/services/api'
 import urls from '@/core/lib/urls'
 import { AxiosError, AxiosResponse } from 'axios'
-import exceptions from '@/core/lib/collections/exceptions'
+import exceptions from '@/core/collections/exceptions'
 import { IRule } from '@/core/models/interfaces/lib/IRule'
 import { IPost } from '@/core/models/interfaces/article/IPost'
 import { handlerError, responseHandler } from '@/core/lib/response-handler'

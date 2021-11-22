@@ -4,7 +4,7 @@
 
 import Vuex from 'vuex'
 import Vue from 'vue'
-import roles from '@/core/lib/collections/roles'
+import roles from '@/core/collections/roles'
 import authStore from '@/core/store/auth/auth.store'
 import { IRoute } from '@/core/models/interfaces/app/IRoute'
 import { routes } from '@/app/router/routes/routes'

@@ -2,7 +2,7 @@
  * Copyright (c) 21.11.2021, 23:34  Kolyada Nikita Vladimirovich nikita.nk16@yandex.ru
  */
 
-import roles from '../../../lib/collections/roles'
+import roles from '../../../collections/roles'
 import { IUser } from '@/core/models/interfaces/auth/IUser'
 import GenericModel from '@/core/models/classes/app/GenericModel'
 import { getTimeSalt } from '@/core/lib/tools.lib'

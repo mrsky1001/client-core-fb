@@ -2,7 +2,7 @@
  * Copyright (c) 21.11.2021, 23:51  Kolyada Nikita Vladimirovich nikita.nk16@yandex.ru
  */
 
-import AppMessage from '../../models/classes/app/AppMessage'
+import AppMessage from '../models/classes/app/AppMessage'
 
 const exceptions = {
     DOWNLOADED: new AppMessage('Данные успешно получены!', 'green lighten-1'),

@@ -11,7 +11,7 @@ import { ITag } from '@/core/models/interfaces/article/ITag'
 import { IPost } from '@/core/models/interfaces/article/IPost'
 import { ILike } from '@/core/models/interfaces/article/ILike'
 import { IUser } from '@/core/models/interfaces/auth/IUser'
-import statuses from '@/core/lib/statuses'
+import statuses from '@/core/collections/statuses'
 
 export default class Post extends GenericModel {
     private _title = ''

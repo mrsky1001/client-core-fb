@@ -2,7 +2,7 @@
  * Copyright (c) 21.11.2021, 23:33  Kolyada Nikita Vladimirovich nikita.nk16@yandex.ru
  */
 
-import statuses from '@/core/lib/statuses'
+import statuses from '@/core/collections/statuses'
 import { IComment } from '@/core/models/interfaces/article/IComment'
 import { IUser } from '@/core/models/interfaces/auth/IUser'
 import { IStatus } from '@/core/models/interfaces/article/IStatus'

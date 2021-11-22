@@ -5,7 +5,7 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
 import ServiceStorage from '@/core/lib/service-storage'
-import roles from '@/core/lib/collections/roles'
+import roles from '@/core/collections/roles'
 import { IUser } from '@/core/models/interfaces/auth/IUser'
 import User from '@/core/models/classes/auth/User'
 import navbarStore from '@/core/store/app/app-navbar.store.ts'
