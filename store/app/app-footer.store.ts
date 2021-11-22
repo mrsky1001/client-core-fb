@@ -4,7 +4,7 @@
 
 import Vuex from 'vuex'
 import Vue from 'vue'
-import config from '../../../config/config'
+import config from '../../../../config/config'
 import { routes } from '@/app/router/routes/routes'
 Vue.use(Vuex)
 
