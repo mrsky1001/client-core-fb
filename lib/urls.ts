@@ -20,14 +20,14 @@ export default {
 
     SEARCH: '/api/search/:search',
 
-    GET_ALL_POSTS: '/api/posts',
+    GET_POSTS: '/api/posts',
     GET_POST_BY_ID: '/api/post/id/:postId',
-    GET_ALL_POSTS_BY_SECTION: '/api/posts/:section',
+    GET_POSTS_BY_SECTION: '/api/posts/:section',
     GET_POST_BY_TITLE: '/api/post/:title',
     CREATE_POST: '/api/post',
     UPDATE_POST_BY_ID: '/api/post/:postId',
 
-    GET_ALL_PRODUCTS: '/api/product',
+    GET_PRODUCTS: '/api/product',
     GET_PRODUCT_BY_ID: '/api/product/id/:postId',
     GET_PRODUCT_BY_TITLE: '/api/product/:title',
     CREATE_PRODUCT: '/api/product',
