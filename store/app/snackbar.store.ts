@@ -11,8 +11,7 @@ export interface ISnackbarProps {
     classes: string
     params: string[]
 }
-
-export default new Vuex.Store({
+const snackBarStore = new Vuex.Store({
     state: {
         snackBarMsg: '',
         snackBarParams: '',
@@ -46,3 +45,5 @@ export default new Vuex.Store({
         },
     },
 })
+
+export default snackBarStore

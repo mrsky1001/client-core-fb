@@ -10,7 +10,7 @@ export default class Status extends GenericModel {
     private _text = ''
     private _icon = ''
     private _color = ''
-    private _value: number = statuses.DRAFT.value
+    private _value: number = 0
 
     constructor(initObj: IStatus) {
         super(initObj)

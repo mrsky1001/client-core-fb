@@ -10,8 +10,7 @@ import authStore from '@/core/store/auth/auth.store'
 import routesObj from '@/app/routes/routes-obj'
 Vue.use(Vuex)
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export default new Vuex.Store({
+const loginStore = new Vuex.Store({
     state: {
         login: '',
         password: '',
@@ -53,3 +52,5 @@ export default new Vuex.Store({
     },
     modules: {},
 })
+
+export default loginStore

@@ -24,8 +24,7 @@ interface IAppBarStore {
     noteRoute: IRoute
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export default new Vuex.Store<IAppBarStore>({
+const appNavBarStore = new Vuex.Store<IAppBarStore>({
     state: {
         routes: routes,
         searchText: '',
@@ -79,3 +78,5 @@ export default new Vuex.Store<IAppBarStore>({
 
     actions: {},
 })
+
+export default appNavBarStore

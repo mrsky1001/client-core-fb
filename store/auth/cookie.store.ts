@@ -7,7 +7,7 @@ import Vue from 'vue'
 import ServiceStorage from '@/core/lib/service-storage'
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const cookieStore = new Vuex.Store({
     state: {
         isAgreeCookie: ServiceStorage.getProp('isAgreeCookie'),
     },
@@ -18,3 +18,5 @@ export default new Vuex.Store({
         },
     },
 })
+
+export default cookieStore

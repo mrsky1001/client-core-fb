@@ -10,8 +10,7 @@ import authStore from '@/core/store/auth/auth.store'
 import routesObj from '@/app/routes/routes-obj'
 Vue.use(Vuex)
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export default new Vuex.Store({
+const regStore = new Vuex.Store({
     state: {
         email: '',
         username: '',
@@ -64,3 +63,5 @@ export default new Vuex.Store({
     },
     modules: {},
 })
+
+export default regStore

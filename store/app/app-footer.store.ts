@@ -8,7 +8,7 @@ import config from '../../../../config/config'
 import { routes } from '@/app/routes/routes'
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const appFooterStore = new Vuex.Store({
     state: {
         routes: routes,
         footerImg: '',
@@ -35,3 +35,5 @@ export default new Vuex.Store({
         },
     },
 })
+
+export default appFooterStore

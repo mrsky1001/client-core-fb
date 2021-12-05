@@ -10,7 +10,7 @@ import { IRoute } from '@/core/models/interfaces/app/IRoute'
 import { routes } from '@/app/routes/routes'
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const routerStore = new Vuex.Store({
     getters: {
         getSubRoutes: () => (route: IRoute) => {
             return routes.filter((r: IRoute) => route.name === r.group && authStore.getters.checkRole(r.role))
@@ -30,3 +30,5 @@ export default new Vuex.Store({
     },
     actions: {},
 })
+
+export default routerStore

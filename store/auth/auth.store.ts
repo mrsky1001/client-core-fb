@@ -13,7 +13,7 @@ import { IRole } from '@/core/models/interfaces/auth/IRole'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const authStore = new Vuex.Store({
     state: {
         responseKey: '',
         isCaptchaVerify: false,
@@ -70,3 +70,5 @@ export default new Vuex.Store({
         },
     },
 })
+
+export default authStore
