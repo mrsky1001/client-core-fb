@@ -53,7 +53,7 @@ export const getPost = (postId: string, title: string): Promise<IPost> => {
             .get(url)
             .then((res: AxiosResponse) => {
                 responseHandler(res)
-                    .then((data) => resolve(new Post(data)))
+                    .then((data) => resolve(new Post(data.post)))
                     .catch((err: AxiosError) => {
                         handlerError(err)
                         reject(err)
@@ -65,7 +65,7 @@ export const getPost = (postId: string, title: string): Promise<IPost> => {
             })
     })
 }
-export const getPosts = (section: string, lastCreateDate: string, searchText: string): Promise<IPost[]> => {
+export const getPosts = (section: string, lastCreateDate: Date, searchText: string): Promise<IPost[]> => {
     return new Promise<IPost[]>((resolve, reject) => {
         const config = {
             params: {
@@ -74,11 +74,12 @@ export const getPosts = (section: string, lastCreateDate: string, searchText: st
                 lastCreateDate,
             },
         }
+
         api()
             .get(`${urls.GET_POSTS}`, config)
             .then((res: AxiosResponse) => {
                 responseHandler(res)
-                    .then((data) => resolve(data.map((post: IPost) => new Post(post))))
+                    .then((data) => resolve(data.posts.map((post: IPost) => new Post(post))))
                     .catch((err: AxiosError) => {
                         handlerError(err)
                         reject(err)
@@ -99,7 +100,7 @@ export const addPost = (post: IPost): Promise<IPost> => {
                 .post(urls.CREATE_POST, post)
                 .then((res: AxiosResponse) => {
                     responseHandler(res)
-                        .then((data) => resolve(new Post(data)))
+                        .then((data) => resolve(new Post(data.post)))
                         .catch((err: AxiosError) => {
                             handlerError(err)
                             reject(err)
@@ -126,7 +127,7 @@ export const editPost = (post: IPost): Promise<IPost> => {
                 .put(url, post)
                 .then((res: AxiosResponse) => {
                     responseHandler(res)
-                        .then((data) => resolve(new Post(data)))
+                        .then((data) => resolve(new Post(data.post)))
                         .catch((err: AxiosError) => {
                             handlerError(err)
                             reject(err)

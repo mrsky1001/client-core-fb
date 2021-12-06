@@ -15,9 +15,9 @@ export interface IPost extends IGenericModel {
     title: string
     urlTitle: string
     content: string
-    creatingDate: string
-    updatingDate: string
-    publishedDate: string
+    creatingDate: Date
+    updatingDate: Date
+    publishedDate: Date
     views: number
     readTime: number
     tags: ITag[]

@@ -17,9 +17,9 @@ export default class Post extends GenericModel {
     private _title = ''
     private _urlTitle = ''
     private _content = ''
-    private _creatingDate = ''
-    private _updatingDate = ''
-    private _publishedDate = ''
+    private _creatingDate = new Date()
+    private _updatingDate = new Date()
+    private _publishedDate = new Date()
     private _views = 0
     private _readTime = 0
     private _tags: ITag[] = []
@@ -120,27 +120,27 @@ export default class Post extends GenericModel {
         this._content = value
     }
 
-    get creatingDate(): string {
+    get creatingDate(): Date {
         return this._creatingDate
     }
 
-    set creatingDate(value: string) {
+    set creatingDate(value: Date) {
         this._creatingDate = value
     }
 
-    get updatingDate(): string {
+    get updatingDate(): Date {
         return this._updatingDate
     }
 
-    set updatingDate(value: string) {
+    set updatingDate(value: Date) {
         this._updatingDate = value
     }
 
-    get publishedDate(): string {
+    get publishedDate(): Date {
         return this._publishedDate
     }
 
-    set publishedDate(value: string) {
+    set publishedDate(value: Date) {
         this._publishedDate = value
     }
 
