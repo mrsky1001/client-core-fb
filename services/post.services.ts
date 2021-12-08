@@ -78,7 +78,7 @@ export const getPosts = (section: string, lastCreateDate: Date, searchText: stri
         api()
             .get(`${urls.GET_POSTS}`, config)
             .then((res: AxiosResponse) => {
-                responseHandler(res)
+                responseHandler(res, undefined, false)
                     .then((data) => resolve(data.posts.map((post: IPost) => new Post(post))))
                     .catch((err: AxiosError) => {
                         handlerError(err)

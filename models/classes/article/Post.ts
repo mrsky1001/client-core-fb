@@ -30,9 +30,9 @@ export default class Post extends GenericModel {
     private _status: IStatus = statuses.DRAFT
     private _annotation: IAnnotation | null = null
 
-    constructor(initObj: IPost) {
+    constructor(initObj?: IPost) {
         super(initObj)
-        this.init(initObj)
+        initObj && this.init(initObj)
     }
 
     init(initObj: IPost): void {
