@@ -46,9 +46,8 @@ const getInValidPostFields = (post: IPost) => {
     return listError
 }
 
-export const getPost = (postId: string, title: string): Promise<IPost> => {
+const getPost = (url: string): Promise<IPost> => {
     return new Promise<IPost>((resolve, reject) => {
-        const url = `${urls.GET_POST_BY_ID}/${postId}/${title}`
         api()
             .get(url)
             .then((res: AxiosResponse) => {
@@ -65,6 +64,21 @@ export const getPost = (postId: string, title: string): Promise<IPost> => {
             })
     })
 }
+
+export const getPostById = (postId: string): Promise<IPost> => {
+    return new Promise<IPost>((resolve, reject) => {
+        const url = `${urls.GET_POST_BY_ID}/${postId}`
+        getPost(url).then(resolve).catch(reject)
+    })
+}
+
+export const getPostByTitle = (postId: string, title: string): Promise<IPost> => {
+    return new Promise<IPost>((resolve, reject) => {
+        const url = `${urls.GET_POST_BY_TITLE}/${title}`
+        getPost(url).then(resolve).catch(reject)
+    })
+}
+
 export const getPosts = (section: string, lastCreateDate: Date, searchText: string): Promise<IPost[]> => {
     return new Promise<IPost[]>((resolve, reject) => {
         const config = {
