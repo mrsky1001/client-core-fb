@@ -3,7 +3,7 @@
  */
 
 import api from '@/core/services/api'
-import urls from '@/core/lib/urls'
+import urls from '@/core/collections/urls'
 import { AxiosError, AxiosResponse } from 'axios'
 import exceptions from '@/core/collections/exceptions'
 import { IRule } from '@/core/models/interfaces/lib/IRule'
@@ -46,12 +46,14 @@ const getInValidPostFields = (post: IPost) => {
     return listError
 }
 
-const getPost = (url: string): Promise<IPost> => {
+export const getPost = (postId: string, title: string): Promise<IPost> => {
     return new Promise<IPost>((resolve, reject) => {
+        const url = postId ? `${urls.GET_POST_BY_ID}/${postId}` : `${urls.GET_POST_BY_TITLE}/${title}`
+
         api()
             .get(url)
             .then((res: AxiosResponse) => {
-                responseHandler(res)
+                responseHandler(res, null, false)
                     .then((data) => resolve(new Post(data.post)))
                     .catch((err: AxiosError) => {
                         handlerError(err)
@@ -62,20 +64,6 @@ const getPost = (url: string): Promise<IPost> => {
                 handlerError(err)
                 reject(err)
             })
-    })
-}
-
-export const getPostById = (postId: string): Promise<IPost> => {
-    return new Promise<IPost>((resolve, reject) => {
-        const url = `${urls.GET_POST_BY_ID}/${postId}`
-        getPost(url).then(resolve).catch(reject)
-    })
-}
-
-export const getPostByTitle = (postId: string, title: string): Promise<IPost> => {
-    return new Promise<IPost>((resolve, reject) => {
-        const url = `${urls.GET_POST_BY_TITLE}/${title}`
-        getPost(url).then(resolve).catch(reject)
     })
 }
 

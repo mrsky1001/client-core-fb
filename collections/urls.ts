@@ -14,29 +14,29 @@ export default {
 
     GET_USERS: '/api/users',
     CREATE_USER: '/api/user',
-    GET_USER_BY_ID: '/api/user/:userId',
-    UPDATE_USER_BY_ID: '/api/user/:userId',
-    DELETE_USER_BY_ID: '/api/user/:userId',
+    GET_USER_BY_ID: '/api/user',
+    UPDATE_USER_BY_ID: '/api/user',
+    DELETE_USER_BY_ID: '/api/user',
 
     SEARCH: '/api/search/:search',
 
     GET_POSTS: '/api/posts',
-    GET_POST_BY_ID: '/api/post/id/:postId',
-    GET_POSTS_BY_SECTION: '/api/posts/:section',
-    GET_POST_BY_TITLE: '/api/post/:title',
+    GET_POST_BY_ID: '/api/post/id',
+    GET_POSTS_BY_SECTION: '/api/posts',
+    GET_POST_BY_TITLE: '/api/post',
     CREATE_POST: '/api/post',
-    UPDATE_POST_BY_ID: '/api/post/:postId',
+    UPDATE_POST_BY_ID: '/api/post',
 
     GET_PRODUCTS: '/api/product',
-    GET_PRODUCT_BY_ID: '/api/product/id/:postId',
-    GET_PRODUCT_BY_TITLE: '/api/product/:title',
+    GET_PRODUCT_BY_ID: '/api/product/id',
+    GET_PRODUCT_BY_TITLE: '/api/product',
     CREATE_PRODUCT: '/api/product',
-    UPDATE_PRODUCT_BY_ID: '/api/product/:productId',
+    UPDATE_PRODUCT_BY_ID: '/api/product',
 
     UPDATE_LIKE: '/api/like',
     UPDATE_STATUS_POST: '/api/status',
 
-    GET_IMG: '/api/uploads/images/',
+    GET_IMG: '/api/uploads/images',
     GET_IMG_OLD: '/uploads/images',
 
     UPLOAD_PRODUCT_IMG: '/api/product/img',

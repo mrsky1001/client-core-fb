@@ -3,7 +3,7 @@
  */
 
 import api from '@/core/services/api'
-import urls from '@/core/lib/urls'
+import urls from '@/core/collections/urls'
 import { handlerError, responseHandler } from '@/core/lib/response-handler'
 import { ILogin } from '@/core/models/interfaces/auth/ILogin'
 import { AxiosError, AxiosResponse } from 'axios'

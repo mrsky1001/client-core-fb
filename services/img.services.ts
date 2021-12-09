@@ -5,7 +5,7 @@
 import Post from '../models/classes/article/Post'
 import { handlerError, responseHandler } from '@/core/lib/response-handler'
 import api from '@/core/services/api'
-import urls from '@/core/lib/urls'
+import urls from '@/core/collections/urls'
 import { AxiosError, AxiosResponse } from 'axios'
 import GenericModel from '@/core/models/classes/app/GenericModel'
 import authStore from '@/core/store/auth/auth.store'
