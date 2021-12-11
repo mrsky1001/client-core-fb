@@ -52,6 +52,7 @@ const authStore = new Vuex.Store({
                 role = role ? role : roles.UNAUTHORIZED
 
                 if (user.isAuthorized) {
+                    console.log(justOne, role, user.role)
                     if (justOne) {
                         return user.role === role.value
                     } else {
