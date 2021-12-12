@@ -11,6 +11,18 @@ import { IUser } from '@/core/models/interfaces/auth/IUser'
 import { IComment } from '@/core/models/interfaces/article/IComment'
 import { IAnnotation } from '@/core/models/interfaces/article/IAnnotation'
 
+export interface IPostToUpdate extends IGenericModel {
+    title?: string
+    content?: string
+    tags?: ITag[]
+    likes: ILike[]
+    status: number
+    shares: IShare[]
+    author: IUser | null
+    comments: IComment[]
+    annotation: IAnnotation | null
+}
+
 export interface IPost extends IGenericModel {
     title: string
     urlTitle: string
@@ -22,7 +34,7 @@ export interface IPost extends IGenericModel {
     readTime: number
     tags: ITag[]
     likes: ILike[]
-    status: IStatus
+    status: number
     shares: IShare[]
     author: IUser | null
     comments: IComment[]

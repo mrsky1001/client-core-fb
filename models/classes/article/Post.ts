@@ -6,7 +6,6 @@ import GenericModel from '@/core/models/classes/app/GenericModel'
 import { IAnnotation } from '@/core/models/interfaces/article/IAnnotation'
 import { IShare } from '@/core/models/interfaces/article/IShare'
 import { IComment } from '@/core/models/interfaces/article/IComment'
-import { IStatus } from '@/core/models/interfaces/article/IStatus'
 import { ITag } from '@/core/models/interfaces/article/ITag'
 import { IPost } from '@/core/models/interfaces/article/IPost'
 import { ILike } from '@/core/models/interfaces/article/ILike'
@@ -27,7 +26,7 @@ export default class Post extends GenericModel {
     private _shares: IShare[] = []
     private _comments: IComment[] = []
     private _author: IUser | null = null
-    private _status: IStatus = statuses.DRAFT
+    private _status: number = statuses.DRAFT.value
     private _annotation: IAnnotation | null = null
 
     constructor(initObj?: IPost) {
@@ -88,11 +87,11 @@ export default class Post extends GenericModel {
         this._readTime = value
     }
 
-    get status(): IStatus {
+    get status(): number {
         return this._status
     }
 
-    set status(value: IStatus) {
+    set status(value: number) {
         this._status = value
     }
 

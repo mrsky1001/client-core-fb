@@ -118,15 +118,15 @@ export const addPost = (post: IPost): Promise<IPost> => {
         }
     })
 }
-export const editPost = (post: IPost): Promise<IPost> => {
+export const editPost = (postId: string, dataToUpdate: IPost): Promise<IPost> => {
     return new Promise<IPost>((resolve, reject) => {
-        const listErrors = getInValidPostFields(post)
+        const listErrors = getInValidPostFields(dataToUpdate)
 
         if (!listErrors.length) {
-            const url = `${urls.UPDATE_POST_BY_ID}/${post.id}`
+            const url = `${urls.UPDATE_POST_BY_ID}/${postId}`
 
             api()
-                .put(url, post)
+                .put(url, dataToUpdate)
                 .then((res: AxiosResponse) => {
                     responseHandler(res)
                         .then((data) => resolve(new Post(data.post)))
