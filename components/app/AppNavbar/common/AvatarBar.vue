@@ -42,6 +42,9 @@ import { mapGetters, mapMutations, mapState } from 'vuex'
     methods: {
         ...mapMutations(['setIsShowDrawer', 'setIsErrAva', 'setSearchText', 'setIsShowSearch']),
     },
+    mounted() {
+        console.log(this.avatar)
+    },
     watch: {
         '$route.fullPath'() {
             this.$forceUpdate()
