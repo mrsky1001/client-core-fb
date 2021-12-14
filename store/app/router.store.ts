@@ -8,6 +8,7 @@ import roles from '@/core/collections/roles'
 import authStore from '@/core/store/auth/auth.store'
 import { IRoute } from '@/core/models/interfaces/app/IRoute'
 import { routes } from '@/app/routes/routes'
+
 Vue.use(Vuex)
 
 const routerStore = new Vuex.Store({
@@ -16,6 +17,7 @@ const routerStore = new Vuex.Store({
             return routes.filter((r: IRoute) => route.name === r.group && authStore.getters.checkRole(r.role))
         },
         getAvatarRoutes() {
+            console.log(authStore.state.user)
             if (authStore.state.user.isAuthorized) {
                 return routes.filter(
                     (r) => r.onAvatarBar && r.role !== roles.UNAUTHORIZED && authStore.getters.checkRole(r.role)

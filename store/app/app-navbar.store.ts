@@ -10,6 +10,7 @@ import authStore from '@/core/store/auth/auth.store'
 import routerStore from '@/core/store/app/router.store'
 import { IRoute } from '@/core/models/interfaces/app/IRoute'
 import routesObj from '@/app/routes/routes-obj'
+
 Vue.use(Vuex)
 
 interface IAppBarStore {
