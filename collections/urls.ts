@@ -27,14 +27,17 @@ export default {
     CREATE_POST: '/api/post',
     UPDATE_POST_BY_ID: '/api/post',
 
+    SET_POST_LIKE: '/api/post/like',
+    DELETE_POST_LIKE: '/api/post/like',
+
+    UPDATE_POST_STATUS: '/api/post/status',
+    ADD_POST_SHARE: '/api/post/share',
+
     GET_PRODUCTS: '/api/product',
     GET_PRODUCT_BY_ID: '/api/product/id',
     GET_PRODUCT_BY_TITLE: '/api/product',
     CREATE_PRODUCT: '/api/product',
     UPDATE_PRODUCT_BY_ID: '/api/product',
-
-    UPDATE_LIKE: '/api/like',
-    UPDATE_STATUS_POST: '/api/status',
 
     GET_IMG: '/api/uploads/images',
     GET_IMG_OLD: '/uploads/images',

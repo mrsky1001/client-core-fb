@@ -118,6 +118,91 @@ export const addPost = (post: IPost): Promise<IPost> => {
         }
     })
 }
+
+export const addLikePost = (postId: string): Promise<IPost> => {
+    return new Promise<IPost>((resolve, reject) => {
+        const url = `${urls.SET_POST_LIKE}/${postId}`
+
+        api()
+            .post(url)
+            .then((res: AxiosResponse) => {
+                responseHandler(res)
+                    .then((data) => resolve(new Post(data.post)))
+                    .catch((err: AxiosError) => {
+                        handlerError(err)
+                        reject(err)
+                    })
+            })
+            .catch((err: AxiosError) => {
+                handlerError(err)
+                reject(err)
+            })
+    })
+}
+
+export const removeLikePost = (postId: string): Promise<IPost> => {
+    return new Promise<IPost>((resolve, reject) => {
+        const url = `${urls.DELETE_POST_LIKE}/${postId}`
+
+        api()
+            .delete(url)
+            .then((res: AxiosResponse) => {
+                responseHandler(res)
+                    .then((data) => resolve(new Post(data.post)))
+                    .catch((err: AxiosError) => {
+                        handlerError(err)
+                        reject(err)
+                    })
+            })
+            .catch((err: AxiosError) => {
+                handlerError(err)
+                reject(err)
+            })
+    })
+}
+
+export const addSharePost = (postId: string): Promise<IPost> => {
+    return new Promise<IPost>((resolve, reject) => {
+        const url = `${urls.ADD_POST_SHARE}/${postId}`
+
+        api()
+            .post(url)
+            .then((res: AxiosResponse) => {
+                responseHandler(res)
+                    .then((data) => resolve(new Post(data.post)))
+                    .catch((err: AxiosError) => {
+                        handlerError(err)
+                        reject(err)
+                    })
+            })
+            .catch((err: AxiosError) => {
+                handlerError(err)
+                reject(err)
+            })
+    })
+}
+
+export const changeStatusPost = (postId: string, status: number): Promise<IPost> => {
+    return new Promise<IPost>((resolve, reject) => {
+        const url = `${urls.UPDATE_POST_STATUS}/${postId}`
+
+        api()
+            .post(url, { status })
+            .then((res: AxiosResponse) => {
+                responseHandler(res)
+                    .then((data) => resolve(new Post(data.post)))
+                    .catch((err: AxiosError) => {
+                        handlerError(err)
+                        reject(err)
+                    })
+            })
+            .catch((err: AxiosError) => {
+                handlerError(err)
+                reject(err)
+            })
+    })
+}
+
 export const editPost = (postId: string, dataToUpdate: IPost): Promise<IPost> => {
     return new Promise<IPost>((resolve, reject) => {
         const listErrors = getInValidPostFields(dataToUpdate)
