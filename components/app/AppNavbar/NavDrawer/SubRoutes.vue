@@ -9,7 +9,7 @@
                 plain
                 color="gray"
                 active-class="active-btn"
-                key="routes"
+                key="routesObj"
                 v-bind="attrs"
                 v-on="on"
                 :class="'font-weight-bold ' + activeClass"
