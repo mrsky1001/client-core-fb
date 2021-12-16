@@ -3,9 +3,16 @@
   -->
 
 <template>
-    <v-col style="z-index: 1" :cols="cols" :lg="lg" :md="md" :sm="sm" class="min-width-700-lg">
-        <slot></slot>
-    </v-col>
+  <v-col
+    style="z-index: 1"
+    :cols="cols"
+    :lg="lg"
+    :md="md"
+    :sm="sm"
+    class="min-width-700-lg"
+  >
+    <slot />
+  </v-col>
 </template>
 
 <script>

@@ -3,39 +3,51 @@
   -->
 
 <template>
-    <div :class="styleClasses">
-        <div class="v-input__control">
-            <div class="v-input__slot">
-                <fieldset aria-hidden="true"></fieldset>
-                <div class="v-text-field__slot">
-                    <v-icon v-if="!avatar" @click="clickAvatarImg"> mdi-camera-plus-outline </v-icon>
+  <div :class="styleClasses">
+    <div class="v-input__control">
+      <div class="v-input__slot">
+        <fieldset aria-hidden="true" />
+        <div class="v-text-field__slot">
+          <v-icon
+            v-if="!avatar"
+            @click="clickAvatarImg"
+          >
+            mdi-camera-plus-outline
+          </v-icon>
 
-                    <v-avatar v-if="avatar" class="avatar-img" @click="clickAvatarImg">
-                        <v-img :src="avatar"></v-img>
-                    </v-avatar>
+          <v-avatar
+            v-if="avatar"
+            class="avatar-img"
+            @click="clickAvatarImg"
+          >
+            <v-img :src="avatar" />
+          </v-avatar>
 
-                    <v-divider vertical inset></v-divider>
-                    <input
-                        id="username"
-                        name="username"
-                        placeholder="Имя"
-                        :class="inputClasses"
-                        :value="username"
-                        @input="setUsername"
-                    />
-                </div>
-            </div>
-            <div class="v-text-field__details">
-                <div class="v-messages theme--light error--text">
-                    <div class="v-messages__wrapper">
-                        <div class="v-messages__message">
-                            {{ errors.join(', ') }}
-                        </div>
-                    </div>
-                </div>
-            </div>
+          <v-divider
+            vertical
+            inset
+          />
+          <input
+            id="username"
+            name="username"
+            placeholder="Имя"
+            :class="inputClasses"
+            :value="username"
+            @input="setUsername"
+          >
         </div>
+      </div>
+      <div class="v-text-field__details">
+        <div class="v-messages theme--light error--text">
+          <div class="v-messages__wrapper">
+            <div class="v-messages__message">
+              {{ errors.join(', ') }}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>

@@ -10,22 +10,11 @@ import authStore from '@/core/store/auth/auth.store'
 import routerStore from '@/core/store/app/router.store'
 import { IRoute } from '@/core/models/interfaces/app/IRoute'
 import routesObj from '@/app/routes/routes-obj'
+import { IAppBarStore } from '@/core/store/types'
 
 Vue.use(Vuex)
 
-interface IAppBarStore {
-    routes: IRoute[]
-    searchText: string
-    isShowDrawer: boolean
-    isShowSearch: boolean
-    activeClass: string
-    isErrAva: boolean
-    avatar: string
-    centerRoutes: IRoute[]
-    noteRoute: IRoute
-}
-
-const appNavBarStore = new Vuex.Store<IAppBarStore>({
+const index = new Vuex.Store<IAppBarStore>({
     state: {
         routes: routes,
         searchText: '',
@@ -80,4 +69,4 @@ const appNavBarStore = new Vuex.Store<IAppBarStore>({
     actions: {},
 })
 
-export default appNavBarStore
+export default index

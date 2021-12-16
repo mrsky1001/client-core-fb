@@ -3,25 +3,31 @@
   -->
 
 <template>
-    <div>
-        <v-app-bar app color="white" class="my-app-bar" light scroll-target="#scrolling-techniques-2">
-            <v-app-bar-nav-icon
-                v-if="!isShowSearch"
-                @click="setIsShowDrawer(true)"
-                class="d-flex d-md-none"
-            ></v-app-bar-nav-icon>
-            <LogoBar></LogoBar>
-            <NavDrawer></NavDrawer>
-            <SearchField class="search-field"></SearchField>
-            <SearchButton></SearchButton>
-            <AvatarBar></AvatarBar>
-        </v-app-bar>
-        <SideDrawer></SideDrawer>
-    </div>
+  <div>
+    <v-app-bar
+      app
+      color="white"
+      class="my-app-bar"
+      light
+      scroll-target="#scrolling-techniques-2"
+    >
+      <v-app-bar-nav-icon
+        v-if="!isShowSearch"
+        class="d-flex d-md-none"
+        @click="setIsShowDrawer(true)"
+      />
+      <LogoBar />
+      <NavDrawer />
+      <SearchField class="search-field" />
+      <SearchButton />
+      <AvatarBar />
+    </v-app-bar>
+    <SideDrawer />
+  </div>
 </template>
 <script>
 import { Component, Vue } from 'vue-property-decorator'
-import navbarStore from '@/core/store/app/app-navbar.store'
+import navbarStore from '@/core/store/app/app-navbar'
 import SideDrawer from './SideDrawer/SideDrawer'
 import NavDrawer from './NavDrawer/NavDrawer'
 

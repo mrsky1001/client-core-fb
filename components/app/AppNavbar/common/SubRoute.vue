@@ -3,18 +3,21 @@
   -->
 
 <template>
-    <div v-if="checkRole(route.role)">
-        <hr class="spacer-hr" v-if="route.hasSubLine" />
-        <v-list-item :to="route.path">
-            <v-list-item-icon>
-                <v-icon>{{ route.icon }}</v-icon>
-            </v-list-item-icon>
+  <div v-if="checkRole(route.role)">
+    <hr
+      v-if="route.hasSubLine"
+      class="spacer-hr"
+    >
+    <v-list-item :to="route.path">
+      <v-list-item-icon>
+        <v-icon>{{ route.icon }}</v-icon>
+      </v-list-item-icon>
 
-            <v-list-item-content>
-                <v-list-item-title>{{ route.text }}</v-list-item-title>
-            </v-list-item-content>
-        </v-list-item>
-    </div>
+      <v-list-item-content>
+        <v-list-item-title>{{ route.text }}</v-list-item-title>
+      </v-list-item-content>
+    </v-list-item>
+  </div>
 </template>
 
 <script>

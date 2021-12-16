@@ -3,17 +3,29 @@
   -->
 
 <template>
-    <div class="text-center">
-        <v-snackbar top class="app-snackbar" :value="isShowSnackbar" :color="snackBarClasses" @change="setShowSnackbar">
-            <strong>
-                {{ snackBarMsg }}
-                {{ snackBarParams }}
-            </strong>
-            <template #action="{ attrs }">
-                <v-btn text v-bind="attrs" @click="setShowSnackbar(false)"> Закрыть</v-btn>
-            </template>
-        </v-snackbar>
-    </div>
+  <div class="text-center">
+    <v-snackbar
+      top
+      class="app-snackbar"
+      :value="isShowSnackbar"
+      :color="snackBarClasses"
+      @change="setShowSnackbar"
+    >
+      <strong>
+        {{ snackBarMsg }}
+        {{ snackBarParams }}
+      </strong>
+      <template #action="{ attrs }">
+        <v-btn
+          text
+          v-bind="attrs"
+          @click="setShowSnackbar(false)"
+        >
+          Закрыть
+        </v-btn>
+      </template>
+    </v-snackbar>
+  </div>
 </template>
 
 <script>

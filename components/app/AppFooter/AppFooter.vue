@@ -3,36 +3,82 @@
   -->
 
 <template>
-    <v-footer color="black" class="caption my-footer" padless>
-        <v-row style="margin: 0">
-            <v-col cols="12" sm="12" md="12" lg="7">
-                <v-row class="my-row">
-                    <v-col cols="12" sm="12" md="12" lg="1"></v-col>
-                    <v-col cols="12" sm="10" md="10" lg="11" style="text-align: justify; align-items: baseline">
-                        <AppRoutes></AppRoutes>
-                    </v-col>
-                    <v-col cols="12" sm="2" md="2" lg="1"></v-col>
-                    <v-col cols="12" sm="10" md="3" lg="3">
-                        <Contacts></Contacts>
-                    </v-col>
-                    <v-col cols="12" sm="2" md="1" lg="1"></v-col>
-                    <v-col cols="12" sm="10" md="5" lg="6">
-                        <SocialNetwork></SocialNetwork>
-                    </v-col>
-                </v-row>
-            </v-col>
-            <v-col cols="12" sm="12" md="12" lg="4" class="grey--text font-weight-bold">
-                <v-row>
-                    <v-col class="copyright-col">
-                        <Copyright></Copyright>
-                    </v-col>
-                    <v-col>
-                        <FooterImg></FooterImg>
-                    </v-col>
-                </v-row>
-            </v-col>
+  <v-footer
+    color="black"
+    class="caption my-footer"
+    padless
+  >
+    <v-row style="margin: 0">
+      <v-col
+        cols="12"
+        sm="12"
+        md="12"
+        lg="7"
+      >
+        <v-row class="my-row">
+          <v-col
+            cols="12"
+            sm="12"
+            md="12"
+            lg="1"
+          />
+          <v-col
+            cols="12"
+            sm="10"
+            md="10"
+            lg="11"
+            style="text-align: justify; align-items: baseline"
+          >
+            <AppRoutes />
+          </v-col>
+          <v-col
+            cols="12"
+            sm="2"
+            md="2"
+            lg="1"
+          />
+          <v-col
+            cols="12"
+            sm="10"
+            md="3"
+            lg="3"
+          >
+            <Contacts />
+          </v-col>
+          <v-col
+            cols="12"
+            sm="2"
+            md="1"
+            lg="1"
+          />
+          <v-col
+            cols="12"
+            sm="10"
+            md="5"
+            lg="6"
+          >
+            <SocialNetwork />
+          </v-col>
         </v-row>
-    </v-footer>
+      </v-col>
+      <v-col
+        cols="12"
+        sm="12"
+        md="12"
+        lg="4"
+        class="grey--text font-weight-bold"
+      >
+        <v-row>
+          <v-col class="copyright-col">
+            <Copyright />
+          </v-col>
+          <v-col>
+            <FooterImg />
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
+  </v-footer>
 </template>
 
 <script>

@@ -8,7 +8,7 @@ import ServiceStorage from '@/core/lib/service-storage'
 import roles from '@/core/collections/roles'
 import { IUser } from '@/core/models/interfaces/auth/IUser'
 import User from '@/core/models/classes/auth/User'
-import navbarStore from '@/core/store/app/app-navbar.store'
+import navbarStore from '@/core/store/app/app-navbar'
 import { IRole } from '@/core/models/interfaces/auth/IRole'
 
 Vue.use(Vuex)

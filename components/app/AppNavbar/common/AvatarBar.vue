@@ -3,34 +3,52 @@
   -->
 
 <template>
-    <v-menu offset-y ref="avatarBarRef">
-        <template #activator="{ on, attrs }">
-            <v-btn icon v-bind="attrs" v-on="on" :class="'avatar-bar-btn ' + getAvatarClass">
-                <v-icon v-if="!avatar || isErrAva">mdi-cat</v-icon>
-                <v-avatar v-if="avatar && !isErrAva"><v-img :src="avatar" @error="setIsErrAva"></v-img></v-avatar>
-            </v-btn>
-        </template>
+  <v-menu
+    ref="avatarBarRef"
+    offset-y
+  >
+    <template #activator="{ on, attrs }">
+      <v-btn
+        icon
+        v-bind="attrs"
+        :class="'avatar-bar-btn ' + getAvatarClass"
+        v-on="on"
+      >
+        <v-icon v-if="!avatar || isErrAva">
+          mdi-cat
+        </v-icon>
+        <v-avatar v-if="avatar && !isErrAva">
+          <v-img
+            :src="avatar"
+            @error="setIsErrAva"
+          />
+        </v-avatar>
+      </v-btn>
+    </template>
 
-        <v-list>
-            <template v-for="route in avatarRoutes">
-                <v-list-item :key="route.name" :to="route.path">
-                    <v-list-item-icon>
-                        <v-icon>{{ route.icon }}</v-icon>
-                    </v-list-item-icon>
+    <v-list>
+      <template v-for="route in avatarRoutes">
+        <v-list-item
+          :key="route.name"
+          :to="route.path"
+        >
+          <v-list-item-icon>
+            <v-icon>{{ route.icon }}</v-icon>
+          </v-list-item-icon>
 
-                    <v-list-item-content>
-                        <v-list-item-title>{{ route.text }}</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
-            </template>
-        </v-list>
-    </v-menu>
+          <v-list-item-content>
+            <v-list-item-title>{{ route.text }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </template>
+    </v-list>
+  </v-menu>
 </template>
 
 <script>
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import navbarStore from '@/core/store/app/app-navbar.store'
+import navbarStore from '@/core/store/app/app-navbar'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 
 @Component({

@@ -3,10 +3,10 @@
   -->
 
 <template>
-    <div>
-        <p>{{ new Date().getFullYear() }} — © Все права защищены. Никита и Анастасия Коляда.</p>
-        <p>{{ text }}</p>
-    </div>
+  <div>
+    <p>{{ new Date().getFullYear() }} — © Все права защищены. Никита и Анастасия Коляда.</p>
+    <p>{{ text }}</p>
+  </div>
 </template>
 
 <script>

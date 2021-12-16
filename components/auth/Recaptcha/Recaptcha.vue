@@ -3,14 +3,14 @@
   -->
 
 <template>
-    <VueRecaptcha
-        ref="recaptcha"
-        class="g-recaptcha"
-        :sitekey="key"
-        :loadRecaptchaScript="true"
-        @verify="onVerify"
-        @expired="onExpired"
-    ></VueRecaptcha>
+  <VueRecaptcha
+    ref="recaptcha"
+    class="g-recaptcha"
+    :sitekey="key"
+    :load-recaptcha-script="true"
+    @verify="onVerify"
+    @expired="onExpired"
+  />
 </template>
 
 <script>

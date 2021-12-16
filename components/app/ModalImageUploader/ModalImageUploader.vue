@@ -3,13 +3,19 @@
   -->
 
 <template>
-    <v-dialog :value="showModal" @click:outside="setShowModal(false)">
-        <v-card>
-            <v-card-title> Загрузить изображение</v-card-title>
-            <x-cropper :options="opts" @cropper-saved="callSaveImg"></x-cropper>
-            <v-divider></v-divider>
-        </v-card>
-    </v-dialog>
+  <v-dialog
+    :value="showModal"
+    @click:outside="setShowModal(false)"
+  >
+    <v-card>
+      <v-card-title> Загрузить изображение</v-card-title>
+      <x-cropper
+        :options="opts"
+        @cropper-saved="callSaveImg"
+      />
+      <v-divider />
+    </v-card>
+  </v-dialog>
 </template>
 
 <script>

@@ -3,11 +3,17 @@
   -->
 
 <template>
-    <v-col :cols="cols" :lg="lg" :md="md" :sm="sm" class="my-left-col">
-        <v-container>
-            <slot></slot>
-        </v-container>
-    </v-col>
+  <v-col
+    :cols="cols"
+    :lg="lg"
+    :md="md"
+    :sm="sm"
+    class="my-left-col"
+  >
+    <v-container>
+      <slot />
+    </v-container>
+  </v-col>
 </template>
 
 <script>

@@ -3,45 +3,67 @@
   -->
 
 <template>
-    <v-list nav dense>
-        <v-navigation-drawer :value="isShowDrawer" @transitionend="changeDrawer" fixed>
-            <v-list dense nav class="my-slider">
-                <template v-for="route in routes">
-                    <SubRoute
-                        v-if="route.onMainBar && !route.onCenterSidebar"
-                        :key="'container ' + route.name"
-                        :route="route"
-                    ></SubRoute>
+  <v-list
+    nav
+    dense
+  >
+    <v-navigation-drawer
+      :value="isShowDrawer"
+      fixed
+      @transitionend="changeDrawer"
+    >
+      <v-list
+        dense
+        nav
+        class="my-slider"
+      >
+        <template v-for="route in routes">
+          <SubRoute
+            v-if="route.onMainBar && !route.onCenterSidebar"
+            :key="'container ' + route.name"
+            :route="route"
+          />
 
-                    <div v-if="route.isGroup" :key="'group of ' + route.name">
-                        <div v-for="subRoute in getSubRoutes(route)" :key="'sub route ' + subRoute.name">
-                            <SubRoute :route="subRoute"></SubRoute>
-                            <div v-if="subRoute.isCenterSidebar">
-                                <SubRoute
-                                    v-for="centerRoute in centerRoutes"
-                                    :key="'center route ' + centerRoute.name"
-                                    :route="centerRoute"
-                                ></SubRoute>
-                            </div>
-                        </div>
-                        <div :key="'subline' + route.name">
-                            <hr class="spacer-hr" />
-                        </div>
-                    </div>
-                </template>
-                <SubRoute :key="'avatar ' + route.name" v-for="route in avatarRoutes" :route="route"></SubRoute>
-            </v-list>
-        </v-navigation-drawer>
-    </v-list>
+          <div
+            v-if="route.isGroup"
+            :key="'group of ' + route.name"
+          >
+            <div
+              v-for="subRoute in getSubRoutes(route)"
+              :key="'sub route ' + subRoute.name"
+            >
+              <SubRoute :route="subRoute" />
+              <div v-if="subRoute.isCenterSidebar">
+                <SubRoute
+                  v-for="centerRoute in centerRoutes"
+                  :key="'center route ' + centerRoute.name"
+                  :route="centerRoute"
+                />
+              </div>
+            </div>
+            <div :key="'subline' + route.name">
+              <hr class="spacer-hr">
+            </div>
+          </div>
+        </template>
+        <SubRoute
+          v-for="route in avatarRoutes"
+          :key="'avatar ' + route.name"
+          :route="route"
+        />
+      </v-list>
+    </v-navigation-drawer>
+  </v-list>
 </template>
 
 <script>
 import { Component, Vue } from 'vue-property-decorator'
-import navbarStore from '@/core/store/app/app-navbar.store'
+import navbarStore from '@/core/store/app/app-navbar'
 import routerStore from '@/core/store/app/router.store'
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import SubRoute from '@/core/components/app/AppNavbar/common/SubRoute.vue'
 import '../app-nav-bar.scss'
+
 @Component({
     components: { SubRoute },
     store: navbarStore,

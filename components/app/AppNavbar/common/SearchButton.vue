@@ -3,20 +3,20 @@
   -->
 
 <template>
-    <v-btn
-        plain
-        color="gray"
-        class="search-btn font-weight-bold"
-        active-class="active-btn"
-        @click="setIsShowSearch(true)"
-    >
-        <v-icon>mdi-magnify-scan</v-icon>
-    </v-btn>
+  <v-btn
+    plain
+    color="gray"
+    class="search-btn font-weight-bold"
+    active-class="active-btn"
+    @click="setIsShowSearch(true)"
+  >
+    <v-icon>mdi-magnify-scan</v-icon>
+  </v-btn>
 </template>
 
 <script>
 import { Component, Vue } from 'vue-property-decorator'
-import navbarStore from '@/core/store/app/app-navbar.store'
+import navbarStore from '@/core/store/app/app-navbar'
 import { mapMutations } from 'vuex'
 
 @Component({

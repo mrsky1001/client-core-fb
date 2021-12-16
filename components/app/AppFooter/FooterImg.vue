@@ -3,11 +3,14 @@
   -->
 
 <template>
-    <div>
-        <router-link to="/store">
-            <v-img class="footer-img" :src="footerImg"></v-img>
-        </router-link>
-    </div>
+  <div>
+    <router-link to="/store">
+      <v-img
+        class="footer-img"
+        :src="footerImg"
+      />
+    </router-link>
+  </div>
 </template>
 
 <script>

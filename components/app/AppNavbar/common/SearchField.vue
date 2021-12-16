@@ -3,21 +3,21 @@
   -->
 
 <template>
-    <v-text-field
-        autofocus
-        single-line
-        hide-details
-        placeholder="Что будем искать?"
-        v-show="isShowSearch"
-        :value="searchText"
-        @change="setSearchText"
-        @focusout="setIsShowSearch(false)"
-    ></v-text-field>
+  <v-text-field
+    v-show="isShowSearch"
+    autofocus
+    single-line
+    hide-details
+    placeholder="Что будем искать?"
+    :value="searchText"
+    @change="setSearchText"
+    @focusout="setIsShowSearch(false)"
+  />
 </template>
 
 <script>
 import { Component, Vue } from 'vue-property-decorator'
-import navbarStore from '@/core/store/app/app-navbar.store'
+import navbarStore from '@/core/store/app/app-navbar'
 
 import { mapMutations, mapState } from 'vuex'
 
