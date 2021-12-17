@@ -2,7 +2,6 @@ import {MutationTree} from 'vuex'
 import {RouteConfig} from 'vue-router'
 import {routes} from '@/app/routes/routes'
 import {IRoute} from '@/core/models/interfaces/app/IRoute'
-import routesObj from '@/app/routes/routes-obj'
 import {IAppBarState} from '@/core/store/types'
 
 export const mutations: MutationTree<IAppBarState> = {
@@ -13,7 +12,6 @@ export const mutations: MutationTree<IAppBarState> = {
         state.isShowDrawer = val
     },
     setAvatar(state, val: string) {
-        state.isErrAva = false
         state.avatar = val
     },
     setIsShowSearch(state, val: boolean) {
@@ -23,13 +21,14 @@ export const mutations: MutationTree<IAppBarState> = {
         const route = routes.find((r: IRoute) => props.$route.path.includes(r.path) && r.group) as IRoute
 
         if (route && route.group) {
-            state.noteRoute = route
+            // state.noteRoute = route
             state.activeClass = 'active-btn'
         } else {
-            state.noteRoute = routesObj.NOTES
+            // state.noteRoute = routesObj.NOTES
             state.activeClass = ''
         }
 
         props.$forceUpdate()
     },
 }
+

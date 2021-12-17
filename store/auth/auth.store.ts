@@ -6,10 +6,10 @@ import Vuex from 'vuex'
 import Vue from 'vue'
 import ServiceStorage from '@/core/lib/service-storage'
 import roles from '@/core/collections/roles'
-import { IUser } from '@/core/models/interfaces/auth/IUser'
+import {IUser} from '@/core/models/interfaces/auth/IUser'
 import User from '@/core/models/classes/auth/User'
-import navbarStore from '@/core/store/app/app-navbar'
-import { IRole } from '@/core/models/interfaces/auth/IRole'
+// import navbarStore from '@/core/store/app/app-navbar'
+import {IRole} from '@/core/models/interfaces/auth/IRole'
 
 Vue.use(Vuex)
 
@@ -30,7 +30,7 @@ const authStore = new Vuex.Store({
         saveUser(state, rawUser: IUser): void {
             const user = new User(rawUser)
             ServiceStorage.setProp('user', user)
-            navbarStore.commit('setAvatar', user.avatar)
+            // navbarStore.commit('setAvatar', user.avatar)
             state.user = user
         },
         onVerify(state, val) {

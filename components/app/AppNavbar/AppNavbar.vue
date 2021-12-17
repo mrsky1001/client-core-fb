@@ -12,17 +12,16 @@
       scroll-target="#scrolling-techniques-2"
     >
       <v-app-bar-nav-icon
-        v-if="!isShowSearch"
+        v-if="!self.isShowSearch"
         class="d-flex d-md-none"
-        @click="setIsShowDrawer(true)"
       />
-      <LogoBar />
-      <NavDrawer />
-      <SearchField class="search-field" />
-      <SearchButton />
-      <AvatarBar />
+      <!--      <LogoBar />-->
+      <!--      <NavDrawer />-->
+      <!--      <SearchField class="search-field" />-->
+      <!--      <SearchButton />-->
+      <!--      <AvatarBar />-->
     </v-app-bar>
-    <SideDrawer />
+    <!--    <SideDrawer />-->
   </div>
 </template>
 <script lang="ts">
@@ -32,10 +31,10 @@
 // import LogoBar from '@/core/components/app/AppNavbar/common/LogoBar'
 // import SearchButton from '@/core/components/app/AppNavbar/common/SearchButton'
 // import SearchField from '@/core/components/app/AppNavbar/common/SearchField'
-import {IAppBarState} from '@/core/store/types'
 import Component from 'vue-class-component'
 import Vue from 'vue'
-import {Action, Getter, State} from 'vuex-class'
+import { State } from 'vuex-class'
+import { IAppBarState } from '@/core/store/types'
 
 // @Component({
 // components: {
@@ -57,11 +56,7 @@ const namespace = 'navbar'
 @Component
 export default class AppNavbar extends Vue {
   @State('navbar')
-  navbar: IAppBarState;
-  @Action('fetchData', { namespace })
-  fetchData: any;
-  @Getter('fullName', { namespace })
-  fullName: string;
+  self: IAppBarState;
 }
 </script>
 

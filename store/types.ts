@@ -10,4 +10,6 @@ export interface IAppBarState {
     isShowDrawer: boolean
     isShowSearch: boolean
     activeClass: string
+    avatar: string
+    // noteRoute: IRoute
 }
