@@ -6,9 +6,9 @@
   <div>
     <v-app-bar
       app
+      light
       color="white"
       class="my-app-bar"
-      light
       scroll-target="#scrolling-techniques-2"
     >
       <v-app-bar-nav-icon
@@ -31,11 +31,7 @@
 // import LogoBar from '@/core/components/app/AppNavbar/common/LogoBar'
 // import SearchButton from '@/core/components/app/AppNavbar/common/SearchButton'
 // import SearchField from '@/core/components/app/AppNavbar/common/SearchField'
-import Component from 'vue-class-component'
 import Vue from 'vue'
-import { State } from 'vuex-class'
-import { IAppBarState } from '@/core/store/types'
-
 // @Component({
 // components: {
 //     SearchField,
@@ -51,12 +47,10 @@ import { IAppBarState } from '@/core/store/types'
 // methods: {
 //     ...mapMutations(['setIsShowDrawer', 'setSearchText', 'setIsShowSearch']),
 // },
+import { vxm } from '@/core/store/store.vuex'
 
-const namespace = 'navbar'
-@Component
 export default class AppNavbar extends Vue {
-  @State('navbar')
-  self: IAppBarState;
+    self = vxm.appNavbar;
 }
 </script>
 
