@@ -3,9 +3,9 @@ import {RouteConfig} from 'vue-router'
 import {routes} from '@/app/routes/routes'
 import {IRoute} from '@/core/models/interfaces/app/IRoute'
 import routesObj from '@/app/routes/routes-obj'
-import {IAppBarStore} from '@/core/store/types'
+import {IAppBarState} from '@/core/store/types'
 
-export const mutations: MutationTree<IAppBarStore> = {
+export const mutations: MutationTree<IAppBarState> = {
     setSearchText(state, val: string) {
         state.searchText = val
     },

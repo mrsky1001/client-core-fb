@@ -25,36 +25,44 @@
     <SideDrawer />
   </div>
 </template>
-<script>
-import { Component, Vue } from 'vue-property-decorator'
-import navbarStore from '@/core/store/app/app-navbar'
-import SideDrawer from './SideDrawer/SideDrawer'
-import NavDrawer from './NavDrawer/NavDrawer'
+<script lang="ts">
+// import SideDrawer from './SideDrawer/SideDrawer'
+// import NavDrawer from './NavDrawer/NavDrawer'
+// import AvatarBar from './common/AvatarBar'
+// import LogoBar from '@/core/components/app/AppNavbar/common/LogoBar'
+// import SearchButton from '@/core/components/app/AppNavbar/common/SearchButton'
+// import SearchField from '@/core/components/app/AppNavbar/common/SearchField'
+import {IAppBarState} from '@/core/store/types'
+import Component from 'vue-class-component'
+import Vue from 'vue'
+import {Action, Getter, State} from 'vuex-class'
 
-import { mapMutations, mapState } from 'vuex'
-import AvatarBar from './common/AvatarBar'
-import LogoBar from '@/core/components/app/AppNavbar/common/LogoBar'
-import SearchButton from '@/core/components/app/AppNavbar/common/SearchButton'
-import SearchField from '@/core/components/app/AppNavbar/common/SearchField'
+// @Component({
+// components: {
+//     SearchField,
+//     SearchButton,
+//     LogoBar,
+//     AvatarBar,
+//     NavDrawer,
+//     SideDrawer,
+// },
+// computed: {
+//     ...mapState(['routes', 'isShowDrawer', 'searchText', 'isShowSearch']),
+// },
+// methods: {
+//     ...mapMutations(['setIsShowDrawer', 'setSearchText', 'setIsShowSearch']),
+// },
 
-@Component({
-    store: navbarStore,
-    components: {
-        SearchField,
-        SearchButton,
-        LogoBar,
-        AvatarBar,
-        NavDrawer,
-        SideDrawer,
-    },
-    computed: {
-        ...mapState(['routes', 'isShowDrawer', 'searchText', 'isShowSearch']),
-    },
-    methods: {
-        ...mapMutations(['setIsShowDrawer', 'setSearchText', 'setIsShowSearch']),
-    },
-})
-export default class AppNavbar extends Vue {}
+const namespace = 'navbar'
+@Component
+export default class AppNavbar extends Vue {
+  @State('navbar')
+  navbar: IAppBarState;
+  @Action('fetchData', { namespace })
+  fetchData: any;
+  @Getter('fullName', { namespace })
+  fullName: string;
+}
 </script>
 
 <style lang="scss">

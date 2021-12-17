@@ -4,17 +4,17 @@
 
 import Vuex from 'vuex'
 import Vue from 'vue'
-import { RouteConfig } from 'vue-router'
-import { routes } from '@/app/routes/routes'
+import {RouteConfig} from 'vue-router'
+import {routes} from '@/app/routes/routes'
 import authStore from '@/core/store/auth/auth.store'
 import routerStore from '@/core/store/app/router.store'
-import { IRoute } from '@/core/models/interfaces/app/IRoute'
+import {IRoute} from '@/core/models/interfaces/app/IRoute'
 import routesObj from '@/app/routes/routes-obj'
-import { IAppBarStore } from '@/core/store/types'
+import {IAppBarState} from '@/core/store/types'
 
 Vue.use(Vuex)
 
-const index = new Vuex.Store<IAppBarStore>({
+const index = new Vuex.Store<IAppBarState>({
     state: {
         routes: routes,
         searchText: '',

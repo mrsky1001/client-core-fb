@@ -2,39 +2,28 @@
  * Copyright (c) 21.11.2021, 21:36  Kolyada Nikita Vladimirovich nikita.nk16@yandex.ru
  */
 
-import Vuex from 'vuex'
+import Vuex, {Module} from 'vuex'
 import Vue from 'vue'
-import { routes } from '@/app/routes/routes'
-import authStore from '@/core/store/auth/auth.store'
-import routerStore from '@/core/store/app/router.store'
-import routesObj from '@/app/routes/routes-obj'
-import { IAppBarStore } from '@/core/store/types'
+import {routes} from '@/app/routes/routes'
+import {IAppBarState, RootState} from '@/core/store/types'
+import {getters} from '@/core/store/app/app-navbar/getters'
+import {mutations} from '@/core/store/app/app-navbar/mutations'
 
 Vue.use(Vuex)
 
-const index = new Vuex.Store<IAppBarStore>({
-    state: {
-        routes: routes,
-        searchText: '',
-        isShowDrawer: false,
-        isShowSearch: false,
-        activeClass: '',
-        isErrAva: false,
-        avatar: authStore.state.user.avatar,
-        centerRoutes: routerStore.getters.getCenterRoutes,
-        noteRoute: routesObj.NOTES,
-    },
-    getters: {
-        avatarRoutes() {
-            return routerStore.getters.getAvatarRoutes
-        },
-        getAvatarClass() {
-            return authStore.state.user.isAuthorized ? 'active-btn' : ''
-        },
-    },
-    mutations: {},
+export const state: IAppBarState = {
+    routes: routes,
+    searchText: '',
+    activeClass: '',
+    isShowDrawer: false,
+    isShowSearch: false,
+}
 
-    actions: {},
-})
+const namespaced = true
 
-export default index
+export const navbar: Module<IAppBarState, RootState> = {
+    namespaced,
+    state,
+    getters,
+    mutations
+}
