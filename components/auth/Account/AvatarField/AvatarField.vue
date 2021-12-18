@@ -3,55 +3,44 @@
   -->
 
 <template>
-  <div :class="styleClasses">
-    <div class="v-input__control">
-      <div class="v-input__slot">
-        <fieldset aria-hidden="true" />
-        <div class="v-text-field__slot">
-          <v-icon
-            v-if="!avatar"
-            @click="clickAvatarImg"
-          >
-            mdi-camera-plus-outline
-          </v-icon>
+    <div :class="styleClasses">
+        <div class="v-input__control">
+            <div class="v-input__slot">
+                <fieldset aria-hidden="true" />
+                <div class="v-text-field__slot">
+                    <v-icon v-if="!avatar" @click="clickAvatarImg"> mdi-camera-plus-outline</v-icon>
 
-          <v-avatar
-            v-if="avatar"
-            class="avatar-img"
-            @click="clickAvatarImg"
-          >
-            <v-img :src="avatar" />
-          </v-avatar>
+                    <v-avatar v-if="avatar" class="avatar-img" @click="clickAvatarImg">
+                        <v-img :src="avatar" />
+                    </v-avatar>
 
-          <v-divider
-            vertical
-            inset
-          />
-          <input
-            id="username"
-            name="username"
-            placeholder="Имя"
-            :class="inputClasses"
-            :value="username"
-            @input="setUsername"
-          >
-        </div>
-      </div>
-      <div class="v-text-field__details">
-        <div class="v-messages theme--light error--text">
-          <div class="v-messages__wrapper">
-            <div class="v-messages__message">
-              {{ errors.join(', ') }}
+                    <v-divider vertical inset />
+                    <input
+                        id="username"
+                        name="username"
+                        placeholder="Имя"
+                        :class="inputClasses"
+                        :value="username"
+                        @input="setUsername"
+                    />
+                </div>
             </div>
-          </div>
+            <div class="v-text-field__details">
+                <div class="v-messages theme--light error--text">
+                    <div class="v-messages__wrapper">
+                        <div class="v-messages__message">
+                            {{ errors.join(', ') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </template>
 
 <script>
-import { Component, Vue } from 'vue-property-decorator'
+import Vue from 'vue'
+import Component from 'vue-class-component'
 
 @Component({
     props: {
@@ -126,15 +115,18 @@ export default class AvatarField extends Vue {}
                 /* Chrome */
                 color: #ff5252 !important;
             }
+
             &:-ms-input-placeholder {
                 /* IE 10+ */
                 color: #ff5252 !important;
             }
+
             &::-moz-placeholder {
                 /* Firefox 19+ */
                 color: #ff5252 !important;
                 opacity: 1;
             }
+
             &:-moz-placeholder {
                 /* Firefox 4 - 18 */
                 color: #ff5252 !important;

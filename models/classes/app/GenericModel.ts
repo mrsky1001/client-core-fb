@@ -33,12 +33,11 @@ export default class GenericModel implements IGenericModel {
     static assign(obj: IGenericModel, obj2: IGenericModel): IGenericModel {
         const copy = Object.assign({}, obj)
 
-        Object.keys(copy).forEach((key) => {
-            // @ts-ignore
-            const oldVal = copy[key]
+        Object.keys(copy).forEach((key: string) => {
+            const oldVal = copy[key as keyof IGenericModel]
             const k = key.replace('_', '')
             // @ts-ignore
-            copy[k] = obj2[k] !== undefined ? obj2[k] : oldVal
+            copy[k] = obj2[k as keyof IGenericModel] !== undefined ? obj2[k as keyof IGenericModel] : oldVal
         })
 
         return copy
@@ -48,13 +47,15 @@ export default class GenericModel implements IGenericModel {
         const res = {}
 
         const replaceUnderLine = (key: string, k: string) => {
-            // @ts-ignore
-            if (this[key] && typeof this[key].toJSON === 'function') {
+            const keyAs = key as keyof IGenericModel
+            const obj = this[keyAs]
+
+            if (obj && typeof obj === 'object' && 'toJSON' in obj) {
                 // @ts-ignore
-                res[k] = this[key].toJSON()
+                res[k] = obj.toJSON()
             } else {
                 // @ts-ignore
-                res[k] = this[key]
+                res[k] = this[keyAs]
             }
         }
 

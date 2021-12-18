@@ -1,5 +1,5 @@
-import { createModule, mutation, action, getter, Module, createProxy } from 'vuex-class-component'
-import authStore from '@/core/store/auth/auth.store'
+import { createModule, mutation } from 'vuex-class-component'
+import { vxc } from '@/core/store/store.vuex'
 
 const VuexModule = createModule({
     namespaced: 'appNavbar',
@@ -8,26 +8,30 @@ const VuexModule = createModule({
 
 export class AppNavbarStore extends VuexModule {
     public searchText = ''
+    public noteRoute = ''
+    public activeClass = ''
     public avatar = ''
     public isShowSearch = false
     public isShowDrawer = false
 
     get avatarClass() {
-        return authStore.state.user.isAuthorized ? 'active-btn' : ''
+        return vxc.auth.user.isAuthorized ? 'active-btn' : ''
     }
 
-    // setNoteTab(state, props: { $route: RouteConfig; $forceUpdate: () => void }):void {
-    //   const route = routes.find((r: IRoute) => props.$route.path.includes(r.path) && r.group) as IRoute
-    //
-    //   if (route && route.group) {
-    //     state.noteRoute = route
-    // state.activeClass = 'active-btn'
-    // } else {
-    //   state.noteRoute = routesObj.NOTES
-    // state.activeClass = ''
-    // }
-    //
-    // props.$forceUpdate()
-    // },
+    @mutation
+    setIsShowSearch(val: boolean) {
+        this.isShowSearch = val
+    }
+
+    @mutation
+    setAvatar(val: string) {
+        this.avatar = val
+    }
+
+    @mutation
+    setSearchText(val: string) {
+        this.searchText = val
+    }
 }
+
 export default AppNavbarStore

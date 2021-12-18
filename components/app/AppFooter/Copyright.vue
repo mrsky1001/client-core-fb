@@ -3,14 +3,15 @@
   -->
 
 <template>
-  <div>
-    <p>{{ new Date().getFullYear() }} — © Все права защищены. Никита и Анастасия Коляда.</p>
-    <p>{{ text }}</p>
-  </div>
+    <div>
+        <p>{{ new Date().getFullYear() }} — © Все права защищены. Никита и Анастасия Коляда.</p>
+        <p>{{ text }}</p>
+    </div>
 </template>
 
 <script>
-import { Component, Vue } from 'vue-property-decorator'
+import Vue from 'vue'
+import Component from 'vue-class-component'
 
 @Component
 export default class Copyright extends Vue {

@@ -3,86 +3,41 @@
   -->
 
 <template>
-  <v-footer
-    color="black"
-    class="caption my-footer"
-    padless
-  >
-    <v-row style="margin: 0">
-      <v-col
-        cols="12"
-        sm="12"
-        md="12"
-        lg="7"
-      >
-        <v-row class="my-row">
-          <v-col
-            cols="12"
-            sm="12"
-            md="12"
-            lg="1"
-          />
-          <v-col
-            cols="12"
-            sm="10"
-            md="10"
-            lg="11"
-            style="text-align: justify; align-items: baseline"
-          >
-            <AppRoutes />
-          </v-col>
-          <v-col
-            cols="12"
-            sm="2"
-            md="2"
-            lg="1"
-          />
-          <v-col
-            cols="12"
-            sm="10"
-            md="3"
-            lg="3"
-          >
-            <Contacts />
-          </v-col>
-          <v-col
-            cols="12"
-            sm="2"
-            md="1"
-            lg="1"
-          />
-          <v-col
-            cols="12"
-            sm="10"
-            md="5"
-            lg="6"
-          >
-            <SocialNetwork />
-          </v-col>
+    <v-footer color="black" class="caption my-footer" padless>
+        <v-row style="margin: 0">
+            <v-col cols="12" sm="12" md="12" lg="7">
+                <v-row class="my-row">
+                    <v-col cols="12" sm="12" md="12" lg="1" />
+                    <v-col cols="12" sm="10" md="10" lg="11" style="text-align: justify; align-items: baseline">
+                        <AppRoutes />
+                    </v-col>
+                    <v-col cols="12" sm="2" md="2" lg="1" />
+                    <v-col cols="12" sm="10" md="3" lg="3">
+                        <Contacts />
+                    </v-col>
+                    <v-col cols="12" sm="2" md="1" lg="1" />
+                    <v-col cols="12" sm="10" md="5" lg="6">
+                        <SocialNetwork />
+                    </v-col>
+                </v-row>
+            </v-col>
+            <v-col cols="12" sm="12" md="12" lg="4" class="grey--text font-weight-bold">
+                <v-row>
+                    <v-col class="copyright-col">
+                        <Copyright />
+                    </v-col>
+                    <v-col>
+                        <FooterImg />
+                    </v-col>
+                </v-row>
+            </v-col>
         </v-row>
-      </v-col>
-      <v-col
-        cols="12"
-        sm="12"
-        md="12"
-        lg="4"
-        class="grey--text font-weight-bold"
-      >
-        <v-row>
-          <v-col class="copyright-col">
-            <Copyright />
-          </v-col>
-          <v-col>
-            <FooterImg />
-          </v-col>
-        </v-row>
-      </v-col>
-    </v-row>
-  </v-footer>
+    </v-footer>
 </template>
 
 <script>
-import { Component, Vue } from 'vue-property-decorator'
+import Vue from 'vue'
+import Component from 'vue-class-component'
 import footerStore from '@/core/store/app/app-footer.store'
 import AppRoutes from '@/core/components/app/AppFooter/AppRoutes.vue'
 import Contacts from '@/core/components/app/AppFooter/Contacts.vue'

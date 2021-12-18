@@ -3,96 +3,73 @@
   -->
 
 <template>
-  <v-main class="registration-form auth-card">
-    <v-row justify="center">
-      <v-card>
-        <v-card-title>Регистрация</v-card-title>
-        <v-card-text>
-          <ValidationObserver
-            ref="obs"
-            v-slot="{ invalid, handleSubmit }"
-          >
-            <v-form @keyup.native.enter="handleSubmit(callSubmit)">
-              <ValidationProvider
-                v-slot="{ errors }"
-                name="username"
-                :rules="validUsernameRules"
-              >
-                <v-text-field
-                  required
-                  autofocus
-                  outlined
-                  label="Имя"
-                  :value="username"
-                  :error-messages="errors"
-                  @change="setUsername"
-                />
-              </ValidationProvider>
-              <ValidationProvider
-                v-slot="{ errors }"
-                name="email"
-                :rules="validEmailRules"
-              >
-                <v-text-field
-                  required
-                  outlined
-                  label="E-mail"
-                  :value="email"
-                  :error-messages="errors"
-                  @change="setEmail"
-                />
-              </ValidationProvider>
-              <ValidationProvider
-                v-slot="{ errors }"
-                name="password"
-                :rules="validPasswordRules"
-              >
-                <v-text-field
-                  required
-                  outlined
-                  autocomplete="off"
-                  label="Пароль"
-                  :value="password"
-                  :error-messages="errors"
-                  :type="isShowPassword ? 'text' : 'password'"
-                  :append-icon="isShowPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                  @change="setPassword"
-                  @click:append="setIsShowPassword(!isShowPassword)"
-                />
-              </ValidationProvider>
+    <v-main class="registration-form auth-card">
+        <v-row justify="center">
+            <v-card>
+                <v-card-title>Регистрация</v-card-title>
+                <v-card-text>
+                    <ValidationObserver ref="obs" v-slot="{ invalid, handleSubmit }">
+                        <v-form @keyup.native.enter="handleSubmit(callSubmit)">
+                            <ValidationProvider v-slot="{ errors }" name="username" :rules="validUsernameRules">
+                                <v-text-field
+                                    required
+                                    autofocus
+                                    outlined
+                                    label="Имя"
+                                    :value="username"
+                                    :error-messages="errors"
+                                    @change="setUsername"
+                                />
+                            </ValidationProvider>
+                            <ValidationProvider v-slot="{ errors }" name="email" :rules="validEmailRules">
+                                <v-text-field
+                                    required
+                                    outlined
+                                    label="E-mail"
+                                    :value="email"
+                                    :error-messages="errors"
+                                    @change="setEmail"
+                                />
+                            </ValidationProvider>
+                            <ValidationProvider v-slot="{ errors }" name="password" :rules="validPasswordRules">
+                                <v-text-field
+                                    required
+                                    outlined
+                                    autocomplete="off"
+                                    label="Пароль"
+                                    :value="password"
+                                    :error-messages="errors"
+                                    :type="isShowPassword ? 'text' : 'password'"
+                                    :append-icon="isShowPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                                    @change="setPassword"
+                                    @click:append="setIsShowPassword(!isShowPassword)"
+                                />
+                            </ValidationProvider>
 
-              <Recaptcha
-                :on-verify="onVerify"
-                :on-expired="onExpired"
-                :set-ref-recaptcha="setRefRecaptcha"
-              />
-              <v-row>
-                <v-btn
-                  link
-                  plain
-                  small
-                  :to="loginRoute"
-                >
-                  Войти
-                </v-btn>
-                <v-btn @click="handleSubmit(callSubmit)">
-                  Зарегистрироваться
-                </v-btn>
-              </v-row>
-            </v-form>
-          </ValidationObserver>
-        </v-card-text>
-      </v-card>
-    </v-row>
-  </v-main>
+                            <Recaptcha
+                                :on-verify="onVerify"
+                                :on-expired="onExpired"
+                                :set-ref-recaptcha="setRefRecaptcha"
+                            />
+                            <v-row>
+                                <v-btn link plain small :to="loginRoute"> Войти</v-btn>
+                                <v-btn @click="handleSubmit(callSubmit)"> Зарегистрироваться</v-btn>
+                            </v-row>
+                        </v-form>
+                    </ValidationObserver>
+                </v-card-text>
+            </v-card>
+        </v-row>
+    </v-main>
 </template>
 
 <script>
 import registrationStore from '../../../store/auth/registration.store'
 import { mapActions, mapMutations, mapState } from 'vuex'
-import { Component, Vue } from 'vue-property-decorator'
-import { required, min, max, email, regex } from 'vee-validate/dist/rules'
-import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
+import Vue from 'vue'
+import Component from 'vue-class-component'
+import { email, max, min, regex, required } from 'vee-validate/dist/rules'
+import { extend, setInteractionMode, ValidationObserver, ValidationProvider } from 'vee-validate'
 import Recaptcha from '../Recaptcha/Recaptcha'
 import { handlerError } from '@/core/lib/response-handler'
 import routesObj from '@/app/routes/routes-obj'

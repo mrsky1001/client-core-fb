@@ -10,7 +10,7 @@ export interface IRoute {
     text?: string
     icon?: string
     group?: string
-    role?: IRole
+    role: IRole
 
     hasIcon?: boolean
     onMainBar?: boolean

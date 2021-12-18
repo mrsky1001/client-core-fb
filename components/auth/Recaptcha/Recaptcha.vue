@@ -3,18 +3,19 @@
   -->
 
 <template>
-  <VueRecaptcha
-    ref="recaptcha"
-    class="g-recaptcha"
-    :sitekey="key"
-    :load-recaptcha-script="true"
-    @verify="onVerify"
-    @expired="onExpired"
-  />
+    <VueRecaptcha
+        ref="recaptcha"
+        class="g-recaptcha"
+        :sitekey="key"
+        :load-recaptcha-script="true"
+        @verify="onVerify"
+        @expired="onExpired"
+    />
 </template>
 
 <script>
-import { Component, Vue } from 'vue-property-decorator'
+import Vue from 'vue'
+import Component from 'vue-class-component'
 import VueRecaptcha from 'vue-recaptcha'
 
 @Component({

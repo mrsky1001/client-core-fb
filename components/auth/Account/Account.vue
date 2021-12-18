@@ -3,111 +3,89 @@
   -->
 
 <template>
-  <v-main class="account-form auth-card">
-    <ModalImageMenu
-      :show-modal="isShowAvaMenuModal"
-      :set-show-modal="setIsShowAvaMenuModal"
-      :delete-img="deleteAvatar"
-      :upload-img="showAvaUploadModal"
-    />
-    <ModalImageUploader
-      :show-modal="isShowAvaUploadModal"
-      :set-show-modal="setIsShowUploadModal"
-      :img="avatar"
-      :set-img="saveAvatar"
-      :cropper-options="cropOpts"
-    />
-    <v-row justify="center">
-      <v-card>
-        <v-card-title>Учетная запись</v-card-title>
-        <v-card-text>
-          <ValidationObserver
-            ref="obs"
-            v-slot="{ invalid, handleSubmit }"
-          >
-            <v-form @keyup.native.enter="handleSubmit(saveAccount)">
-              <ValidationProvider
-                v-slot="{ errors }"
-                name="username"
-                vid="username"
-                immediate
-                :rules="validUsernameRules"
-              >
-                <AvatarField
-                  :avatar="avatar"
-                  :username="username"
-                  :click-avatar-img="showAvaMenuModal"
-                  :set-username="setUsername"
-                  :errors="errors"
-                />
-                <input
-                  :value="username"
-                  style="display: none"
-                >
-              </ValidationProvider>
+    <v-main class="account-form auth-card">
+        <ModalImageMenu
+            :show-modal="isShowAvaMenuModal"
+            :set-show-modal="setIsShowAvaMenuModal"
+            :delete-img="deleteAvatar"
+            :upload-img="showAvaUploadModal"
+        />
+        <ModalImageUploader
+            :show-modal="isShowAvaUploadModal"
+            :set-show-modal="setIsShowUploadModal"
+            :img="avatar"
+            :set-img="saveAvatar"
+            :cropper-options="cropOpts"
+        />
+        <v-row justify="center">
+            <v-card>
+                <v-card-title>Учетная запись</v-card-title>
+                <v-card-text>
+                    <ValidationObserver ref="obs" v-slot="{ invalid, handleSubmit }">
+                        <v-form @keyup.native.enter="handleSubmit(saveAccount)">
+                            <ValidationProvider
+                                v-slot="{ errors }"
+                                name="username"
+                                vid="username"
+                                immediate
+                                :rules="validUsernameRules"
+                            >
+                                <AvatarField
+                                    :avatar="avatar"
+                                    :username="username"
+                                    :click-avatar-img="showAvaMenuModal"
+                                    :set-username="setUsername"
+                                    :errors="errors"
+                                />
+                                <input :value="username" style="display: none" />
+                            </ValidationProvider>
 
-              <ValidationProvider
-                v-slot="{ errors }"
-                name="email"
-                :rules="validEmailRules"
-              >
-                <v-text-field
-                  outlined
-                  label="E-mail"
-                  :value="email"
-                  :error-messages="errors"
-                  @change="setEmail"
-                />
-              </ValidationProvider>
-              <ValidationProvider
-                v-slot="{ errors }"
-                name="password"
-                :rules="validPasswordRules"
-              >
-                <v-text-field
-                  outlined
-                  autocomplete="off"
-                  label="Новый пароль"
-                  :value="password"
-                  :error-messages="errors"
-                  :type="isShowPassword ? 'text' : 'password'"
-                  :append-icon="isShowPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                  @change="setPassword"
-                  @click:append="setIsShowPassword(!isShowPassword)"
-                />
-              </ValidationProvider>
-              <Recaptcha
-                :on-verify="onVerify"
-                :on-expired="onExpired"
-                :set-ref-recaptcha="setRefRecaptcha"
-              />
-              <v-row>
-                <v-btn
-                  link
-                  plain
-                  small
-                  :to="delRoute"
-                >
-                  Удалить аккаунт
-                </v-btn>
-                <v-btn @click="handleSubmit(saveAccount)">
-                  Сохранить
-                </v-btn>
-              </v-row>
-            </v-form>
-          </ValidationObserver>
-        </v-card-text>
-      </v-card>
-    </v-row>
-  </v-main>
+                            <ValidationProvider v-slot="{ errors }" name="email" :rules="validEmailRules">
+                                <v-text-field
+                                    outlined
+                                    label="E-mail"
+                                    :value="email"
+                                    :error-messages="errors"
+                                    @change="setEmail"
+                                />
+                            </ValidationProvider>
+                            <ValidationProvider v-slot="{ errors }" name="password" :rules="validPasswordRules">
+                                <v-text-field
+                                    outlined
+                                    autocomplete="off"
+                                    label="Новый пароль"
+                                    :value="password"
+                                    :error-messages="errors"
+                                    :type="isShowPassword ? 'text' : 'password'"
+                                    :append-icon="isShowPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                                    @change="setPassword"
+                                    @click:append="setIsShowPassword(!isShowPassword)"
+                                />
+                            </ValidationProvider>
+                            <Recaptcha
+                                :on-verify="onVerify"
+                                :on-expired="onExpired"
+                                :set-ref-recaptcha="setRefRecaptcha"
+                            />
+                            <v-row>
+                                <v-btn link plain small :to="delRoute"> Удалить аккаунт</v-btn>
+                                <v-btn @click="handleSubmit(saveAccount)"> Сохранить</v-btn>
+                            </v-row>
+                        </v-form>
+                    </ValidationObserver>
+                </v-card-text>
+            </v-card>
+        </v-row>
+    </v-main>
 </template>
 
 <script>
 import accountStore from '../../../store/auth/account.store'
 import { mapActions, mapMutations, mapState } from 'vuex'
-import { Component, Vue } from 'vue-property-decorator'
-import { required, min, max, email, regex } from 'vee-validate/dist/rules'
-import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
+import Vue from 'vue'
+import Component from 'vue-class-component'
+import { email, max, min, regex, required } from 'vee-validate/dist/rules'
+import { extend, setInteractionMode, ValidationObserver, ValidationProvider } from 'vee-validate'
 import Recaptcha from '../Recaptcha/Recaptcha'
 import ModalImageUploader from '@/core/components/app/ModalImageUploader/ModalImageUploader'
 import AvatarField from '@/core/components/auth/Account/AvatarField/AvatarField'

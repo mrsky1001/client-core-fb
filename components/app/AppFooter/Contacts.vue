@@ -3,27 +3,26 @@
   -->
 
 <template>
-  <div>
-    <p class="font-weight-bold grey--text header-map-text p-size-h2">
-      <v-icon class="grey--text">
-        mdi-message-text-outline
-      </v-icon>
-      Контакты для связи:
-    </p>
-    <v-btn
-      plain
-      class="footer-btn font-weight-black"
-      color="white"
-      target="_blank"
-      href="mailto:foma.blog@yandex.ru"
-    >
-      foma.blog@yandex.ru
-    </v-btn>
-  </div>
+    <div>
+        <p class="font-weight-bold grey--text header-map-text p-size-h2">
+            <v-icon class="grey--text"> mdi-message-text-outline</v-icon>
+            Контакты для связи:
+        </p>
+        <v-btn
+            plain
+            class="footer-btn font-weight-black"
+            color="white"
+            target="_blank"
+            href="mailto:foma.blog@yandex.ru"
+        >
+            foma.blog@yandex.ru
+        </v-btn>
+    </div>
 </template>
 
 <script>
-import { Component, Vue } from 'vue-property-decorator'
+import Vue from 'vue'
+import Component from 'vue-class-component'
 
 @Component
 export default class Contacts extends Vue {}

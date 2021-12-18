@@ -3,15 +3,16 @@
  */
 import { AxiosError, AxiosResponse } from 'axios'
 import { IAppMessage } from '@/core/models/interfaces/app/IAppMessage'
-import snackbarStore from '@/core/store/app/snackbar.store'
+import { ISnackbarProps } from '@/core/store/app/snackbar.store'
 import routesObj from '@/app/routes/routes-obj'
 import { IRoute } from '@/core/models/interfaces/app/IRoute'
+import { vxc } from '@/core/store/store.vuex'
 
 export const responseHandler = (res: AxiosResponse, msg?: IAppMessage | null, isShowMsg = true): Promise<any> => {
     return new Promise<any>((resolve, reject) => {
         if (res.data.success) {
             if (isShowMsg) {
-                let props = {}
+                let props: ISnackbarProps = { msg: '' }
 
                 if (msg && res.data.message) {
                     props = {
@@ -31,7 +32,7 @@ export const responseHandler = (res: AxiosResponse, msg?: IAppMessage | null, is
                     }
                 }
 
-                snackbarStore.commit('setSnackBarMsg', props)
+                vxc.snackbar.setSnackBarMsg(props)
             }
 
             resolve(res.data.data)
@@ -68,7 +69,7 @@ export const handlerError = (err: AxiosError, checkAuth = false, redirect?: IRou
         }
 
         // console.error(props.msg)
-        snackbarStore.commit('setSnackBarMsg', props)
+        vxc.snackbar.setSnackBarMsg(props)
     } else {
         console.error(err)
     }

@@ -7,13 +7,12 @@ import urls from '@/core/collections/urls'
 import { handlerError, responseHandler } from '@/core/lib/response-handler'
 import { ILogin } from '@/core/models/interfaces/auth/ILogin'
 import { AxiosError, AxiosResponse } from 'axios'
-// @ts-ignore
 import sha1 from 'sha1'
 import { IRegistration } from '@/core/models/interfaces/auth/IRegistration'
 import IAccount from '@/core/models/classes/auth/Account'
 import GenericModel from '@/core/models/classes/app/GenericModel'
-import authStore from '@/core/store/auth/auth.store'
 import { IUser } from '@/core/models/interfaces/auth/IUser'
+import { vxc } from '@/core/store/store.vuex'
 
 export const isAuthorized = (isRedirectToLogin = false): Promise<boolean> => {
     return new Promise<boolean>((resolve, reject) => {
@@ -22,17 +21,17 @@ export const isAuthorized = (isRedirectToLogin = false): Promise<boolean> => {
             .then((res: AxiosResponse) =>
                 responseHandler(res, null, false)
                     .then((data) => {
-                        authStore.commit('saveUser', data.user)
+                        vxc.auth.saveUser(data.user)
                         resolve(true)
                     })
                     .catch((err: AxiosError) => {
-                        authStore.commit('saveUser', {})
+                        vxc.auth.clearUser()
                         handlerError(err, isRedirectToLogin, null, false)
                         reject(false)
                     })
             )
             .catch((err: AxiosError) => {
-                authStore.commit('saveUser', {})
+                vxc.auth.clearUser()
                 handlerError(err, isRedirectToLogin, null, false)
                 reject(false)
             })
@@ -48,7 +47,7 @@ export const login = (params: ILogin): Promise<boolean> => {
             .then((res: AxiosResponse) =>
                 responseHandler(res)
                     .then((data) => {
-                        authStore.commit('saveUser', data.user)
+                        vxc.auth.saveUser(data.user)
                         resolve(true)
                     })
                     .catch((err) => {
@@ -69,7 +68,7 @@ export const logout = (): Promise<boolean> => {
             .then((res: AxiosResponse) => {
                 responseHandler(res)
                     .then(() => {
-                        authStore.commit('saveUser', {})
+                        vxc.auth.clearUser()
                         resolve(true)
                     })
                     .catch((err: AxiosError) => {
@@ -114,8 +113,8 @@ export const saveAccount = (params: IAccount): Promise<IUser> => {
             .then((res: AxiosResponse) => {
                 responseHandler(res)
                     .then((data) => {
-                        const user = GenericModel.assign(authStore.state.user, data.user)
-                        authStore.commit('saveUser', user)
+                        const user = GenericModel.assign(vxc.auth.user, data.user) as IUser
+                        vxc.auth.saveUser(user)
                         resolve(data)
                     })
                     .catch((err: AxiosError) => {
@@ -136,7 +135,7 @@ export const deleteAccount = (): Promise<boolean> => {
             .then((res: AxiosResponse) => {
                 responseHandler(res)
                     .then(() => {
-                        authStore.commit('saveUser', {})
+                        vxc.auth.clearUser()
                         resolve(true)
                     })
                     .catch((err: AxiosError) => {

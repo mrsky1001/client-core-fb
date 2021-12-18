@@ -4,11 +4,11 @@
 
 import config from '../../../config/config'
 import axios, { AxiosInstance } from 'axios'
-import authStore from '@/core/store/auth/auth.store'
+import { vxc } from '@/core/store/store.vuex'
 
 export default (): AxiosInstance => {
     return axios.create({
         baseURL: config.server.fullHost,
-        headers: { Authorization: `Bearer ${authStore.state.user.token}` },
+        headers: { Authorization: `Bearer ${vxc.auth.user.token}` },
     })
 }

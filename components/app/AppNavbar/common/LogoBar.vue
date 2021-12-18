@@ -3,42 +3,26 @@
   -->
 
 <template>
-  <v-toolbar-title class="logo-bar">
-    <router-link
-      to="/"
-      class="logo-link"
-    >
-      <v-img
-        :src="logo"
-        :class="'logo-img ' + (isShowSearch ? 'left-logo' : '')"
-      />
-    </router-link>
-    <SearchField class="search-field-small" />
-  </v-toolbar-title>
+    <v-toolbar-title class="logo-bar">
+        <router-link to="/" class="logo-link">
+            <v-img :src="logo" :class="'logo-img ' + (self.isShowSearch ? 'left-logo' : '')" />
+        </router-link>
+        <SearchField class="search-field-small" />
+    </v-toolbar-title>
 </template>
 
 <script>
-import { Component, Vue } from 'vue-property-decorator'
-import logo from '@/core/assets/fb15.svg'
-import navbarStore from '@/core/store/app/app-navbar'
-import SubRoutes from '@/core/components/app/AppNavbar/NavDrawer/SubRoutes'
-import { mapMutations, mapState } from 'vuex'
+import Vue from 'vue'
+import Component from 'vue-class-component'
 import SearchField from '@/core/components/app/AppNavbar/common/SearchField'
+import { vxc } from '@/core/store/store.vuex'
+import logo from '@/core/assets/fb15.svg'
 
 @Component({
-    store: navbarStore,
-    components: {
-        SearchField,
-        SubRoutes,
-    },
-    computed: {
-        ...mapState(['routes', 'isShowDrawer', 'searchText', 'isShowSearch']),
-    },
-    methods: {
-        ...mapMutations(['setIsShowDrawer', 'setSearchText', 'setIsShowSearch']),
-    },
+    components: { SearchField },
 })
 export default class AppNavbar extends Vue {
+    self = vxc.appNavbar
     logo = logo
 }
 </script>

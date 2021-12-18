@@ -3,18 +3,16 @@
   -->
 
 <template>
-  <div>
-    <router-link to="/store">
-      <v-img
-        class="footer-img"
-        :src="footerImg"
-      />
-    </router-link>
-  </div>
+    <div>
+        <router-link to="/store">
+            <v-img class="footer-img" :src="footerImg" />
+        </router-link>
+    </div>
 </template>
 
 <script>
-import { Component, Vue } from 'vue-property-decorator'
+import Vue from 'vue'
+import Component from 'vue-class-component'
 import { mapMutations, mapState } from 'vuex'
 import footerStore from '@/core/store/app/app-footer.store'
 

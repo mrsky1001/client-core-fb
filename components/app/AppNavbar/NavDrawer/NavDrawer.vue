@@ -3,54 +3,44 @@
   -->
 
 <template>
-  <v-row
-    justify="end"
-    class="d-none d-md-flex my-row-bar"
-  >
-    <template v-for="route in routes">
-      <v-btn
-        v-show="!isShowSearch"
-        v-if="route.onMainBar"
-        :key="route.name"
-        :to="route.path"
-        plain
-        active-class="active-btn"
-      >
-        <v-icon v-if="route.hasIcon">
-          {{ route.icon }}
-        </v-icon>
-        <p class="my-label">
-          {{ route.text }}
-        </p>
-      </v-btn>
-      <SubRoutes
-        v-if="route.isGroup"
-        :key="route.name"
-        :route="route"
-      />
-    </template>
-  </v-row>
+    <v-row justify="end" class="d-none d-md-flex my-row-bar">
+        <template v-for="route in routes">
+            <v-btn
+                v-show="!self.isShowSearch"
+                v-if="route.onMainBar"
+                :key="route.name"
+                plain
+                :to="route.path"
+                active-class="active-btn"
+            >
+                <v-icon v-if="route.hasIcon">
+                    {{ route.icon }}
+                </v-icon>
+                <p class="my-label">
+                    {{ route.text }}
+                </p>
+            </v-btn>
+            <SubRoutes v-if="route.isGroup" :key="route.name" :route="route" />
+        </template>
+    </v-row>
 </template>
 
 <script>
-import { Component, Vue } from 'vue-property-decorator'
-import navbarStore from '@/core/store/app/app-navbar'
+import Vue from 'vue'
+import Component from 'vue-class-component'
 import SubRoutes from './SubRoutes'
-import { mapMutations, mapState } from 'vuex'
+import { vxc } from '@/core/store/store.vuex'
+import { routes } from '@/app/routes/routes'
 
 @Component({
-    store: navbarStore,
     components: {
         SubRoutes,
     },
-    computed: {
-        ...mapState(['routes', 'isShowDrawer', 'searchText', 'isShowSearch']),
-    },
-    methods: {
-        ...mapMutations(['setIsShowDrawer', 'setSearchText', 'setIsShowSearch']),
-    },
 })
-export default class NavDrawer extends Vue {}
+export default class NavDrawer extends Vue {
+    self = vxc.appNavbar
+    routes = routes
+}
 </script>
 
 <style lang="scss" scoped></style>

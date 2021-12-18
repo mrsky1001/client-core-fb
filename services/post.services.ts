@@ -10,7 +10,8 @@ import { IRule } from '@/core/models/interfaces/lib/IRule'
 import { IPost } from '@/core/models/interfaces/article/IPost'
 import { handlerError, responseHandler } from '@/core/lib/response-handler'
 import Post from '@/core/models/classes/article/Post'
-import snackbarStore from '@/core/store/app/snackbar.store'
+import { vxc } from '@/core/store/store.vuex'
+import { ISnackbarProps } from '@/core/store/app/snackbar.store'
 
 const getInValidPostFields = (post: IPost) => {
     const rules: IRule[] = [
@@ -113,8 +114,8 @@ export const addPost = (post: IPost): Promise<IPost> => {
                     reject(err)
                 })
         } else {
-            const msg = { msg: exceptions.NOT_VALID, params: listErrors }
-            snackbarStore.commit('setSnackBarMsg', msg)
+            const msg: ISnackbarProps = { msg: exceptions.NOT_VALID.text, params: listErrors }
+            vxc.snackbar.setSnackBarMsg(msg)
         }
     })
 }
@@ -225,8 +226,8 @@ export const editPost = (postId: string, dataToUpdate: IPost): Promise<IPost> =>
                     reject(err)
                 })
         } else {
-            const msg = { msg: exceptions.NOT_VALID, params: listErrors }
-            snackbarStore.commit('setSnackBarMsg', msg)
+            const msg: ISnackbarProps = { msg: exceptions.NOT_VALID.text, params: listErrors }
+            vxc.snackbar.setSnackBarMsg(msg)
         }
     })
 }

@@ -3,32 +3,24 @@
   -->
 
 <template>
-  <div>
-    <v-app-bar
-      app
-      light
-      color="white"
-      class="my-app-bar"
-      scroll-target="#scrolling-techniques-2"
-    >
-      <v-app-bar-nav-icon
-        v-if="!self.isShowSearch"
-        class="d-flex d-md-none"
-      />
-      <!--      <LogoBar />-->
-      <!--      <NavDrawer />-->
-      <!--      <SearchField class="search-field" />-->
-      <!--      <SearchButton />-->
-      <!--      <AvatarBar />-->
-    </v-app-bar>
-    <!--    <SideDrawer />-->
-  </div>
+    <div>
+        <v-app-bar app light color="white" class="my-app-bar" scroll-target="#scrolling-techniques-2">
+            <v-app-bar-nav-icon v-if="!self.isShowSearch" class="d-flex d-md-none"></v-app-bar-nav-icon>
+            <LogoBar />
+            <NavDrawer />
+            <!--      <SearchField class="search-field" />-->
+            <!--      <SearchButton />-->
+            <!--      <AvatarBar />-->
+        </v-app-bar>
+        <!--    <SideDrawer />-->
+    </div>
 </template>
+
 <script lang="ts">
 // import SideDrawer from './SideDrawer/SideDrawer'
 // import NavDrawer from './NavDrawer/NavDrawer'
 // import AvatarBar from './common/AvatarBar'
-// import LogoBar from '@/core/components/app/AppNavbar/common/LogoBar'
+import LogoBar from '@/core/components/app/AppNavbar/common/LogoBar.vue'
 // import SearchButton from '@/core/components/app/AppNavbar/common/SearchButton'
 // import SearchField from '@/core/components/app/AppNavbar/common/SearchField'
 import Vue from 'vue'
@@ -47,10 +39,15 @@ import Vue from 'vue'
 // methods: {
 //     ...mapMutations(['setIsShowDrawer', 'setSearchText', 'setIsShowSearch']),
 // },
-import { vxm } from '@/core/store/store.vuex'
+import { vxc } from '@/core/store/store.vuex'
+import Component from 'vue-class-component'
+import NavDrawer from '@/core/components/app/AppNavbar/NavDrawer/NavDrawer.vue'
 
+@Component({
+    components: { NavDrawer, LogoBar },
+})
 export default class AppNavbar extends Vue {
-    self = vxm.appNavbar;
+    self = vxc.appNavbar
 }
 </script>
 

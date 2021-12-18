@@ -18,7 +18,6 @@ export default class User extends GenericModel implements IUser {
 
     constructor(initObj?: IUser) {
         super(initObj)
-        console.log(initObj)
         initObj && this.init(initObj)
     }
 

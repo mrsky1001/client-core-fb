@@ -3,34 +3,27 @@
   -->
 
 <template>
-  <v-text-field
-    v-show="isShowSearch"
-    autofocus
-    single-line
-    hide-details
-    placeholder="Что будем искать?"
-    :value="searchText"
-    @change="setSearchText"
-    @focusout="setIsShowSearch(false)"
-  />
+    <v-text-field
+        v-show="self.isShowSearch"
+        autofocus
+        single-line
+        hide-details
+        placeholder="Что будем искать?"
+        :value="self.searchText"
+        @change="self.setSearchText"
+        @focusout="setIsShowSearch(false)"
+    />
 </template>
 
 <script>
-import { Component, Vue } from 'vue-property-decorator'
-import navbarStore from '@/core/store/app/app-navbar'
+import Vue from 'vue'
+import Component from 'vue-class-component'
+import { vxc } from '@/core/store/store.vuex'
 
-import { mapMutations, mapState } from 'vuex'
-
-@Component({
-    store: navbarStore,
-    computed: {
-        ...mapState(['searchText', 'isShowSearch']),
-    },
-    methods: {
-        ...mapMutations(['setSearchText', 'setIsShowSearch']),
-    },
-})
-export default class SearchField extends Vue {}
+@Component
+export default class SearchField extends Vue {
+    self = vxc.appNavbar
+}
 </script>
 
 <style lang="scss" scoped></style>

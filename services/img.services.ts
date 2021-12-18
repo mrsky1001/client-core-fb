@@ -8,7 +8,8 @@ import api from '@/core/services/api'
 import urls from '@/core/collections/urls'
 import { AxiosError, AxiosResponse } from 'axios'
 import GenericModel from '@/core/models/classes/app/GenericModel'
-import authStore from '@/core/store/auth/auth.store'
+import { vxc } from '@/core/store/store.vuex'
+import { IUser } from '@/core/models/interfaces/auth/IUser'
 
 export const uploadPostImage = (image: File, post: Post): Promise<string> => {
     return new Promise<string>((resolve, reject) => {
@@ -66,8 +67,8 @@ export const deleteAvatarImage = (): Promise<void> => {
             .then((res: AxiosResponse) => {
                 responseHandler(res)
                     .then((data) => {
-                        const user = GenericModel.assign(authStore.state.user, data.user)
-                        authStore.commit('saveUser', user)
+                        const user = GenericModel.assign(vxc.auth.user, data.user) as IUser
+                        vxc.auth.saveUser(user)
                         resolve(data)
                     })
                     .catch((err: AxiosError) => {

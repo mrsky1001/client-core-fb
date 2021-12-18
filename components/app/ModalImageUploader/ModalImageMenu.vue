@@ -3,34 +3,29 @@
   -->
 
 <template>
-  <v-dialog
-    :value="showModal"
-    @click:outside="setShowModal(false)"
-  >
-    <v-card class="modal-img-menu">
-      <v-card-title> Загрузить / удалить изображение</v-card-title>
-      <v-divider />
+    <v-dialog :value="showModal" @click:outside="setShowModal(false)">
+        <v-card class="modal-img-menu">
+            <v-card-title> Загрузить / удалить изображение</v-card-title>
+            <v-divider />
 
-      <div class="btn-group">
-        <v-btn
-          color="primary"
-          @click="uploadImg"
-        >
-          <v-icon>mdi-image-plus</v-icon>
-          Загрузить
-        </v-btn>
-        <v-btn @click="deleteImg">
-          <v-icon>mdi-image-minus</v-icon>
+            <div class="btn-group">
+                <v-btn color="primary" @click="uploadImg">
+                    <v-icon>mdi-image-plus</v-icon>
+                    Загрузить
+                </v-btn>
+                <v-btn @click="deleteImg">
+                    <v-icon>mdi-image-minus</v-icon>
 
-          Удалить
-        </v-btn>
-      </div>
-    </v-card>
-  </v-dialog>
+                    Удалить
+                </v-btn>
+            </div>
+        </v-card>
+    </v-dialog>
 </template>
 
 <script>
-import { Component, Vue } from 'vue-property-decorator'
+import Vue from 'vue'
+import Component from 'vue-class-component'
 
 @Component({
     props: {
@@ -48,6 +43,7 @@ export default class ModalImageMenu extends Vue {}
     max-width: 360px;
     margin-top: -30px !important;
 }
+
 .modal-img-menu {
     .btn-group {
         display: flex;
@@ -55,6 +51,7 @@ export default class ModalImageMenu extends Vue {}
         flex-wrap: wrap;
         align-content: center;
         padding: 20px;
+
         .v-btn {
             margin: 10px 0;
         }

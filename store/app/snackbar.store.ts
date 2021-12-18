@@ -2,48 +2,52 @@
  * Copyright (c) 21.11.2021, 21:49  Kolyada Nikita Vladimirovich nikita.nk16@yandex.ru
  */
 
-import Vuex from 'vuex'
-import Vue from 'vue'
-Vue.use(Vuex)
+import { createModule, mutation } from 'vuex-class-component'
 
 export interface ISnackbarProps {
     msg: string
-    classes: string
-    params: string[]
+    classes?: string
+    params?: string[]
 }
-const snackBarStore = new Vuex.Store({
-    state: {
-        snackBarMsg: '',
-        snackBarParams: '',
-        snackBarClasses: '',
-        isShowSnackbar: false,
-    },
-    mutations: {
-        setShowSnackbar(state, val) {
-            state.isShowSnackbar = val
-        },
-        setSnackBarMsg(state, props) {
-            const showMsg = () => {
-                state.snackBarMsg = props.msg
-                state.snackBarClasses = props.classes
-                state.snackBarParams = props.params
-                state.isShowSnackbar = true
-            }
 
-            if (state.isShowSnackbar) {
-                state.isShowSnackbar = false
-                state.snackBarMsg = ''
-                state.snackBarClasses = ''
-                state.snackBarParams = ''
-
-                setTimeout(() => {
-                    showMsg()
-                }, 100)
-            } else {
-                showMsg()
-            }
-        },
-    },
+const VuexModule = createModule({
+    namespaced: 'snackBar',
+    strict: false,
 })
 
-export default snackBarStore
+export class SnackBarStore extends VuexModule {
+    snackBarMsg = ''
+    snackBarParams?: string[]
+    snackBarClasses? = ''
+    isShowSnackbar = false
+
+    @mutation
+    setShowSnackbar(val: boolean) {
+        this.isShowSnackbar = val
+    }
+
+    @mutation
+    setSnackBarMsg(props: ISnackbarProps) {
+        const showMsg = () => {
+            this.snackBarMsg = props.msg
+            this.snackBarClasses = props.classes
+            this.snackBarParams = props.params
+            this.isShowSnackbar = true
+        }
+
+        if (this.isShowSnackbar) {
+            this.isShowSnackbar = false
+            this.snackBarMsg = ''
+            this.snackBarClasses = ''
+            this.snackBarParams = []
+
+            setTimeout(() => {
+                showMsg()
+            }, 100)
+        } else {
+            showMsg()
+        }
+    }
+}
+
+export default SnackBarStore

@@ -3,44 +3,42 @@
   -->
 
 <template>
-  <div>
-    <p class="font-weight-bold grey--text header-map-text p-size-h2">
-      <v-icon class="grey--text">
-        mdi-map-outline
-      </v-icon>
-      Карта сайта
-    </p>
+    <div>
+        <p class="font-weight-bold grey--text header-map-text p-size-h2">
+            <v-icon class="grey--text"> mdi-map-outline</v-icon>
+            Карта сайта
+        </p>
 
-    <template v-for="route in routes">
-      <v-btn
-        v-if="route.onMainBar"
-        :key="route.name"
-        plain
-        color="white"
-        class="font-weight-black footer-btn"
-        :to="route.path"
-      >
-        <span> {{ route.text }}</span>
-      </v-btn>
-      <template v-for="subRoute in getSubRoutes(route)">
-        <v-btn
-          :key="subRoute.name"
-          plain
-          color="white"
-          class="font-weight-black footer-btn"
-          :to="subRoute.path"
-        >
-          <span> {{ subRoute.text }}</span>
-        </v-btn>
-      </template>
-    </template>
-  </div>
+        <template v-for="route in routes">
+            <v-btn
+                v-if="route.onMainBar"
+                :key="route.name"
+                plain
+                color="white"
+                class="font-weight-black footer-btn"
+                :to="route.path"
+            >
+                <span> {{ route.text }}</span>
+            </v-btn>
+            <template v-for="subRoute in getSubRoutes(route)">
+                <v-btn
+                    :key="subRoute.name"
+                    plain
+                    color="white"
+                    class="font-weight-black footer-btn"
+                    :to="subRoute.path"
+                >
+                    <span> {{ subRoute.text }}</span>
+                </v-btn>
+            </template>
+        </template>
+    </div>
 </template>
 
 <script>
-import { Component, Vue } from 'vue-property-decorator'
+import Vue from 'vue'
+import Component from 'vue-class-component'
 import footerStore from '@/core/store/app/app-footer.store'
-import routerStore from '@/core/store/app/router.store'
 import { mapState } from 'vuex'
 
 @Component({
@@ -50,7 +48,7 @@ import { mapState } from 'vuex'
         ...mapState(['routes']),
     },
     methods: {
-        getSubRoutes: routerStore.getters.getSubRoutes,
+        getSubRoutes: vxc.router.getSubRoutes,
     },
 })
 export default class AppRoutes extends Vue {}

@@ -3,25 +3,20 @@
   -->
 
 <template>
-  <v-dialog
-    :value="showModal"
-    @click:outside="setShowModal(false)"
-  >
-    <v-card>
-      <v-card-title> Загрузить изображение</v-card-title>
-      <x-cropper
-        :options="opts"
-        @cropper-saved="callSaveImg"
-      />
-      <v-divider />
-    </v-card>
-  </v-dialog>
+    <v-dialog :value="showModal" @click:outside="setShowModal(false)">
+        <v-card>
+            <v-card-title> Загрузить изображение</v-card-title>
+            <x-cropper :options="opts" @cropper-saved="callSaveImg" />
+            <v-divider />
+        </v-card>
+    </v-dialog>
 </template>
 
 <script>
-import { Component, Vue } from 'vue-property-decorator'
 import XCropper from 'x-cropper'
 import 'x-cropper/dist/XCropper.css'
+import Component from 'vue-class-component'
+import Vue from 'vue'
 
 @Component({
     props: {

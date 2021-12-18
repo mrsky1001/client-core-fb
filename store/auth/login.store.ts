@@ -2,55 +2,51 @@
  * Copyright (c) 21.11.2021, 21:37  Kolyada Nikita Vladimirovich nikita.nk16@yandex.ru
  */
 
-import Vuex from 'vuex'
-import Vue from 'vue'
 import { login } from '@/core/services/auth.services'
 import reCaptchaLib from '@/core/lib/reCaptcha.lib'
-import authStore from '@/core/store/auth/auth.store'
-import routesObj from '@/app/routes/routes-obj'
-Vue.use(Vuex)
+import { action, createModule, mutation } from 'vuex-class-component'
+import { vxc } from '@/core/store/store.vuex'
 
-const loginStore = new Vuex.Store({
-    state: {
-        login: '',
-        password: '',
-        prevRoute: '',
-        isShowPassword: false,
-        regRoute: routesObj.REGISTRATION.path,
-        validRules: { required: true },
-    },
-    mutations: {
-        setLogin(state, val) {
-            state.login = val
-        },
-        setPassword(state, val) {
-            state.password = val
-        },
-        setPrevRoute(state, val) {
-            state.prevRoute = val
-        },
-        setIsShowPassword(state, val) {
-            state.isShowPassword = val
-        },
-        onVerify: (sate, val) => authStore.commit('onVerify', val),
-        onExpired: (sate, val) => authStore.commit('onExpired', val),
-        setRefRecaptcha: (sate, val) => authStore.commit('setRefRecaptcha', val),
-    },
-    actions: {
-        loginAccount(ctx) {
-            if (authStore.state.isCaptchaVerify) {
-                return login({
-                    login: ctx.state.login,
-                    password: ctx.state.password,
-                    responseKey: authStore.state.responseKey,
-                })
-            } else {
-                reCaptchaLib.errorEvent()
-            }
-        },
-        resetRecaptcha: () => authStore.dispatch('resetRecaptcha'),
-    },
-    modules: {},
+const VuexModule = createModule({
+    namespaced: 'login',
+    strict: false,
 })
 
-export default loginStore
+export class LoginStore extends VuexModule {
+    login = ''
+    password = ''
+    prevRoute = ''
+    isShowPassword = false
+    validRules = { required: true }
+
+    @mutation setLogin(val: string) {
+        this.login = val
+    }
+
+    @mutation setPassword(val: string) {
+        this.password = val
+    }
+
+    @mutation setPrevRoute(val: string) {
+        this.prevRoute = val
+    }
+
+    @mutation setIsShowPassword(val: boolean) {
+        this.isShowPassword = val
+    }
+
+    @action
+    async loginAccount() {
+        if (vxc.auth.isCaptchaVerify) {
+            return login({
+                login: this.login,
+                password: this.password,
+                responseKey: vxc.auth.responseKey,
+            })
+        } else {
+            reCaptchaLib.errorEvent()
+        }
+    }
+}
+
+export default LoginStore
