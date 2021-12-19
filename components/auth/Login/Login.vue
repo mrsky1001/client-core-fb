@@ -11,37 +11,33 @@
                     <v-card-text class="card-body">
                         <ValidationObserver ref="obs" v-slot="{ invalid, handleSubmit }">
                             <v-form @keyup.native.enter="handleSubmit(callLogin)">
-                                <ValidationProvider v-slot="{ errors }" name="login" :rules="validRules">
+                                <ValidationProvider v-slot="{ errors }" name="login" :rules="loginST.validRules">
                                     <v-text-field
                                         outlined
                                         autofocus
                                         label="Логин"
-                                        :value="login"
+                                        :value="loginST.login"
                                         :error-messages="errors"
-                                        @change="setLogin"
+                                        @change="loginST.setLogin"
                                     />
                                 </ValidationProvider>
-                                <ValidationProvider v-slot="{ errors }" name="password" :rules="validRules">
+                                <ValidationProvider v-slot="{ errors }" name="password" :rules="loginST.validRules">
                                     <v-text-field
                                         required
                                         outlined
                                         label="Пароль"
                                         autocomplete="off"
-                                        :value="password"
+                                        :value="loginST.password"
                                         :error-messages="errors"
-                                        :type="isShowPassword ? 'text' : 'password'"
-                                        :append-icon="isShowPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                                        @change="setPassword"
-                                        @click:append="setIsShowPassword(!isShowPassword)"
+                                        :type="loginST.isShowPassword ? 'text' : 'password'"
+                                        :append-icon="loginST.isShowPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                                        @change="loginST.setPassword"
+                                        @click:append="loginST.setIsShowPassword(!loginST.isShowPassword)"
                                     />
                                 </ValidationProvider>
-                                <Recaptcha
-                                    :on-verify="onVerify"
-                                    :on-expired="onExpired"
-                                    :set-ref-recaptcha="setRefRecaptcha"
-                                />
+                                <Recaptcha />
                                 <v-row>
-                                    <v-btn link plain small :to="regRoute"> Зарегистрироваться</v-btn>
+                                    <v-btn link plain small :to="routes.REGISTRATION.path"> Зарегистрироваться</v-btn>
                                     <v-btn @click="handleSubmit(callLogin)"> Войти</v-btn>
                                 </v-row>
                             </v-form>
@@ -53,18 +49,18 @@
     </v-main>
 </template>
 
-<script>
-import loginStore from '../../../store/auth/login.store'
-import { mapActions, mapMutations, mapState } from 'vuex'
+<script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import { required } from 'vee-validate/dist/rules'
 import { extend, setInteractionMode, ValidationObserver, ValidationProvider } from 'vee-validate'
 import routesObj from '@/app/routes/routes-obj'
 import { handlerError } from '@/core/lib/response-handler'
-import Recaptcha from '../Recaptcha/Recaptcha'
 import '../styles/auth-card.scss'
 import '../styles/reCaptcha.scss'
+import { vxc } from '@/core/store/store.vuex'
+import Recaptcha from '@/core/components/auth/Recaptcha/Recaptcha.vue'
+import { IRoute } from '@/core/models/interfaces/app/IRoute'
 
 setInteractionMode('eager')
 
@@ -74,52 +70,44 @@ extend('required', {
 })
 
 @Component({
-    store: loginStore,
-    computed: {
-        ...mapState(['login', 'password', 'prevRoute', 'regRoute', 'validRules', 'isShowPassword']),
-    },
-    methods: {
-        ...mapMutations([
-            'setLogin',
-            'setPassword',
-            'setPrevRoute',
-            'setIsShowPassword',
-            'setRefRecaptcha',
-            'onVerify',
-            'onExpired',
-        ]),
-        ...mapActions(['loginAccount', 'resetRecaptcha']),
-        callLogin() {
-            this.loginAccount()
-                .then((res) => {
-                    if (res) {
-                        if (this.prevRoute.path === routesObj.REGISTRATION.path) {
-                            this.$router.push(routesObj.HOME)
-                        } else {
-                            this.$router.push(this.prevRoute)
-                        }
-                    } else {
-                        this.resetRecaptcha()
-                    }
-                })
-                .catch((err) => {
-                    this.resetRecaptcha()
-                    handlerError(err)
-                })
-        },
-    },
     components: {
         Recaptcha,
         ValidationProvider,
         ValidationObserver,
     },
-    beforeRouteEnter(to, from, next) {
-        next(() => {
-            loginStore.commit('setPrevRoute', from)
-        })
-    },
 })
-export default class Login extends Vue {}
+export default class Login extends Vue {
+    loginST = vxc.login
+    authST = vxc.auth
+
+    prevRoute: IRoute
+    routes = routesObj
+
+    callLogin() {
+        this.loginST
+            .loginAccount()
+            .then((res) => {
+                if (res) {
+                    if (this.prevRoute.path === routesObj.REGISTRATION.path) {
+                        this.$router.push(routesObj.HOME)
+                    } else {
+                        this.$router.push(this.prevRoute)
+                    }
+                } else {
+                    this.authST.resetRecaptcha()
+                }
+            })
+            .catch((err) => {
+                this.authST.resetRecaptcha()
+                handlerError(err)
+            })
+    }
+    beforeRouteEnter(to: IRoute, from: IRoute, next: any) {
+        next(() => {
+            this.prevRoute = from
+        })
+    }
+}
 </script>
 
 <style lang="scss" scoped>

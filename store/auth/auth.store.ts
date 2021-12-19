@@ -11,6 +11,7 @@ import { IRole } from '@/core/models/interfaces/auth/IRole'
 
 import { action, createModule, mutation } from 'vuex-class-component'
 import { vxc } from '@/core/store/store.vuex'
+import { logout } from '@/core/services/auth.services'
 
 const VuexModule = createModule({
     namespaced: 'auth',
@@ -83,6 +84,10 @@ export class AuthStore extends VuexModule {
     reset() {
         this.responseKey = 'false'
         this.isCaptchaVerify = false
+    }
+
+    @action async logout() {
+        return logout()
     }
 
     // setNoteTab( props: { $route: RouteConfig; $forceUpdate: () => void }):void {

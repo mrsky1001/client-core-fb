@@ -3,7 +3,7 @@
  */
 
 export default {
-    LOGIN: '/api/login',
+    LOGIN: '/api/loginST',
     ROLES: '/api/roles',
     REGISTRATION: '/api/registration',
     LOGOUT: '/api/logout',
@@ -50,6 +50,6 @@ export default {
 
     UPLOAD_AVATAR_IMG: '/api/avatar/img',
     DELETE_AVATAR_IMG: '/api/avatar/img',
-    // GET_ALL_IMGS: 'api/auth/img/all',
-    // EDIT_IMG: 'api/auth/img'
+    // GET_ALL_IMGS: 'api/authST/img/all',
+    // EDIT_IMG: 'api/authST/img'
 }

@@ -8,41 +8,31 @@
         class="g-recaptcha"
         :sitekey="key"
         :load-recaptcha-script="true"
-        @verify="onVerify"
-        @expired="onExpired"
+        @verify="authST.onVerify"
+        @expired="authST.onExpired"
     />
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import VueRecaptcha from 'vue-recaptcha'
+import { vxc } from '@/core/store/store.vuex'
 
 @Component({
-    props: {
-        onVerify: {
-            type: Function,
-            required: true,
-        },
-
-        onExpired: {
-            type: Function,
-            required: true,
-        },
-        setRefRecaptcha: {
-            type: Function,
-            required: true,
-        },
-    },
-    mounted() {
-        this.setRefRecaptcha(this.$refs.recaptcha)
-    },
     components: {
         VueRecaptcha,
     },
 })
 export default class Recaptcha extends Vue {
     key = '6LfM5vscAAAAABiWY0hQLyg4KLvvcf-1EAZRWdY2'
+
+    authST = vxc.auth
+
+    mounted() {
+        // @ts-ignore
+        this.authST.setRefRecaptcha(this.$refs.recaptcha)
+    }
 }
 </script>
 

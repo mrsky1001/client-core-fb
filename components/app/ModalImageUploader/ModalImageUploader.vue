@@ -13,60 +13,56 @@
 </template>
 
 <script lang="ts">
+// @ts-ignore
 import XCropper from 'x-cropper'
 import 'x-cropper/dist/XCropper.css'
 import Component from 'vue-class-component'
 import Vue from 'vue'
+import { Prop } from 'vue-property-decorator'
 
 @Component({
-    props: {
-        img: { type: String },
-        setImg: { type: Function, required: true },
-        showModal: { type: Boolean, required: true },
-        cropperOptions: { type: Object, required: true },
-        setShowModal: { type: Function, required: true },
-    },
-    data() {
-        return {
-            defaultCropOptions: {
-                circleLabel: 'Круг',
-                qualityLabel: 'Качество',
-                cropAreaWidthLabel: 'Ширина области обрезки',
-                cropAreaHeightLabel: 'Высота области обрезки',
-                aspectRatioLabel: 'Соотношение сторон',
-                cropParamsLabel: 'Параметры обрезки',
-                proportionalLabel: 'Пропорционально',
-                cropAreaYCoordLabel: 'Y - координата',
-                cropAreaXCoordLabel: 'X - координата',
-                clearLabel: 'Очистить',
-                saveLabel: 'Сохранить',
-                previewLabel: 'Предпоказ',
-                cropAreaLabel: 'Изображение',
-                fullCropAreaLabel: 'Выбрать все',
-                rotateLeftLabel: 'Повернуть влево',
-                rotateRightLabel: 'Повернуть вправо',
-                selectBtnLabel: 'Выбрать изображение',
-                flipVerticalLabel: 'Отразить по вертикали',
-                flipHorizontalLabel: 'Отразить по горизонтали',
-                dropareaLabel: 'Выберите или перетащите изображение...',
-                cropAreaClasses: 'crop-area-classes',
-            },
-        }
-    },
-    methods: {
-        callSaveImg(file) {
-            this.setImg(file)
-            this.setShowModal(false)
-        },
-    },
-    computed: {
-        opts() {
-            return Object.assign(this.defaultCropOptions, this.cropperOptions)
-        },
-    },
     components: { XCropper },
 })
-export default class ModalImageUploader extends Vue {}
+export default class ModalImageUploader extends Vue {
+    @Prop() img: string
+    @Prop() setImg: (img: string) => void
+    @Prop() showModal: boolean
+    @Prop() cropperOptions: any
+    @Prop() setShowModal: (is: boolean) => void
+
+    defaultCropOptions: {
+        circleLabel: 'Круг'
+        qualityLabel: 'Качество'
+        cropAreaWidthLabel: 'Ширина области обрезки'
+        cropAreaHeightLabel: 'Высота области обрезки'
+        aspectRatioLabel: 'Соотношение сторон'
+        cropParamsLabel: 'Параметры обрезки'
+        proportionalLabel: 'Пропорционально'
+        cropAreaYCoordLabel: 'Y - координата'
+        cropAreaXCoordLabel: 'X - координата'
+        clearLabel: 'Очистить'
+        saveLabel: 'Сохранить'
+        previewLabel: 'Предпоказ'
+        cropAreaLabel: 'Изображение'
+        fullCropAreaLabel: 'Выбрать все'
+        rotateLeftLabel: 'Повернуть влево'
+        rotateRightLabel: 'Повернуть вправо'
+        selectBtnLabel: 'Выбрать изображение'
+        flipVerticalLabel: 'Отразить по вертикали'
+        flipHorizontalLabel: 'Отразить по горизонтали'
+        dropareaLabel: 'Выберите или перетащите изображение...'
+        cropAreaClasses: 'crop-area-classes'
+    }
+
+    get opts() {
+        return Object.assign(this.defaultCropOptions, this.cropperOptions)
+    }
+
+    callSaveImg(file: string) {
+        this.setImg(file)
+        this.setShowModal(false)
+    }
+}
 </script>
 
 <style lang="scss">

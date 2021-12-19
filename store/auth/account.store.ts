@@ -2,7 +2,7 @@
  * Copyright (c) 21.11.2021, 21:20  Kolyada Nikita Vladimirovich nikita.nk16@yandex.ru
  */
 
-import { getUser, saveAccount } from '@/core/services/auth.services'
+import { deleteAccount, getUser, saveAccount } from '@/core/services/auth.services'
 import { deleteAvatarImage, uploadAvatarImage } from '@/core/services/img.services'
 import reCaptchaLib from '@/core/lib/reCaptcha.lib'
 import { getTimeSalt } from '@/core/lib/tools.lib'
@@ -122,6 +122,10 @@ export class AccountStore extends VuexModule {
             this.isShowAvaMenuModal = false
             this.isLoaded = false
         })
+    }
+
+    @action async deleteAccount() {
+        return deleteAccount()
     }
 }
 

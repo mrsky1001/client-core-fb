@@ -26,16 +26,15 @@
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
+import { Prop } from 'vue-property-decorator'
 
-@Component({
-    props: {
-        deleteImg: { type: Function, required: true },
-        uploadImg: { type: Function, required: true },
-        showModal: { type: Boolean, required: true },
-        setShowModal: { type: Function, required: true },
-    },
-})
-export default class ModalImageMenu extends Vue {}
+@Component
+export default class ModalImageMenu extends Vue {
+    @Prop() deleteImg: () => void
+    @Prop() uploadImg: () => void
+    @Prop() showModal: () => void
+    @Prop() setShowModal: (is: boolean) => void
+}
 </script>
 
 <style lang="scss">

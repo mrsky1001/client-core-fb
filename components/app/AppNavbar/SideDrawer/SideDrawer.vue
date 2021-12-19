@@ -6,7 +6,7 @@
     <v-list nav dense>
         <v-navigation-drawer :value="nav.isShowDrawer" fixed @transitionend="changeDrawer">
             <v-list dense nav class="my-slider">
-                <template v-for="route in router.routes">
+                <template v-for="route in routerST.routes">
                     <SubRoute
                         v-if="route.onMainBar && !route.onCenterSidebar"
                         :key="'container ' + route.name"
@@ -14,11 +14,11 @@
                     />
 
                     <div v-if="route.isGroup" :key="'group of ' + route.name">
-                        <div v-for="subRoute in router.subRoutes(route)" :key="'sub route ' + subRoute.name">
+                        <div v-for="subRoute in routerST.subRoutes(route)" :key="'sub route ' + subRoute.name">
                             <SubRoute :route="subRoute" />
                             <div v-if="subRoute.isCenterSidebar">
                                 <SubRoute
-                                    v-for="centerRoute in router.centerRoutes"
+                                    v-for="centerRoute in routerST.centerRoutes"
                                     :key="'center route ' + centerRoute.name"
                                     :route="centerRoute"
                                 />
@@ -29,7 +29,7 @@
                         </div>
                     </div>
                 </template>
-                <SubRoute v-for="route in router.avatarRoutes" :key="'avatar ' + route.name" :route="route" />
+                <SubRoute v-for="route in routerST.avatarRoutes" :key="'avatar ' + route.name" :route="route" />
             </v-list>
         </v-navigation-drawer>
     </v-list>
@@ -48,7 +48,7 @@ import SubRoute from '@/core/components/app/AppNavbar/common/SubRoute.vue'
 export default class SideDrawer extends Vue {
     drawer = 0
     nav = vxc.appNavbar
-    router = vxc.router
+    routerST = vxc.router
 
     changeDrawer() {
         if (this.drawer === 3) {

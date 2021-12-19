@@ -48,7 +48,7 @@ import { mapState } from 'vuex'
         ...mapState(['routes']),
     },
     methods: {
-        getSubRoutes: vxc.router.getSubRoutes,
+        getSubRoutes: vxc.routerST.getSubRoutes,
     },
 })
 export default class AppRoutes extends Vue {}

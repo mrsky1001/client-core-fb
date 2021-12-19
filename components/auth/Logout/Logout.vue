@@ -23,39 +23,39 @@
     </v-main>
 </template>
 
-<script>
-import accountStore from '../../../store/auth/account.store'
-import { mapActions } from 'vuex'
+<script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import routesObj from '@/app/routes/routes-obj'
 import { handlerError } from '@/core/lib/response-handler'
 import '../styles/auth-card.scss'
+import { vxc } from '@/core/store/store.vuex'
 
 @Component({
-    store: accountStore,
-    methods: {
-        ...mapActions(['logout']),
-        callSubmit() {
-            this.logout()
-                .then(() => {
-                    this.goToHome()
-                })
-                .catch((err) => {
-                    handlerError(err)
-                })
-        },
-        goToHome() {
-            this.$router.push(routesObj.HOME)
-        },
-    },
     components: {
         ValidationProvider,
         ValidationObserver,
     },
 })
-export default class Logout extends Vue {}
+export default class Logout extends Vue {
+    authST = vxc.auth
+
+    callSubmit() {
+        this.authST
+            .logout()
+            .then(() => {
+                this.goToHome()
+            })
+            .catch((err) => {
+                handlerError(err)
+            })
+    }
+
+    goToHome() {
+        this.$router.push(routesObj.HOME)
+    }
+}
 </script>
 
 <style lang="scss" scoped></style>

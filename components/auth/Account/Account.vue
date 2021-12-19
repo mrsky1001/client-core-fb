@@ -5,16 +5,16 @@
 <template>
     <v-main class="account-form auth-card">
         <ModalImageMenu
-            :show-modal="isShowAvaMenuModal"
-            :set-show-modal="setIsShowAvaMenuModal"
-            :delete-img="deleteAvatar"
+            :show-modal="accountST.isShowAvaMenuModal"
+            :set-show-modal="accountST.setIsShowAvaMenuModal"
+            :delete-img="accountST.deleteAvatar"
             :upload-img="showAvaUploadModal"
         />
         <ModalImageUploader
-            :show-modal="isShowAvaUploadModal"
-            :set-show-modal="setIsShowUploadModal"
-            :img="avatar"
-            :set-img="saveAvatar"
+            :show-modal="accountST.isShowAvaUploadModal"
+            :set-show-modal="accountST.setIsShowUploadModal"
+            :img="accountST.avatar"
+            :set-img="accountST.saveAvatar"
             :cropper-options="cropOpts"
         />
         <v-row justify="center">
@@ -22,54 +22,48 @@
                 <v-card-title>Учетная запись</v-card-title>
                 <v-card-text>
                     <ValidationObserver ref="obs" v-slot="{ invalid, handleSubmit }">
-                        <v-form @keyup.native.enter="handleSubmit(saveAccount)">
+                        <v-form @keyup.native.enter="handleSubmit(accountST.saveAccount)">
                             <ValidationProvider
                                 v-slot="{ errors }"
                                 name="username"
                                 vid="username"
                                 immediate
-                                :rules="validUsernameRules"
+                                :rules="accountST.validUsernameRules"
                             >
-                                <AvatarField
-                                    :avatar="avatar"
-                                    :username="username"
-                                    :click-avatar-img="showAvaMenuModal"
-                                    :set-username="setUsername"
-                                    :errors="errors"
-                                />
-                                <input :value="username" style="display: none" />
+                                <AvatarField :click-avatar-img="showAvaMenuModal" :errors="errors" />
+                                <input :value="accountST.username" style="display: none" />
                             </ValidationProvider>
 
-                            <ValidationProvider v-slot="{ errors }" name="email" :rules="validEmailRules">
+                            <ValidationProvider v-slot="{ errors }" name="email" :rules="accountST.validEmailRules">
                                 <v-text-field
                                     outlined
                                     label="E-mail"
-                                    :value="email"
+                                    :value="accountST.email"
                                     :error-messages="errors"
-                                    @change="setEmail"
+                                    @change="accountST.setEmail"
                                 />
                             </ValidationProvider>
-                            <ValidationProvider v-slot="{ errors }" name="password" :rules="validPasswordRules">
+                            <ValidationProvider
+                                v-slot="{ errors }"
+                                name="password"
+                                :rules="accountST.validPasswordRules"
+                            >
                                 <v-text-field
                                     outlined
                                     autocomplete="off"
                                     label="Новый пароль"
-                                    :value="password"
+                                    :value="accountST.password"
                                     :error-messages="errors"
-                                    :type="isShowPassword ? 'text' : 'password'"
-                                    :append-icon="isShowPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                                    @change="setPassword"
-                                    @click:append="setIsShowPassword(!isShowPassword)"
+                                    :type="accountST.isShowPassword ? 'text' : 'password'"
+                                    :append-icon="accountST.isShowPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                                    @change="accountST.setPassword"
+                                    @click:append="accountST.setIsShowPassword(!accountST.isShowPassword)"
                                 />
                             </ValidationProvider>
-                            <Recaptcha
-                                :on-verify="onVerify"
-                                :on-expired="onExpired"
-                                :set-ref-recaptcha="setRefRecaptcha"
-                            />
+                            <Recaptcha />
                             <v-row>
-                                <v-btn link plain small :to="delRoute"> Удалить аккаунт</v-btn>
-                                <v-btn @click="handleSubmit(saveAccount)"> Сохранить</v-btn>
+                                <v-btn link plain small :to="routes.DELETE_ACCOUNT.path"> Удалить аккаунт</v-btn>
+                                <v-btn @click="handleSubmit(accountST.saveAccount)"> Сохранить</v-btn>
                             </v-row>
                         </v-form>
                     </ValidationObserver>
@@ -79,19 +73,19 @@
     </v-main>
 </template>
 
-<script>
-import accountStore from '../../../store/auth/account.store'
-import { mapActions, mapMutations, mapState } from 'vuex'
+<script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import { email, max, min, regex, required } from 'vee-validate/dist/rules'
 import { extend, setInteractionMode, ValidationObserver, ValidationProvider } from 'vee-validate'
-import Recaptcha from '../Recaptcha/Recaptcha'
-import ModalImageUploader from '@/core/components/app/ModalImageUploader/ModalImageUploader'
-import AvatarField from '@/core/components/auth/Account/AvatarField/AvatarField'
 import '../styles/auth-card.scss'
 import '../styles/reCaptcha.scss'
-import ModalImageMenu from '@/core/components/app/ModalImageUploader/ModalImageMenu'
+import { vxc } from '@/core/store/store.vuex'
+import routesObj from '@/app/routes/routes-obj'
+import ModalImageMenu from '@/core/components/app/ModalImageUploader/ModalImageMenu.vue'
+import AvatarField from '@/core/components/auth/Account/AvatarField/AvatarField.vue'
+import ModalImageUploader from '@/core/components/app/ModalImageUploader/ModalImageUploader.vue'
+import Recaptcha from '@/core/components/auth/Recaptcha/Recaptcha.vue'
 
 setInteractionMode('eager')
 
@@ -121,54 +115,6 @@ extend('regex', {
 })
 
 @Component({
-    store: accountStore,
-
-    computed: {
-        ...mapState([
-            'username',
-            'email',
-            'avatar',
-            'password',
-            'delRoute',
-            'isLoaded',
-            'isShowPassword',
-            'isShowAvaMenuModal',
-            'isShowAvaUploadModal',
-            'validUsernameRules',
-            'validEmailRules',
-            'validPasswordRules',
-        ]),
-    },
-    methods: {
-        ...mapMutations([
-            'setUsername',
-            'setPassword',
-            'setEmail',
-            'setIsShowPassword',
-            'setRefRecaptcha',
-            'setIsShowAvaMenuModal',
-            'setIsShowUploadModal',
-            'saveAvatar',
-            'onVerify',
-            'onExpired',
-        ]),
-        ...mapActions(['saveAccount', 'getAccountData', 'deleteAvatar']),
-        showAvaUploadModal() {
-            this.setIsShowUploadModal(true)
-            this.setIsShowAvaMenuModal(false)
-        },
-        showAvaMenuModal() {
-            if (this.avatar && this.isLoaded) {
-                this.setIsShowUploadModal(false)
-                this.setIsShowAvaMenuModal(true)
-            } else {
-                this.setIsShowUploadModal(true)
-            }
-        },
-    },
-    mounted() {
-        this.getAccountData()
-    },
     components: {
         ModalImageMenu,
         AvatarField,
@@ -179,6 +125,10 @@ extend('regex', {
     },
 })
 export default class Account extends Vue {
+    accountST = vxc.account
+    authST = vxc.auth
+    routes = routesObj
+
     cropOpts = {
         isShowCircleChk: false,
         isShowQualityFld: false,
@@ -187,6 +137,22 @@ export default class Account extends Vue {
         isShowAspectRatioFld: false,
         isShowProportionalChk: false,
         maxCropperHeight: 300,
+    }
+
+    showAvaUploadModal() {
+        this.accountST.setIsShowUploadModal(true)
+        this.accountST.setIsShowAvaMenuModal(false)
+    }
+    showAvaMenuModal() {
+        if (this.accountST.avatar && this.accountST.isLoaded) {
+            this.accountST.setIsShowUploadModal(false)
+            this.accountST.setIsShowAvaMenuModal(true)
+        } else {
+            this.accountST.setIsShowUploadModal(true)
+        }
+    }
+    mounted() {
+        this.accountST.getAccountData()
     }
 }
 </script>

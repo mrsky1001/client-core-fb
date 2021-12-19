@@ -10,49 +10,45 @@
                 <v-card-text>
                     <ValidationObserver ref="obs" v-slot="{ invalid, handleSubmit }">
                         <v-form @keyup.native.enter="handleSubmit(callSubmit)">
-                            <ValidationProvider v-slot="{ errors }" name="username" :rules="validUsernameRules">
+                            <ValidationProvider v-slot="{ errors }" name="username" :rules="regST.validUsernameRules">
                                 <v-text-field
                                     required
                                     autofocus
                                     outlined
                                     label="Имя"
-                                    :value="username"
+                                    :value="regST.username"
                                     :error-messages="errors"
-                                    @change="setUsername"
+                                    @change="regST.setUsername"
                                 />
                             </ValidationProvider>
-                            <ValidationProvider v-slot="{ errors }" name="email" :rules="validEmailRules">
+                            <ValidationProvider v-slot="{ errors }" name="email" :rules="regST.validEmailRules">
                                 <v-text-field
                                     required
                                     outlined
                                     label="E-mail"
-                                    :value="email"
+                                    :value="regST.email"
                                     :error-messages="errors"
-                                    @change="setEmail"
+                                    @change="regST.setEmail"
                                 />
                             </ValidationProvider>
-                            <ValidationProvider v-slot="{ errors }" name="password" :rules="validPasswordRules">
+                            <ValidationProvider v-slot="{ errors }" name="password" :rules="regST.validPasswordRules">
                                 <v-text-field
                                     required
                                     outlined
                                     autocomplete="off"
                                     label="Пароль"
-                                    :value="password"
+                                    :value="regST.password"
                                     :error-messages="errors"
-                                    :type="isShowPassword ? 'text' : 'password'"
-                                    :append-icon="isShowPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                                    @change="setPassword"
-                                    @click:append="setIsShowPassword(!isShowPassword)"
+                                    :type="regST.isShowPassword ? 'text' : 'password'"
+                                    :append-icon="regST.isShowPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                                    @change="regST.setPassword"
+                                    @click:append="regST.setIsShowPassword(!regST.isShowPassword)"
                                 />
                             </ValidationProvider>
 
-                            <Recaptcha
-                                :on-verify="onVerify"
-                                :on-expired="onExpired"
-                                :set-ref-recaptcha="setRefRecaptcha"
-                            />
+                            <Recaptcha />
                             <v-row>
-                                <v-btn link plain small :to="loginRoute"> Войти</v-btn>
+                                <v-btn link plain small :to="routes.LOGIN.path"> Войти</v-btn>
                                 <v-btn @click="handleSubmit(callSubmit)"> Зарегистрироваться</v-btn>
                             </v-row>
                         </v-form>
@@ -63,18 +59,17 @@
     </v-main>
 </template>
 
-<script>
-import registrationStore from '../../../store/auth/registration.store'
-import { mapActions, mapMutations, mapState } from 'vuex'
+<script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import { email, max, min, regex, required } from 'vee-validate/dist/rules'
 import { extend, setInteractionMode, ValidationObserver, ValidationProvider } from 'vee-validate'
-import Recaptcha from '../Recaptcha/Recaptcha'
 import { handlerError } from '@/core/lib/response-handler'
 import routesObj from '@/app/routes/routes-obj'
 import '../styles/auth-card.scss'
 import '../styles/reCaptcha.scss'
+import { vxc } from '@/core/store/store.vuex'
+import Recaptcha from '@/core/components/auth/Recaptcha/Recaptcha.vue'
 
 setInteractionMode('eager')
 
@@ -104,49 +99,30 @@ extend('regex', {
 })
 
 @Component({
-    store: registrationStore,
-    computed: {
-        ...mapState([
-            'username',
-            'email',
-            'password',
-            'loginRoute',
-            'isShowPassword',
-            'validUsernameRules',
-            'validEmailRules',
-            'validPasswordRules',
-        ]),
-    },
-    methods: {
-        ...mapMutations([
-            'setUsername',
-            'setRefRecaptcha',
-            'setPassword',
-            'setEmail',
-            'setIsShowPassword',
-            'onVerify',
-            'onExpired',
-        ]),
-        ...mapActions(['regAccount', 'resetRecaptcha']),
-        callSubmit() {
-            this.regAccount()
-                .then((res) => {
-                    if (res) {
-                        this.$router.push(routesObj.HOME)
-                    } else {
-                        this.resetRecaptcha()
-                    }
-                })
-                .catch((err) => handlerError(err))
-        },
-    },
     components: {
         Recaptcha,
         ValidationProvider,
         ValidationObserver,
     },
 })
-export default class Registration extends Vue {}
+export default class Registration extends Vue {
+    regST = vxc.registration
+    authST = vxc.auth
+    routes = routesObj
+
+    callSubmit() {
+        this.regST
+            .regAccount()
+            .then((res) => {
+                if (res) {
+                    this.$router.push(routesObj.HOME)
+                } else {
+                    this.authST.resetRecaptcha()
+                }
+            })
+            .catch(handlerError)
+    }
+}
 </script>
 
 <style lang="scss" scoped>

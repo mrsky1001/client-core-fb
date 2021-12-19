@@ -8,10 +8,10 @@
             <div class="v-input__slot">
                 <fieldset aria-hidden="true" />
                 <div class="v-text-field__slot">
-                    <v-icon v-if="!avatar" @click="clickAvatarImg"> mdi-camera-plus-outline</v-icon>
+                    <v-icon v-if="!accountST.avatar" @click="clickAvatarImg"> mdi-camera-plus-outline</v-icon>
 
-                    <v-avatar v-if="avatar" class="avatar-img" @click="clickAvatarImg">
-                        <v-img :src="avatar" />
+                    <v-avatar v-if="accountST.avatar" class="avatar-img" @click="clickAvatarImg">
+                        <v-img :src="accountST.avatar" />
                     </v-avatar>
 
                     <v-divider vertical inset />
@@ -20,8 +20,8 @@
                         name="username"
                         placeholder="Имя"
                         :class="inputClasses"
-                        :value="username"
-                        @input="setUsername"
+                        :value="accountST.username"
+                        @input="accountST.setUsername"
                     />
                 </div>
             </div>
@@ -38,52 +38,35 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
+import { vxc } from '@/core/store/store.vuex'
+import { Prop } from 'vue-property-decorator'
 
-@Component({
-    props: {
-        errors: {
-            type: Array,
-            required: true,
-        },
-        avatar: {
-            type: String,
-            required: false,
-            default() {
-                return ''
-            },
-        },
-        username: {
-            type: String,
-            required: true,
-        },
-        setUsername: {
-            type: Function,
-            required: true,
-        },
-        clickAvatarImg: {
-            type: Function,
-            required: true,
-        },
-    },
-    computed: {
-        styleClasses() {
-            const classes =
-                'avatar-field v-input  theme--light v-text-field v-text-field--is-booted' +
-                ' v-text-field--enclosed v-text-field--outlined '
-            const errorClasses = classes + 'error--text v-input--has-state'
-            const normalClasses = classes + 'v-input--is-label-active v-input--is-dirty '
+@Component
+export default class AvatarField extends Vue {
+    accountST = vxc.account
 
-            return this.errors.length ? errorClasses : normalClasses
-        },
-        inputClasses() {
-            return this.errors.length ? 'error--text error-input' : null
-        },
-    },
-})
-export default class AvatarField extends Vue {}
+    @Prop()
+    errors: string[]
+
+    @Prop()
+    clickAvatarImg: () => void
+
+    styleClasses() {
+        const classes =
+            'avatar-field v-input  theme--light v-text-field v-text-field--is-booted' +
+            ' v-text-field--enclosed v-text-field--outlined '
+        const errorClasses = classes + 'error--text v-input--has-state'
+        const normalClasses = classes + 'v-input--is-label-active v-input--is-dirty '
+
+        return this.errors.length ? errorClasses : normalClasses
+    }
+    inputClasses() {
+        return this.errors.length ? 'error--text error-input' : null
+    }
+}
 </script>
 
 <style lang="scss" scoped>

@@ -3,7 +3,7 @@
   -->
 
 <template>
-    <div v-if="auth.checkRole(route.role)">
+    <div v-if="authST.checkRole(route.role)">
         <hr v-if="route.hasSubLine" class="spacer-hr" />
         <v-list-item :to="route.path">
             <v-list-item-icon>
@@ -27,7 +27,7 @@ import { IRoute } from '@/core/models/interfaces/app/IRoute'
 
 @Component
 export default class SubRoute extends Vue {
-    auth = vxc.auth
+    authST = vxc.auth
 
     @Prop({ required: true })
     route: IRoute

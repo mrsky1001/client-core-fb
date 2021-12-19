@@ -14,7 +14,7 @@
         </template>
 
         <v-list>
-            <template v-for="route in router.avatarRoutes">
+            <template v-for="route in routerST.avatarRoutes">
                 <v-list-item :key="route.name" :to="route.path">
                     <v-list-item-icon>
                         <v-icon>{{ route.icon }}</v-icon>
@@ -37,7 +37,7 @@ import { vxc } from '@/core/store/store.vuex'
 @Component
 export default class AvatarBar extends Vue {
     nav = vxc.appNavbar
-    router = vxc.router
+    routerST = vxc.router
 }
 </script>
 

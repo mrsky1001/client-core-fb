@@ -4,13 +4,19 @@
 
 <template>
     <div class="text-center">
-        <v-snackbar top class="app-snackbar" :value="isShowSnackbar" :color="snackBarClasses" @change="setShowSnackbar">
+        <v-snackbar
+            top
+            class="app-snackbar"
+            :value="snackST.isShowSnackbar"
+            :color="snackST.snackBarClasses"
+            @change="snackST.setShowSnackbar"
+        >
             <strong>
-                {{ snackBarMsg }}
-                {{ snackBarParams }}
+                {{ snackST.snackBarMsg }}
+                {{ snackST.snackBarParams }}
             </strong>
             <template #action="{ attrs }">
-                <v-btn text v-bind="attrs" @click="setShowSnackbar(false)"> Закрыть</v-btn>
+                <v-btn text v-bind="attrs" @click="snackST.setShowSnackbar(false)"> Закрыть</v-btn>
             </template>
         </v-snackbar>
     </div>
@@ -19,19 +25,12 @@
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import snackbarStore from '../../../store/app/snackbar.store'
-import { mapMutations, mapState } from 'vuex'
+import { vxc } from '@/core/store/store.vuex'
 
-@Component({
-    store: snackbarStore,
-    computed: {
-        ...mapState(['isShowSnackbar', 'snackBarClasses', 'snackBarMsg', 'snackBarParams']),
-    },
-    methods: {
-        ...mapMutations(['setShowSnackbar']),
-    },
-})
-export default class SnackBar extends Vue {}
+@Component
+export default class SnackBar extends Vue {
+    snackST = vxc.snackbar
+}
 </script>
 
 <style lang="scss" scoped>
