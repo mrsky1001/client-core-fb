@@ -15,13 +15,13 @@
                 v-on="on"
             >
                 <p class="my-label">
-                    {{ nav.noteRoute.text }}
+                    {{ route.text }}
                 </p>
                 <v-icon>mdi-menu-down</v-icon>
             </v-btn>
         </template>
         <v-list>
-            <template v-for="subRoute in router.getSubRoutes(route)">
+            <template v-for="subRoute in router.subRoutes(route)">
                 <div :key="subRoute.name">
                     <hr v-if="subRoute.hasSubLine" class="spacer-hr" />
 
@@ -40,25 +40,21 @@
     </v-menu>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 import '../app-nav-bar.scss'
 import { vxc } from '@/core/store/store.vuex'
 import Component from 'vue-class-component'
 import { IRoute } from '@/core/models/interfaces/app/IRoute'
+import { Prop } from 'vue-property-decorator'
 
-@Component({
-    props: {
-        route: {
-            type: IRoute,
-            required: true,
-        },
-    },
-})
+@Component
 export default class SubRoutes extends Vue {
     nav = vxc.appNavbar
     auth = vxc.auth
     router = vxc.router
+
+    @Prop() route: IRoute
 
     // $watch = {
     //     '$route.fullPath'() {},

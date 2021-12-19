@@ -12,7 +12,7 @@
     </v-dialog>
 </template>
 
-<script>
+<script lang="ts">
 import XCropper from 'x-cropper'
 import 'x-cropper/dist/XCropper.css'
 import Component from 'vue-class-component'

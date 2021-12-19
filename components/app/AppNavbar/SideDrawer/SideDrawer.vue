@@ -4,9 +4,9 @@
 
 <template>
     <v-list nav dense>
-        <v-navigation-drawer :value="isShowDrawer" fixed @transitionend="changeDrawer">
+        <v-navigation-drawer :value="nav.isShowDrawer" fixed @transitionend="changeDrawer">
             <v-list dense nav class="my-slider">
-                <template v-for="route in routes">
+                <template v-for="route in router.routes">
                     <SubRoute
                         v-if="route.onMainBar && !route.onCenterSidebar"
                         :key="'container ' + route.name"
@@ -14,11 +14,11 @@
                     />
 
                     <div v-if="route.isGroup" :key="'group of ' + route.name">
-                        <div v-for="subRoute in getSubRoutes(route)" :key="'sub route ' + subRoute.name">
+                        <div v-for="subRoute in router.subRoutes(route)" :key="'sub route ' + subRoute.name">
                             <SubRoute :route="subRoute" />
                             <div v-if="subRoute.isCenterSidebar">
                                 <SubRoute
-                                    v-for="centerRoute in centerRoutes"
+                                    v-for="centerRoute in router.centerRoutes"
                                     :key="'center route ' + centerRoute.name"
                                     :route="centerRoute"
                                 />
@@ -29,46 +29,36 @@
                         </div>
                     </div>
                 </template>
-                <SubRoute v-for="route in avatarRoutes" :key="'avatar ' + route.name" :route="route" />
+                <SubRoute v-for="route in router.avatarRoutes" :key="'avatar ' + route.name" :route="route" />
             </v-list>
         </v-navigation-drawer>
     </v-list>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import navbarStore from '@/core/store/app/app-navbar'
-import { mapGetters, mapMutations, mapState } from 'vuex'
-import SubRoute from '@/core/components/app/AppNavbar/common/SubRoute.vue'
 import '../app-nav-bar.scss'
+import { vxc } from '@/core/store/store.vuex'
+import SubRoute from '@/core/components/app/AppNavbar/common/SubRoute.vue'
 
 @Component({
     components: { SubRoute },
-    store: navbarStore,
-    data() {
-        return {
-            drawer: 0,
-        }
-    },
-    computed: {
-        ...mapState(['routes', 'centerRoutes', 'isShowDrawer', 'searchText', 'isShowSearch']),
-        ...mapGetters(['avatarRoutes']),
-    },
-    methods: {
-        changeDrawer() {
-            if (this.drawer === 3) {
-                this.setIsShowDrawer(false)
-                this.drawer = 0
-            } else {
-                this.drawer++
-            }
-        },
-        getSubRoutes: vxc.router.getSubRoutes,
-        ...mapMutations(['setIsShowDrawer', 'setSearchText', 'setIsShowSearch']),
-    },
 })
-export default class SideDrawer extends Vue {}
+export default class SideDrawer extends Vue {
+    drawer = 0
+    nav = vxc.appNavbar
+    router = vxc.router
+
+    changeDrawer() {
+        if (this.drawer === 3) {
+            this.nav.setIsShowDrawer(false)
+            this.drawer = 0
+        } else {
+            this.drawer++
+        }
+    }
+}
 </script>
 
 <style lang="scss" scoped>

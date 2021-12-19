@@ -5,49 +5,38 @@
 <template>
     <div>
         <v-app-bar app light color="white" class="my-app-bar" scroll-target="#scrolling-techniques-2">
-            <v-app-bar-nav-icon v-if="!self.isShowSearch" class="d-flex d-md-none"></v-app-bar-nav-icon>
+            <v-app-bar-nav-icon
+                v-if="!navbar.isShowSearch"
+                class="d-flex d-md-none"
+                @click="navbar.setIsShowDrawer(true)"
+            ></v-app-bar-nav-icon>
             <LogoBar />
             <NavDrawer />
-            <!--      <SearchField class="search-field" />-->
-            <!--      <SearchButton />-->
-            <!--      <AvatarBar />-->
+            <SearchField class="search-field" />
+            <SearchButton />
+            <AvatarBar />
         </v-app-bar>
-        <!--    <SideDrawer />-->
+        <SideDrawer />
     </div>
 </template>
 
 <script lang="ts">
-// import SideDrawer from './SideDrawer/SideDrawer'
-// import NavDrawer from './NavDrawer/NavDrawer'
-// import AvatarBar from './common/AvatarBar'
 import LogoBar from '@/core/components/app/AppNavbar/common/LogoBar.vue'
-// import SearchButton from '@/core/components/app/AppNavbar/common/SearchButton'
-// import SearchField from '@/core/components/app/AppNavbar/common/SearchField'
+import SearchField from '@/core/components/app/AppNavbar/common/SearchField.vue'
 import Vue from 'vue'
-// @Component({
-// components: {
-//     SearchField,
-//     SearchButton,
-//     LogoBar,
-//     AvatarBar,
-//     NavDrawer,
-//     SideDrawer,
-// },
-// computed: {
-//     ...mapState(['routes', 'isShowDrawer', 'searchText', 'isShowSearch']),
-// },
-// methods: {
-//     ...mapMutations(['setIsShowDrawer', 'setSearchText', 'setIsShowSearch']),
-// },
+
 import { vxc } from '@/core/store/store.vuex'
 import Component from 'vue-class-component'
 import NavDrawer from '@/core/components/app/AppNavbar/NavDrawer/NavDrawer.vue'
+import SearchButton from '@/core/components/app/AppNavbar/common/SearchButton.vue'
+import AvatarBar from '@/core/components/app/AppNavbar/common/AvatarBar.vue'
+import SideDrawer from '@/core/components/app/AppNavbar/SideDrawer/SideDrawer.vue'
 
 @Component({
-    components: { NavDrawer, LogoBar },
+    components: { SideDrawer, AvatarBar, SearchButton, NavDrawer, LogoBar, SearchField },
 })
 export default class AppNavbar extends Vue {
-    self = vxc.appNavbar
+    navbar = vxc.appNavbar
 }
 </script>
 

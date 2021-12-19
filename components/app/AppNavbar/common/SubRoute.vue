@@ -3,7 +3,7 @@
   -->
 
 <template>
-    <div v-if="checkRole(route.role)">
+    <div v-if="auth.checkRole(route.role)">
         <hr v-if="route.hasSubLine" class="spacer-hr" />
         <v-list-item :to="route.path">
             <v-list-item-icon>
@@ -17,18 +17,20 @@
     </div>
 </template>
 
-<script>
-import { Component, Prop, Vue } from 'vue-property-decorator'
+<script lang="ts">
+import { Prop } from 'vue-property-decorator'
 import '../app-nav-bar.scss'
+import { vxc } from '@/core/store/store.vuex'
+import Vue from 'vue'
+import Component from 'vue-class-component'
+import { IRoute } from '@/core/models/interfaces/app/IRoute'
 
-@Component({
-    methods: {
-        checkRole: vxc.auth.checkRole,
-    },
-})
+@Component
 export default class SubRoute extends Vue {
+    auth = vxc.auth
+
     @Prop({ required: true })
-    route
+    route: IRoute
 }
 </script>
 

@@ -9,7 +9,7 @@ import User from '@/core/models/classes/auth/User'
 // import navbarStore from '@/core/store/app/app-navbar'
 import { IRole } from '@/core/models/interfaces/auth/IRole'
 
-import { createModule, mutation } from 'vuex-class-component'
+import { action, createModule, mutation } from 'vuex-class-component'
 import { vxc } from '@/core/store/store.vuex'
 
 const VuexModule = createModule({
@@ -23,19 +23,21 @@ export class AuthStore extends VuexModule {
     public refRecaptcha = { reset: () => null }
     public user = new User(ServiceStorage.getProp('user'))
 
-    checkRole(role: IRole, justOne = false): boolean {
-        const user = this.user
-        role = role ? role : roles.UNAUTHORIZED
+    get checkRole() {
+        return (role: IRole, justOne = false): boolean => {
+            const user = this.user
+            role = role ? role : roles.UNAUTHORIZED
 
-        if (user.isAuthorized) {
-            if (justOne) {
-                return user.role === role.value
-            } else {
-                return user.role <= role.value
+            if (user.isAuthorized) {
+                if (justOne) {
+                    return user.role === role.value
+                } else {
+                    return user.role <= role.value
+                }
             }
-        }
 
-        return role.value === roles.UNAUTHORIZED.value
+            return role.value === roles.UNAUTHORIZED.value
+        }
     }
 
     @mutation
@@ -62,8 +64,7 @@ export class AuthStore extends VuexModule {
         this.user = user
     }
 
-    @mutation
-    clearUser(): void {
+    @action async clearUser() {
         this.saveUser(new User())
     }
 

@@ -6,7 +6,7 @@ import roles from '@/core/collections/roles'
 import { IRoute } from '@/core/models/interfaces/app/IRoute'
 import { routes } from '@/app/routes/routes'
 
-import { createModule, getter } from 'vuex-class-component'
+import { createModule } from 'vuex-class-component'
 import { vxc } from '@/core/store/store.vuex'
 
 const VuexModule = createModule({
@@ -15,11 +15,17 @@ const VuexModule = createModule({
 })
 
 export class RouterStore extends VuexModule {
-    @getter getSubRoutes(route: IRoute) {
-        return routes.filter((r: IRoute) => route.name === r.group && vxc.auth.checkRole(r.role))
+    get routes() {
+        return routes
     }
 
-    @getter getAvatarRoutes() {
+    get subRoutes() {
+        return (route: IRoute) => {
+            return routes.filter((r: IRoute) => route.name === r.group && vxc.auth.checkRole(r.role))
+        }
+    }
+
+    get avatarRoutes() {
         if (vxc.auth.user.isAuthorized) {
             return routes.filter((r) => r.onAvatarBar && r.role !== roles.UNAUTHORIZED && vxc.auth.checkRole(r.role))
         } else {
@@ -27,7 +33,7 @@ export class RouterStore extends VuexModule {
         }
     }
 
-    @getter getCenterRoutes() {
+    get centerRoutes() {
         return routes.filter((r) => r.onCenterSidebar && vxc.auth.checkRole(r.role))
     }
 }

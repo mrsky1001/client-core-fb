@@ -19,7 +19,7 @@ export class AccountStore extends VuexModule {
     avatar = ''
     username = ''
     password = ''
-    avatarBlob = ''
+    avatarBlob: Blob
     isLoaded = false
     isShowPassword = false
     isShowAvaMenuModal = false
@@ -53,7 +53,7 @@ export class AccountStore extends VuexModule {
         this.isShowAvaUploadModal = val
     }
 
-    @mutation saveAvatar(val: { croppedFile: string }) {
+    @mutation saveAvatar(val: { croppedFile: Blob }) {
         this.isLoaded = false
         this.avatar = URL.createObjectURL(val.croppedFile)
         this.avatarBlob = val.croppedFile
@@ -118,7 +118,7 @@ export class AccountStore extends VuexModule {
     async deleteAvatar() {
         deleteAvatarImage().then(() => {
             this.avatar = ''
-            this.avatarBlob = ''
+            // this.avatarBlob = null
             this.isShowAvaMenuModal = false
             this.isLoaded = false
         })

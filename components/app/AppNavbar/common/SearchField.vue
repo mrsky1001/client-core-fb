@@ -4,25 +4,25 @@
 
 <template>
     <v-text-field
-        v-show="self.isShowSearch"
+        v-show="navbar.isShowSearch"
         autofocus
         single-line
         hide-details
         placeholder="Что будем искать?"
-        :value="self.searchText"
-        @change="self.setSearchText"
-        @focusout="setIsShowSearch(false)"
+        :value="navbar.searchText"
+        @change="navbar.setSearchText"
+        @focusout="navbar.setIsShowSearch(false)"
     />
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import { vxc } from '@/core/store/store.vuex'
 
 @Component
 export default class SearchField extends Vue {
-    self = vxc.appNavbar
+    navbar = vxc.appNavbar
 }
 </script>
 

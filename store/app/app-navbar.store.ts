@@ -22,6 +22,10 @@ export class AppNavbarStore extends VuexModule {
     setIsShowSearch(val: boolean) {
         this.isShowSearch = val
     }
+    @mutation
+    setIsShowDrawer(val: boolean) {
+        this.isShowDrawer = val
+    }
 
     @mutation
     setAvatar(val: string) {

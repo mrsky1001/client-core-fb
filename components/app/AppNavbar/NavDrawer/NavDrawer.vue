@@ -6,7 +6,7 @@
     <v-row justify="end" class="d-none d-md-flex my-row-bar">
         <template v-for="route in routes">
             <v-btn
-                v-show="!self.isShowSearch"
+                v-show="!navbar.isShowSearch"
                 v-if="route.onMainBar"
                 :key="route.name"
                 plain
@@ -25,10 +25,10 @@
     </v-row>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import SubRoutes from './SubRoutes'
+import SubRoutes from './SubRoutes.vue'
 import { vxc } from '@/core/store/store.vuex'
 import { routes } from '@/app/routes/routes'
 
@@ -38,7 +38,7 @@ import { routes } from '@/app/routes/routes'
     },
 })
 export default class NavDrawer extends Vue {
-    self = vxc.appNavbar
+    navbar = vxc.appNavbar
     routes = routes
 }
 </script>

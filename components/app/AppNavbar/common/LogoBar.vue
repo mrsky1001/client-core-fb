@@ -5,25 +5,26 @@
 <template>
     <v-toolbar-title class="logo-bar">
         <router-link to="/" class="logo-link">
-            <v-img :src="logo" :class="'logo-img ' + (self.isShowSearch ? 'left-logo' : '')" />
+            <v-img
+                :src="require('@/core/assets/fb15.svg')"
+                :class="'logo-img ' + (navbar.isShowSearch ? 'left-logo' : '')"
+            />
         </router-link>
         <SearchField class="search-field-small" />
     </v-toolbar-title>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import SearchField from '@/core/components/app/AppNavbar/common/SearchField'
+import SearchField from '@/core/components/app/AppNavbar/common/SearchField.vue'
 import { vxc } from '@/core/store/store.vuex'
-import logo from '@/core/assets/fb15.svg'
 
 @Component({
     components: { SearchField },
 })
 export default class AppNavbar extends Vue {
-    self = vxc.appNavbar
-    logo = logo
+    navbar = vxc.appNavbar
 }
 </script>
 

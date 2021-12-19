@@ -5,16 +5,16 @@
 <template>
     <v-menu ref="avatarBarRef" offset-y>
         <template #activator="{ on, attrs }">
-            <v-btn icon v-bind="attrs" :class="'avatar-bar-btn ' + getAvatarClass" v-on="on">
-                <v-icon v-if="!avatar || isErrAva"> mdi-cat </v-icon>
-                <v-avatar v-if="avatar && !isErrAva">
-                    <v-img :src="avatar" @error="setIsErrAva" />
+            <v-btn icon v-bind="attrs" :class="'avatar-bar-btn ' + nav.avatarClass" v-on="on">
+                <v-icon v-if="!nav.avatar"> mdi-cat </v-icon>
+                <v-avatar v-if="nav.avatar">
+                    <v-img :src="nav.avatar" />
                 </v-avatar>
             </v-btn>
         </template>
 
         <v-list>
-            <template v-for="route in avatarRoutes">
+            <template v-for="route in router.avatarRoutes">
                 <v-list-item :key="route.name" :to="route.path">
                     <v-list-item-icon>
                         <v-icon>{{ route.icon }}</v-icon>
@@ -29,31 +29,16 @@
     </v-menu>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import navbarStore from '@/core/store/app/app-navbar'
-import { mapGetters, mapMutations, mapState } from 'vuex'
+import { vxc } from '@/core/store/store.vuex'
 
-@Component({
-    store: navbarStore,
-    computed: {
-        ...mapState(['routes', 'isErrAva', 'isShowDrawer', 'avatar', 'searchText', 'isShowSearch']),
-        ...mapGetters(['getAvatarClass', 'avatarRoutes']),
-    },
-    methods: {
-        ...mapMutations(['setIsShowDrawer', 'setIsErrAva', 'setSearchText', 'setIsShowSearch']),
-    },
-    mounted() {
-        console.log(this.avatar)
-    },
-    watch: {
-        '$route.fullPath'() {
-            this.$forceUpdate()
-        },
-    },
-})
-export default class AvatarBar extends Vue {}
+@Component
+export default class AvatarBar extends Vue {
+    nav = vxc.appNavbar
+    router = vxc.router
+}
 </script>
 
 <style lang="scss" scoped>

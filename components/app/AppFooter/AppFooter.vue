@@ -35,7 +35,7 @@
     </v-footer>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import footerStore from '@/core/store/app/app-footer.store'

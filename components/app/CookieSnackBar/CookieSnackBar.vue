@@ -15,7 +15,7 @@
     </v-snackbar>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import cookieStore from '../../../store/auth/cookie.store'

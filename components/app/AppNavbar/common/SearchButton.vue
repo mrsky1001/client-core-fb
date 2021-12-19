@@ -8,25 +8,21 @@
         color="gray"
         class="search-btn font-weight-bold"
         active-class="active-btn"
-        @click="setIsShowSearch(true)"
+        @click="nav.setIsShowSearch(true)"
     >
         <v-icon>mdi-magnify-scan</v-icon>
     </v-btn>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import navbarStore from '@/core/store/app/app-navbar'
-import { mapMutations } from 'vuex'
+import { vxc } from '@/core/store/store.vuex'
 
-@Component({
-    store: navbarStore,
-    methods: {
-        ...mapMutations(['setIsShowSearch']),
-    },
-})
-export default class SearchButton extends Vue {}
+@Component
+export default class SearchButton extends Vue {
+    nav = vxc.appNavbar
+}
 </script>
 
 <style lang="scss" scoped>
