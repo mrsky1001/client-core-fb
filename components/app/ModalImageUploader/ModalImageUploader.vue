@@ -25,10 +25,11 @@ import { Prop } from 'vue-property-decorator'
 })
 export default class ModalImageUploader extends Vue {
     @Prop() img: string
-    @Prop() setImg: (img: string) => void
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    @Prop() setImg: (_: string) => void
     @Prop() showModal: boolean
     @Prop() cropperOptions: any
-    @Prop() setShowModal: (is: boolean) => void
+    @Prop() setShowModal: (_: boolean) => void
 
     defaultCropOptions: {
         circleLabel: 'Круг'

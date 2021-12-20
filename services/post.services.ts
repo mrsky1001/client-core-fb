@@ -47,8 +47,8 @@ const getInValidPostFields = (post: IPost) => {
     return listError
 }
 
-export const getPost = (postId: string, title: string): Promise<IPost> => {
-    return new Promise<IPost>((resolve, reject) => {
+export const getPost = (postId: string, title: string): Promise<Post> => {
+    return new Promise<Post>((resolve, reject) => {
         const url = postId ? `${urls.GET_POST_BY_ID}/${postId}` : `${urls.GET_POST_BY_TITLE}/${title}`
 
         api()
@@ -94,8 +94,8 @@ export const getPosts = (section: string, lastCreateDate: Date, searchText: stri
             })
     })
 }
-export const addPost = (post: IPost): Promise<IPost> => {
-    return new Promise<IPost>((resolve, reject) => {
+export const addPost = (post: IPost): Promise<Post> => {
+    return new Promise<Post>((resolve, reject) => {
         const listErrors = getInValidPostFields(post)
 
         if (!listErrors.length) {
@@ -120,8 +120,8 @@ export const addPost = (post: IPost): Promise<IPost> => {
     })
 }
 
-export const addLikePost = (postId: string): Promise<IPost> => {
-    return new Promise<IPost>((resolve, reject) => {
+export const addLikePost = (postId: string): Promise<Post> => {
+    return new Promise<Post>((resolve, reject) => {
         const url = `${urls.SET_POST_LIKE}/${postId}`
 
         api()
@@ -141,8 +141,8 @@ export const addLikePost = (postId: string): Promise<IPost> => {
     })
 }
 
-export const removeLikePost = (postId: string): Promise<IPost> => {
-    return new Promise<IPost>((resolve, reject) => {
+export const removeLikePost = (postId: string): Promise<Post> => {
+    return new Promise<Post>((resolve, reject) => {
         const url = `${urls.DELETE_POST_LIKE}/${postId}`
 
         api()
@@ -162,8 +162,8 @@ export const removeLikePost = (postId: string): Promise<IPost> => {
     })
 }
 
-export const addSharePost = (postId: string): Promise<IPost> => {
-    return new Promise<IPost>((resolve, reject) => {
+export const addSharePost = (postId: string): Promise<Post> => {
+    return new Promise<Post>((resolve, reject) => {
         const url = `${urls.ADD_POST_SHARE}/${postId}`
 
         api()
@@ -183,8 +183,8 @@ export const addSharePost = (postId: string): Promise<IPost> => {
     })
 }
 
-export const changeStatusPost = (postId: string, status: number): Promise<IPost> => {
-    return new Promise<IPost>((resolve, reject) => {
+export const changeStatusPost = (postId: string, status: number): Promise<Post> => {
+    return new Promise<Post>((resolve, reject) => {
         const url = `${urls.UPDATE_POST_STATUS}/${postId}`
 
         api()
@@ -204,8 +204,8 @@ export const changeStatusPost = (postId: string, status: number): Promise<IPost>
     })
 }
 
-export const editPost = (postId: string, dataToUpdate: IPost): Promise<IPost> => {
-    return new Promise<IPost>((resolve, reject) => {
+export const editPost = (postId: string, dataToUpdate: IPost): Promise<Post> => {
+    return new Promise<Post>((resolve, reject) => {
         const listErrors = getInValidPostFields(dataToUpdate)
 
         if (!listErrors.length) {
