@@ -9,7 +9,7 @@ import User from '@/core/models/classes/auth/User'
 // import navbarStore from '@/core/store/app/app-navbar'
 import { IRole } from '@/core/models/interfaces/auth/IRole'
 
-import { action, createModule, mutation } from 'vuex-class-component'
+import { action, createModule, getter, mutation } from 'vuex-class-component'
 import { vxc } from '@/core/store/store.vuex'
 import { logout } from '@/core/services/auth.services'
 
@@ -39,6 +39,11 @@ export class AuthStore extends VuexModule {
 
             return role.value === roles.UNAUTHORIZED.value
         }
+    }
+
+    @getter
+    isEditor() {
+        return this.checkRole(roles.EDITOR)
     }
 
     @mutation
