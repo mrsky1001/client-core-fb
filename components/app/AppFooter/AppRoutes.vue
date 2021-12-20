@@ -9,7 +9,7 @@
             Карта сайта
         </p>
 
-        <template v-for="route in routes">
+        <template v-for="route in routerST.routes">
             <v-btn
                 v-if="route.onMainBar"
                 :key="route.name"
@@ -20,7 +20,7 @@
             >
                 <span> {{ route.text }}</span>
             </v-btn>
-            <template v-for="subRoute in getSubRoutes(route)">
+            <template v-for="subRoute in routerST.subRoutes(route)">
                 <v-btn
                     :key="subRoute.name"
                     plain
@@ -38,20 +38,12 @@
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import footerStore from '@/core/store/app/app-footer.store'
-import { mapState } from 'vuex'
+import { vxc } from '@/core/store/store.vuex'
 
-@Component({
-    store: footerStore,
-    components: {},
-    computed: {
-        ...mapState(['routes']),
-    },
-    methods: {
-        getSubRoutes: vxc.routerST.getSubRoutes,
-    },
-})
-export default class AppRoutes extends Vue {}
+@Component
+export default class AppRoutes extends Vue {
+    routerST = vxc.router
+}
 </script>
 
 <style lang="scss" scoped>

@@ -68,7 +68,7 @@ export const handlerError = (err: AxiosError, checkAuth = false, redirect?: IRou
             props.msg = err.message
         }
 
-        // console.error(props.msg)
+        console.error(props.msg)
         vxc.snackbar.setSnackBarMsg(props)
     } else {
         console.error(err)

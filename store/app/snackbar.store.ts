@@ -29,6 +29,7 @@ export class SnackBarStore extends VuexModule {
     @mutation
     setSnackBarMsg(props: ISnackbarProps) {
         const showMsg = () => {
+            console.log(props)
             this.snackBarMsg = props.msg
             this.snackBarClasses = props.classes
             this.snackBarParams = props.params

@@ -5,35 +5,30 @@
 <template>
     <div>
         <router-link to="/store">
-            <v-img class="footer-img" :src="footerImg" />
+            <v-img class="footer-img" :src="footerST.footerImg" />
         </router-link>
     </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import { vxc } from '@/core/store/store.vuex'
 import Component from 'vue-class-component'
-import { mapMutations, mapState } from 'vuex'
-import footerStore from '@/core/store/app/app-footer.store'
+import { Watch } from 'vue-property-decorator'
 
-@Component({
-    store: footerStore,
-    computed: {
-        ...mapState(['footerImg']),
-    },
-    methods: {
-        ...mapMutations(['resetFooterImg']),
-    },
+@Component
+export default class FooterImg extends Vue {
+    footerST = vxc.appFooter
+
     mounted() {
-        footerStore.commit('resetFooterImg')
-    },
-    watch: {
-        $route() {
-            footerStore.commit('resetFooterImg')
-        },
-    },
-})
-export default class FooterImg extends Vue {}
+        this.footerST.resetFooterImg()
+    }
+
+    @Watch('$route')
+    onChangeRoute(): void {
+        this.footerST.resetFooterImg()
+    }
+}
 </script>
 
 <style lang="scss" scoped>

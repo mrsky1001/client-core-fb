@@ -38,7 +38,6 @@
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import footerStore from '@/core/store/app/app-footer.store'
 import AppRoutes from '@/core/components/app/AppFooter/AppRoutes.vue'
 import Contacts from '@/core/components/app/AppFooter/Contacts.vue'
 import SocialNetwork from '@/core/components/app/AppFooter/SocialNetwork.vue'
@@ -46,7 +45,6 @@ import Copyright from '@/core/components/app/AppFooter/Copyright.vue'
 import FooterImg from '@/core/components/app/AppFooter/FooterImg.vue'
 
 @Component({
-    store: footerStore,
     components: { FooterImg, Copyright, SocialNetwork, Contacts, AppRoutes },
 })
 export default class AppFooter extends Vue {}

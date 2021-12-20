@@ -9,7 +9,7 @@
                 v-if="!navbar.isShowSearch"
                 class="d-flex d-md-none"
                 @click="navbar.setIsShowDrawer(true)"
-            ></v-app-bar-nav-icon>
+            />
             <LogoBar />
             <NavDrawer />
             <SearchField class="search-field" />
