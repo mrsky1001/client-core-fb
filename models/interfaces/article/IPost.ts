@@ -17,9 +17,9 @@ export interface IPostToUpdate extends IGenericModel {
     likes: ILike[]
     status: number
     shares: IShare[]
-    author: IUser | null
+    author: IUser // | null
     comments: IComment[]
-    annotation: IAnnotation | null
+    annotation: IAnnotation // | null
 }
 
 export interface IPost extends IGenericModel {
@@ -35,7 +35,7 @@ export interface IPost extends IGenericModel {
     likes: ILike[]
     status: number
     shares: IShare[]
-    author: IUser | null
+    author: IUser // | null
     comments: IComment[]
-    annotation: IAnnotation | null
+    annotation: IAnnotation // | null
 }
