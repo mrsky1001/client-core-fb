@@ -47,7 +47,7 @@ const getInValidPostFields = (post: IPost) => {
     return listError
 }
 
-export const getPost = (postId: string, title: string): Promise<Post> => {
+export const getPost = (postId: string, title = ''): Promise<Post> => {
     return new Promise<Post>((resolve, reject) => {
         const url = postId ? `${urls.GET_POST_BY_ID}/${postId}` : `${urls.GET_POST_BY_TITLE}/${title}`
 
