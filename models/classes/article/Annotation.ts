@@ -11,9 +11,9 @@ export default class Annotation extends GenericModel {
     private _keywords: string[] = []
     private _imgFile?: File
 
-    constructor(initObj: IAnnotation) {
+    constructor(initObj?: IAnnotation) {
         super(initObj)
-        this.init(initObj)
+        initObj && this.init(initObj)
     }
 
     init(initObj: IAnnotation): void {

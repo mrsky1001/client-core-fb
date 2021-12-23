@@ -5,7 +5,7 @@
 import { IGenericModel } from '@/core/models/interfaces/app/IGenericModel'
 
 export default class GenericModel implements IGenericModel {
-    _id?: string
+    _id: string
     jsonFormatObjects?: [
         {
             name: string
@@ -76,11 +76,13 @@ export default class GenericModel implements IGenericModel {
         return res
     }
 
-    get id(): string | undefined {
+    get id(): string {
+        // | undefined
         return this._id
     }
 
-    set id(value: string | undefined) {
+    set id(value: string) {
+        // | undefined
         this._id = value
     }
 }

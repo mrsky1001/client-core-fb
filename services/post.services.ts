@@ -13,7 +13,7 @@ import Post from '@/core/models/classes/article/Post'
 import { vxc } from '@/core/store/store.vuex'
 import { ISnackbarProps } from '@/core/store/app/snackbar.store'
 
-const getInValidPostFields = (post: IPost) => {
+const getInValidPostFields = (post: Post) => {
     const rules: IRule[] = [
         { name: 'title', label: 'Заголовок', type: 'string', min: 3 },
         { name: 'content', label: 'Содержание', type: 'string', min: 10 },
@@ -94,7 +94,7 @@ export const getPosts = (section: string, lastCreateDate: Date, searchText: stri
             })
     })
 }
-export const addPost = (post: IPost): Promise<Post> => {
+export const addPost = (post: Post): Promise<Post> => {
     return new Promise<Post>((resolve, reject) => {
         const listErrors = getInValidPostFields(post)
 
@@ -204,7 +204,7 @@ export const changeStatusPost = (postId: string, status: number): Promise<Post> 
     })
 }
 
-export const editPost = (postId: string, dataToUpdate: IPost): Promise<Post> => {
+export const editPost = (postId: string, dataToUpdate: Post): Promise<Post> => {
     return new Promise<Post>((resolve, reject) => {
         const listErrors = getInValidPostFields(dataToUpdate)
 

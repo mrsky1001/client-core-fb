@@ -11,8 +11,10 @@ import { IPost } from '@/core/models/interfaces/article/IPost'
 import { ILike } from '@/core/models/interfaces/article/ILike'
 import { IUser } from '@/core/models/interfaces/auth/IUser'
 import statuses from '@/core/collections/statuses'
+import User from '@/core/models/classes/auth/User'
+import Annotation from '@/core/models/classes/article/Annotation'
 
-export default class Post extends GenericModel {
+export default class Post extends GenericModel implements IPost {
     private _title = ''
     private _urlTitle = ''
     private _content = ''
@@ -25,9 +27,9 @@ export default class Post extends GenericModel {
     private _likes: ILike[] = []
     private _shares: IShare[] = []
     private _comments: IComment[] = []
-    private _author: IUser | null = null
+    private _author: IUser = new User()
     private _status: number = statuses.DRAFT.value
-    private _annotation: IAnnotation | null = null
+    private _annotation: IAnnotation = new Annotation()
 
     constructor(initObj?: IPost) {
         super(initObj)
@@ -55,7 +57,7 @@ export default class Post extends GenericModel {
         this.jsonFormatObjects = [{ name: 'status', valuePath: 'value' }]
     }
 
-    updateContent(obj: IPost): void {
+    updateContent(obj: Post): void {
         this.title = obj.title ? obj.title : this._title
         this.urlTitle = obj.urlTitle ? obj.urlTitle : this._urlTitle
         this.annotation = obj.annotation ? obj.annotation : this._annotation
@@ -71,11 +73,11 @@ export default class Post extends GenericModel {
         this._comments = value
     }
 
-    get annotation(): IAnnotation | null {
+    get annotation(): IAnnotation {
         return this._annotation
     }
 
-    set annotation(value: IAnnotation | null) {
+    set annotation(value: IAnnotation) {
         this._annotation = value
     }
 
@@ -143,11 +145,11 @@ export default class Post extends GenericModel {
         this._publishedDate = value
     }
 
-    get author(): IUser | null {
+    get author(): IUser {
         return this._author
     }
 
-    set author(value: IUser | null) {
+    set author(value: IUser) {
         this._author = value
     }
 
