@@ -80,7 +80,6 @@ export default class Login extends Vue {
     loginST = vxc.login
     authST = vxc.auth
 
-    prevRoute: IRoute
     routes = routesObj
 
     callLogin() {
@@ -88,10 +87,10 @@ export default class Login extends Vue {
             .loginAccount()
             .then((res) => {
                 if (res) {
-                    if (this.prevRoute.path === routesObj.REGISTRATION.path) {
+                    if (this.loginST.prevRoute.path === routesObj.REGISTRATION.path) {
                         this.$router.push(routesObj.HOME)
                     } else {
-                        this.$router.push(this.prevRoute)
+                        this.$router.push(this.loginST.prevRoute)
                     }
                 } else {
                     this.authST.resetRecaptcha()
@@ -104,7 +103,7 @@ export default class Login extends Vue {
     }
     beforeRouteEnter(to: IRoute, from: IRoute, next: any) {
         next(() => {
-            this.prevRoute = from
+            this.loginST.prevRoute = from
         })
     }
 }

@@ -6,6 +6,8 @@ import { login } from '@/core/services/auth.services'
 import reCaptchaLib from '@/core/lib/reCaptcha.lib'
 import { action, createModule, mutation } from 'vuex-class-component'
 import { vxc } from '@/core/store/store.vuex'
+import { IRoute } from '@/core/models/interfaces/app/IRoute'
+import routesObj from '@/app/routes/routes-obj'
 
 const VuexModule = createModule({
     namespaced: 'login',
@@ -15,7 +17,7 @@ const VuexModule = createModule({
 export class LoginStore extends VuexModule {
     login = ''
     password = ''
-    prevRoute = ''
+    prevRoute: IRoute = routesObj.HOME
     isShowPassword = false
     validRules = { required: true }
 
@@ -27,7 +29,7 @@ export class LoginStore extends VuexModule {
         this.password = val
     }
 
-    @mutation setPrevRoute(val: string) {
+    @mutation setPrevRoute(val: IRoute) {
         this.prevRoute = val
     }
 
