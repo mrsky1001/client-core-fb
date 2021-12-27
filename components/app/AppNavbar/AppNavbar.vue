@@ -19,8 +19,6 @@
 </template>
 
 <script lang="ts">
-import LogoBar from '@/core/components/app/AppNavbar/common/LogoBar.vue'
-import SearchField from '@/core/components/app/AppNavbar/common/SearchField.vue'
 import Vue from 'vue'
 
 import { vxc } from '@/core/store/store.vuex'
@@ -29,9 +27,11 @@ import NavDrawer from '@/core/components/app/AppNavbar/NavDrawer/NavDrawer.vue'
 import SearchButton from '@/core/components/app/AppNavbar/common/SearchButton.vue'
 import AvatarBar from '@/core/components/app/AppNavbar/common/AvatarBar.vue'
 import SideDrawer from '@/core/components/app/AppNavbar/SideDrawer/SideDrawer.vue'
+import LogoBar from '@/core/components/app/AppNavbar/common/LogoBar.vue'
+import SearchField from '../../../../core/components/app/AppNavbar/common/SearchField.vue'
 
 @Component({
-    components: { SideDrawer, AvatarBar, SearchButton, NavDrawer, LogoBar, SearchField },
+    components: { SearchField, SideDrawer, AvatarBar, SearchButton, NavDrawer, LogoBar },
 })
 export default class AppNavbar extends Vue {
     navbar = vxc.appNavbar
@@ -96,6 +96,11 @@ export default class AppNavbar extends Vue {
 
 @media screen and (min-width: 0px) and (max-width: 959px) {
     .my-app-bar {
+        .v-toolbar__content {
+            display: flex;
+            justify-content: space-between;
+        }
+
         .search-field {
             display: none;
         }

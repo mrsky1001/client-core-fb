@@ -35,7 +35,9 @@ export default class SearchButton extends Vue {
 @media screen and (min-width: 0px) and (max-width: 959px) {
     .search-btn {
         display: block;
-        margin-right: auto !important;
+        margin-right: 0 !important;
+        //margin-left: 12px !important;
+        //margin-right: auto !important;
     }
 }
 </style>
