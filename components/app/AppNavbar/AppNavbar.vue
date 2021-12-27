@@ -5,11 +5,9 @@
 <template>
     <div>
         <v-app-bar app light color="white" class="my-app-bar" scroll-target="#scrolling-techniques-2">
-            <v-app-bar-nav-icon
-                v-if="!navbar.isShowSearch"
-                class="d-flex d-md-none"
-                @click="navbar.setIsShowDrawer(true)"
-            />
+            <v-btn v-if="!navbar.isShowSearch" class="d-flex d-md-none" icon>
+                <v-icon @click="navbar.setIsShowDrawer(true)"> mdi-menu </v-icon>
+            </v-btn>
             <LogoBar />
             <NavDrawer />
             <SearchField class="search-field" />

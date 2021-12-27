@@ -26,40 +26,45 @@ import { Prop } from 'vue-property-decorator'
 export default class ModalImageUploader extends Vue {
     @Prop() img: string
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    @Prop() setImg: (_: string) => void
+    @Prop() setImg: (_: Blob) => void
     @Prop() showModal: boolean
     @Prop() cropperOptions: any
     @Prop() setShowModal: (_: boolean) => void
 
-    defaultCropOptions: {
-        circleLabel: 'Круг'
-        qualityLabel: 'Качество'
-        cropAreaWidthLabel: 'Ширина области обрезки'
-        cropAreaHeightLabel: 'Высота области обрезки'
-        aspectRatioLabel: 'Соотношение сторон'
-        cropParamsLabel: 'Параметры обрезки'
-        proportionalLabel: 'Пропорционально'
-        cropAreaYCoordLabel: 'Y - координата'
-        cropAreaXCoordLabel: 'X - координата'
-        clearLabel: 'Очистить'
-        saveLabel: 'Сохранить'
-        previewLabel: 'Предпоказ'
-        cropAreaLabel: 'Изображение'
-        fullCropAreaLabel: 'Выбрать все'
-        rotateLeftLabel: 'Повернуть влево'
-        rotateRightLabel: 'Повернуть вправо'
-        selectBtnLabel: 'Выбрать изображение'
-        flipVerticalLabel: 'Отразить по вертикали'
-        flipHorizontalLabel: 'Отразить по горизонтали'
-        dropareaLabel: 'Выберите или перетащите изображение...'
-        cropAreaClasses: 'crop-area-classes'
+    defaultCropOptions = {
+        circleLabel: 'Круг',
+        qualityLabel: 'Качество',
+        cropAreaWidthLabel: 'Ширина области обрезки',
+        cropAreaHeightLabel: 'Высота области обрезки',
+        aspectRatioLabel: 'Соотношение сторон',
+        cropParamsLabel: 'Параметры обрезки',
+        proportionalLabel: 'Пропорционально',
+        cropAreaYCoordLabel: 'Y - координата',
+        cropAreaXCoordLabel: 'X - координата',
+        clearLabel: 'Очистить',
+        saveLabel: 'Сохранить',
+        previewLabel: 'Предпоказ',
+        cropAreaLabel: 'Изображение',
+        fullCropAreaLabel: 'Выбрать все',
+        rotateLeftLabel: 'Повернуть влево',
+        rotateRightLabel: 'Повернуть вправо',
+        selectBtnLabel: 'Выбрать изображение',
+        flipVerticalLabel: 'Отразить по вертикали',
+        flipHorizontalLabel: 'Отразить по горизонтали',
+        dropareaLabel: 'Выберите или перетащите изображение...',
+        cropAreaClasses: 'crop-area-classes',
     }
 
     get opts() {
         return Object.assign(this.defaultCropOptions, this.cropperOptions)
     }
 
-    callSaveImg(file: string) {
+    mounted() {
+        console.log(this.cropperOptions, this.opts, this.img)
+    }
+
+    callSaveImg(file: Blob) {
+        console.log(file)
         this.setImg(file)
         this.setShowModal(false)
     }

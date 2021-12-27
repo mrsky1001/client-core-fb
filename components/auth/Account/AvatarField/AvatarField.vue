@@ -54,7 +54,7 @@ export default class AvatarField extends Vue {
     @Prop()
     clickAvatarImg: () => void
 
-    styleClasses() {
+    get styleClasses() {
         const classes =
             'avatar-field v-input  theme--light v-text-field v-text-field--is-booted' +
             ' v-text-field--enclosed v-text-field--outlined '

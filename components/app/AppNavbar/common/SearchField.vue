@@ -23,6 +23,9 @@ import { vxc } from '@/core/store/store.vuex'
 @Component
 export default class SearchField extends Vue {
     navbar = vxc.appNavbar
+    mounted() {
+        console.log(this.navbar.isShowSearch)
+    }
 }
 </script>
 
