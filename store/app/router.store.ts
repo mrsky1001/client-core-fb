@@ -25,6 +25,18 @@ export class RouterStore extends VuexModule {
         }
     }
 
+    get listTextRoutes() {
+        const list: string[] = []
+
+        routes.forEach((route: IRoute) => {
+            if (route.isSection && route.text) {
+                list.push(route.text.toLowerCase())
+            }
+        })
+
+        return list
+    }
+
     get avatarRoutes() {
         if (vxc.auth.user.isAuthorized) {
             return routes.filter((r) => r.onAvatarBar && r.role !== roles.UNAUTHORIZED && vxc.auth.checkRole(r.role))

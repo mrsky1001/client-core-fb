@@ -114,7 +114,7 @@ export const addPost = (post: Post): Promise<Post> => {
                     reject(err)
                 })
         } else {
-            const msg: ISnackbarProps = { msg: exceptions.NOT_VALID.text, params: listErrors }
+            const msg: ISnackbarProps = { msg: exceptions.NOT_VALID.text, classes: 'error', params: listErrors }
             vxc.snackbar.setSnackBarMsg(msg)
         }
     })
@@ -226,7 +226,7 @@ export const editPost = (postId: string, dataToUpdate: Post): Promise<Post> => {
                     reject(err)
                 })
         } else {
-            const msg: ISnackbarProps = { msg: exceptions.NOT_VALID.text, params: listErrors }
+            const msg: ISnackbarProps = { msg: exceptions.NOT_VALID.text, classes: 'error', params: listErrors }
             vxc.snackbar.setSnackBarMsg(msg)
         }
     })

@@ -3,7 +3,6 @@
  */
 
 import { IGenericModel } from '@/core/models/interfaces/app/IGenericModel'
-import { ITag } from '@/core/models/interfaces/article/ITag'
 import { ILike } from '@/core/models/interfaces/article/ILike'
 import { IShare } from '@/core/models/interfaces/article/IShare'
 import { IUser } from '@/core/models/interfaces/auth/IUser'
@@ -13,7 +12,7 @@ import { IAnnotation } from '@/core/models/interfaces/article/IAnnotation'
 export interface IPostToUpdate extends IGenericModel {
     title?: string
     content?: string
-    tags?: ITag[]
+    tags?: string[]
     likes: ILike[]
     status: number
     shares: IShare[]
@@ -31,7 +30,7 @@ export interface IPost extends IGenericModel {
     publishedDate: Date
     views: number
     readTime: number
-    tags: ITag[]
+    tags: string[]
     likes: ILike[]
     status: number
     shares: IShare[]

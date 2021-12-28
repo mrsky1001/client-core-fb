@@ -17,7 +17,7 @@ const VuexModule = createModule({
 
 export class SnackBarStore extends VuexModule {
     snackBarMsg = ''
-    snackBarParams?: string[]
+    snackBarParams?: string[] = []
     snackBarClasses? = ''
     isShowSnackbar = false
 
@@ -30,7 +30,7 @@ export class SnackBarStore extends VuexModule {
     setSnackBarMsg(props: ISnackbarProps) {
         const showMsg = () => {
             this.snackBarMsg = props.msg
-            this.snackBarClasses = props.classes
+            this.snackBarClasses = props.classes ? props.classes : 'info'
             this.snackBarParams = props.params
             this.isShowSnackbar = true
         }

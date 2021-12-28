@@ -6,7 +6,6 @@ import GenericModel from '@/core/models/classes/app/GenericModel'
 import { IAnnotation } from '@/core/models/interfaces/article/IAnnotation'
 import { IShare } from '@/core/models/interfaces/article/IShare'
 import { IComment } from '@/core/models/interfaces/article/IComment'
-import { ITag } from '@/core/models/interfaces/article/ITag'
 import { IPost } from '@/core/models/interfaces/article/IPost'
 import { ILike } from '@/core/models/interfaces/article/ILike'
 import { IUser } from '@/core/models/interfaces/auth/IUser'
@@ -23,7 +22,7 @@ export default class Post extends GenericModel implements IPost {
     private _publishedDate = new Date()
     private _views = 0
     private _readTime = 0
-    private _tags: ITag[] = []
+    private _tags: string[] = []
     private _likes: ILike[] = []
     private _shares: IShare[] = []
     private _comments: IComment[] = []
@@ -57,13 +56,13 @@ export default class Post extends GenericModel implements IPost {
         this.jsonFormatObjects = [{ name: 'status', valuePath: 'value' }]
     }
 
-    updateContent(obj: Post): void {
-        this.title = obj.title ? obj.title : this._title
-        this.urlTitle = obj.urlTitle ? obj.urlTitle : this._urlTitle
-        this.annotation = obj.annotation ? obj.annotation : this._annotation
-        this.content = obj.content ? obj.content : this._content
-        this.tags = obj.tags ? obj.tags : this._tags
-    }
+    // updateContent(obj: Post): void {
+    //     this.title = obj.title ? obj.title : this._title
+    //     this.urlTitle = obj.urlTitle ? obj.urlTitle : this._urlTitle
+    //     this.annotation = obj.annotation ? obj.annotation : this._annotation
+    //     this.content = obj.content ? obj.content : this._content
+    //     this.tags = obj.tags ? obj.tags : this._tags
+    // }
 
     get comments(): IComment[] {
         return this._comments
@@ -177,11 +176,19 @@ export default class Post extends GenericModel implements IPost {
         this._shares = value
     }
 
-    get tags(): ITag[] {
+    get tags(): string[] {
         return this._tags
     }
 
-    set tags(value: ITag[]) {
+    set tags(value: string[]) {
         this._tags = value
+    }
+
+    addTag(tag: string) {
+        this.tags = this.tags.find((t) => t === tag) ? this.tags : [...this.tags, tag]
+    }
+
+    removeTag(tag: string) {
+        this.tags = this.tags.filter((t) => t !== tag)
     }
 }
