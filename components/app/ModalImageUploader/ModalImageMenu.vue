@@ -9,13 +9,12 @@
             <v-divider />
 
             <div class="btn-group">
-                <v-btn color="primary" @click="uploadImg">
+                <v-btn color="secondary" @click="uploadImg">
                     <v-icon>mdi-image-plus</v-icon>
                     Загрузить
                 </v-btn>
                 <v-btn @click="deleteImg">
                     <v-icon>mdi-image-minus</v-icon>
-
                     Удалить
                 </v-btn>
             </div>

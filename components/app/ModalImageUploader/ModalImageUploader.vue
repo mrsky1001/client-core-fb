@@ -64,7 +64,6 @@ export default class ModalImageUploader extends Vue {
     }
 
     callSaveImg(file: Blob) {
-        console.log(file)
         this.setImg(file)
         this.setShowModal(false)
     }
