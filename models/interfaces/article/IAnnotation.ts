@@ -7,6 +7,6 @@ import { IGenericModel } from '@/core/models/interfaces/app/IGenericModel'
 export interface IAnnotation extends IGenericModel {
     text: string
     keywords: string[]
-    imgUrl?: string
+    imgUrl: string
     imgFile?: File
 }

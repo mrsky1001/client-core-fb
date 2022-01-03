@@ -21,11 +21,11 @@ export default {
     SEARCH: '/api/search/:search',
 
     GET_POSTS: '/api/posts',
-    GET_POST_BY_ID: '/api/post/id',
+    GET_POST_BY_ID: '/api/post-id',
     GET_POSTS_BY_SECTION: '/api/posts',
     GET_POST_BY_TITLE: '/api/post',
     CREATE_POST: '/api/post',
-    UPDATE_POST_BY_ID: '/api/post',
+    UPDATE_POST_BY_ID: '/api/post-id',
 
     SET_POST_LIKE: '/api/post/like',
     DELETE_POST_LIKE: '/api/post/like',
@@ -34,22 +34,22 @@ export default {
     ADD_POST_SHARE: '/api/post/share',
 
     GET_PRODUCTS: '/api/product',
-    GET_PRODUCT_BY_ID: '/api/product/id',
+    GET_PRODUCT_BY_ID: '/api/product-id',
     GET_PRODUCT_BY_TITLE: '/api/product',
     CREATE_PRODUCT: '/api/product',
-    UPDATE_PRODUCT_BY_ID: '/api/product',
+    UPDATE_PRODUCT_BY_ID: '/api/product-id',
 
     GET_IMG: '/api/uploads/images',
     GET_IMG_OLD: '/uploads/images',
 
-    UPLOAD_PRODUCT_IMG: '/api/product/img',
-    DELETE_PRODUCT_IMG: '/api/product/img',
+    UPLOAD_PRODUCT_IMG: '/api/product-img',
+    DELETE_PRODUCT_IMG: '/api/product-img',
 
-    UPLOAD_POST_IMG: '/api/post/img',
-    DELETE_POST_IMG: '/api/post/img',
+    UPLOAD_POST_IMG: '/api/post-img',
+    DELETE_POST_IMG: '/api/post-img',
 
-    UPLOAD_AVATAR_IMG: '/api/avatar/img',
-    DELETE_AVATAR_IMG: '/api/avatar/img',
+    UPLOAD_AVATAR_IMG: '/api/avatar-img',
+    DELETE_AVATAR_IMG: '/api/avatar-img',
     // GET_ALL_IMGS: 'api/authST/img/all',
     // EDIT_IMG: 'api/authST/img'
 }

@@ -11,13 +11,15 @@ import GenericModel from '@/core/models/classes/app/GenericModel'
 import { vxc } from '@/core/store/store.vuex'
 import { IUser } from '@/core/models/interfaces/auth/IUser'
 
-export const uploadPostImage = (image: File, post: Post): Promise<string> => {
+export const uploadPostImage = (image: Blob, post: Post): Promise<string> => {
     return new Promise<string>((resolve, reject) => {
         const fd = new FormData()
 
-        fd.append('urlTitle', post.urlTitle)
+        fd.append('description', post.urlTitle)
         fd.append('postId', post.id ? post.id : '')
         fd.append('image', image)
+        // @ts-ignore
+        fd.append('originalName', image.name)
 
         api()
             .post(urls.UPLOAD_POST_IMG, fd)
@@ -88,7 +90,7 @@ export const deletePostImage = (imgUrl: string, postId: string): Promise<void> =
         const reqData = { imgUrl, postId }
 
         api()
-            .post(urls.DELETE_POST_IMG, reqData)
+            .delete(urls.DELETE_POST_IMG, { params: reqData })
             .then((res: AxiosResponse) => {
                 responseHandler(res)
                     .then(() => resolve())

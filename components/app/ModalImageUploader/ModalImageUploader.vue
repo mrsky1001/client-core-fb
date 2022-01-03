@@ -59,10 +59,6 @@ export default class ModalImageUploader extends Vue {
         return Object.assign(this.defaultCropOptions, this.cropperOptions)
     }
 
-    mounted() {
-        console.log(this.cropperOptions, this.opts, this.img)
-    }
-
     callSaveImg(file: Blob) {
         this.setImg(file)
         this.setShowModal(false)
@@ -72,7 +68,7 @@ export default class ModalImageUploader extends Vue {
 
 <style lang="scss">
 .v-dialog {
-    max-width: 800px !important;
+    max-width: inherit !important;
     margin-top: -30px !important;
 
     .crop-area-classes {
