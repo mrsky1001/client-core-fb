@@ -11,6 +11,27 @@ import GenericModel from '@/core/models/classes/app/GenericModel'
 import { vxc } from '@/core/store/store.vuex'
 import { IUser } from '@/core/models/interfaces/auth/IUser'
 
+export const getAllImgs = (postId: string): Promise<string[]> => {
+    return new Promise<string[]>((resolve, reject) => {
+        const url = `${urls.GET_IMGS}/${postId}`
+
+        api()
+            .get(url)
+            .then((res: AxiosResponse) => {
+                responseHandler(res, null, false)
+                    .then((data) => resolve(data.imgs))
+                    .catch((err: AxiosError) => {
+                        handlerError(err)
+                        reject(err)
+                    })
+            })
+            .catch((err: AxiosError) => {
+                handlerError(err)
+                reject(err)
+            })
+    })
+}
+
 export const uploadPostImage = (image: Blob, post: Post): Promise<string> => {
     return new Promise<string>((resolve, reject) => {
         const fd = new FormData()

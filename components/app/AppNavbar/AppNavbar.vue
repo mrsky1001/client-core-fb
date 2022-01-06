@@ -2,7 +2,6 @@
   - Copyright (©) 09.07.2021, 17:13. Kolyada Nikita Vladimirovich (nikita.nk16@yandex.ru)
   -->
 
-<script src="../../../../app/store/edit-post.store.ts"></script>
 <template>
     <div>
         <v-app-bar app light color="white" class="my-app-bar" scroll-target="#scrolling-techniques-2">

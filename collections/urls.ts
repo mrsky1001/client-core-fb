@@ -41,6 +41,7 @@ export default {
 
     GET_IMG: '/api/uploads/images',
     GET_IMG_OLD: '/uploads/images',
+    GET_IMGS: '/api/imgs',
 
     UPLOAD_PRODUCT_IMG: '/api/product-img',
     DELETE_PRODUCT_IMG: '/api/product-img',
