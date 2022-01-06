@@ -111,7 +111,7 @@ export const deletePostImage = (imgUrl: string, postId: string): Promise<void> =
         const reqData = { imgUrl, postId }
 
         api()
-            .delete(urls.DELETE_POST_IMG, { params: reqData })
+            .delete(urls.DELETE_POST_IMG, { data: reqData })
             .then((res: AxiosResponse) => {
                 responseHandler(res)
                     .then(() => resolve())
