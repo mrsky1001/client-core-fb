@@ -7,40 +7,34 @@ import urls from '@/core/collections/urls'
 import { AxiosError, AxiosResponse } from 'axios'
 import exceptions from '@/core/collections/exceptions'
 import { IRule } from '@/core/models/interfaces/lib/IRule'
-import { IPost } from '@/core/models/interfaces/article/IPost'
+import { IComment, IRawComment } from '@/core/models/interfaces/article/IComment'
 import { handlerError, responseHandler } from '@/core/lib/response-handler'
-import Post from '@/core/models/classes/article/Post'
+import Comment from '@/core/models/classes/article/Comment'
 import { vxc } from '@/core/store/store.vuex'
 import { ISnackbarProps } from '@/core/store/app/snackbar.store'
 import { validationProp } from '@/core/lib/validation'
 
-const getInValidPostFields = (post: Post) => {
+const getInValidCommentFields = (comment: IRawComment) => {
     const rules: IRule[] = [
-        { name: 'title', label: 'Заголовок', type: 'string', min: 3 },
-        { name: 'content', label: 'Содержание', type: 'string', min: 10 },
-        {
-            name: 'annotation',
-            type: 'object',
-            listCheckFields: [{ name: 'text', label: 'Текст аннотации', type: 'string', min: 3 }],
-        },
-        { name: 'tags', label: 'Разделы', type: 'array', min: 1 },
+        { name: 'content', label: 'Содержание', type: 'string', min: 2, max: 1000 },
+        { name: 'postId', label: 'postId', type: 'string', min: 1 },
     ]
     const listError: string[] = []
 
-    validationProp(post, rules, listError)
+    validationProp(comment, rules, listError)
 
     return listError
 }
 
-export const getPost = (postId: string, title = ''): Promise<Post> => {
-    return new Promise<Post>((resolve, reject) => {
-        const url = postId ? `${urls.GET_POST_BY_ID}/${postId}` : `${urls.GET_POST_BY_TITLE}/${title}`
+export const getComment = (commentId: string): Promise<Comment> => {
+    return new Promise<Comment>((resolve, reject) => {
+        const url = `${urls.GET_COMMENT_BY_ID}/${commentId}`
 
         api()
             .get(url)
             .then((res: AxiosResponse) => {
                 responseHandler(res, null, false)
-                    .then((data) => resolve(new Post(data.post)))
+                    .then((data) => resolve(new Comment(data.comment)))
                     .catch((err: AxiosError) => {
                         handlerError(err)
                         reject(err)
@@ -53,21 +47,15 @@ export const getPost = (postId: string, title = ''): Promise<Post> => {
     })
 }
 
-export const getPosts = (section: string, lastCreateDate: Date, searchText: string): Promise<IPost[]> => {
-    return new Promise<IPost[]>((resolve, reject) => {
-        const config = {
-            params: {
-                section,
-                searchText,
-                lastCreateDate,
-            },
-        }
+export const getComments = (postId: string): Promise<Comment[]> => {
+    return new Promise<Comment[]>((resolve, reject) => {
+        const url = `${urls.GET_COMMENTS}/${postId}`
 
         api()
-            .get(`${urls.GET_POSTS}`, config)
+            .get(url)
             .then((res: AxiosResponse) => {
                 responseHandler(res, undefined, false)
-                    .then((data) => resolve(data.posts.map((post: IPost) => new Post(post))))
+                    .then((data) => resolve(data.comments.map((comment: IComment) => new Comment(comment))))
                     .catch((err: AxiosError) => {
                         handlerError(err)
                         reject(err)
@@ -79,16 +67,16 @@ export const getPosts = (section: string, lastCreateDate: Date, searchText: stri
             })
     })
 }
-export const addPost = (post: Post): Promise<Post> => {
-    return new Promise<Post>((resolve, reject) => {
-        const listErrors = getInValidPostFields(post)
+export const addComment = (comment: IRawComment): Promise<Comment> => {
+    return new Promise<Comment>((resolve, reject) => {
+        const listErrors = getInValidCommentFields(comment)
 
         if (!listErrors.length) {
             api()
-                .post(urls.CREATE_POST, post)
+                .post(urls.CREATE_COMMENT, comment)
                 .then((res: AxiosResponse) => {
                     responseHandler(res)
-                        .then((data) => resolve(new Post(data.post)))
+                        .then((data) => resolve(new Comment(data.comment)))
                         .catch((err: AxiosError) => {
                             handlerError(err)
                             reject(err)
@@ -105,15 +93,15 @@ export const addPost = (post: Post): Promise<Post> => {
     })
 }
 
-export const addLikePost = (postId: string): Promise<Post> => {
-    return new Promise<Post>((resolve, reject) => {
-        const url = `${urls.SET_POST_LIKE}/${postId}`
+export const addLikeComment = (commentId: string): Promise<Comment> => {
+    return new Promise<Comment>((resolve, reject) => {
+        const url = `${urls.SET_COMMENT_LIKE}/${commentId}`
 
         api()
             .post(url)
             .then((res: AxiosResponse) => {
                 responseHandler(res)
-                    .then((data) => resolve(new Post(data.post)))
+                    .then((data) => resolve(new Comment(data.comment)))
                     .catch((err: AxiosError) => {
                         handlerError(err)
                         reject(err)
@@ -126,15 +114,15 @@ export const addLikePost = (postId: string): Promise<Post> => {
     })
 }
 
-export const removeLikePost = (postId: string): Promise<Post> => {
-    return new Promise<Post>((resolve, reject) => {
-        const url = `${urls.DELETE_POST_LIKE}/${postId}`
+export const removeLikeComment = (commentId: string): Promise<Comment> => {
+    return new Promise<Comment>((resolve, reject) => {
+        const url = `${urls.DELETE_COMMENT_LIKE}/${commentId}`
 
         api()
             .delete(url)
             .then((res: AxiosResponse) => {
                 responseHandler(res)
-                    .then((data) => resolve(new Post(data.post)))
+                    .then((data) => resolve(new Comment(data.comment)))
                     .catch((err: AxiosError) => {
                         handlerError(err)
                         reject(err)
@@ -147,36 +135,15 @@ export const removeLikePost = (postId: string): Promise<Post> => {
     })
 }
 
-export const addSharePost = (postId: string): Promise<Post> => {
-    return new Promise<Post>((resolve, reject) => {
-        const url = `${urls.ADD_POST_SHARE}/${postId}`
-
-        api()
-            .post(url)
-            .then((res: AxiosResponse) => {
-                responseHandler(res)
-                    .then((data) => resolve(new Post(data.post)))
-                    .catch((err: AxiosError) => {
-                        handlerError(err)
-                        reject(err)
-                    })
-            })
-            .catch((err: AxiosError) => {
-                handlerError(err)
-                reject(err)
-            })
-    })
-}
-
-export const changeStatusPost = (postId: string, status: number): Promise<Post> => {
-    return new Promise<Post>((resolve, reject) => {
-        const url = `${urls.UPDATE_POST_STATUS}/${postId}`
+export const changeStatusComment = (commentId: string, status: number): Promise<Comment> => {
+    return new Promise<Comment>((resolve, reject) => {
+        const url = `${urls.UPDATE_COMMENT_STATUS}/${commentId}`
 
         api()
             .post(url, { status })
             .then((res: AxiosResponse) => {
                 responseHandler(res)
-                    .then((data) => resolve(new Post(data.post)))
+                    .then((data) => resolve(new Comment(data.comment)))
                     .catch((err: AxiosError) => {
                         handlerError(err)
                         reject(err)
@@ -189,18 +156,18 @@ export const changeStatusPost = (postId: string, status: number): Promise<Post> 
     })
 }
 
-export const editPost = (postId: string, dataToUpdate: Post): Promise<Post> => {
-    return new Promise<Post>((resolve, reject) => {
-        const listErrors = getInValidPostFields(dataToUpdate)
+export const editComment = (commentId: string, dataToUpdate: Comment): Promise<Comment> => {
+    return new Promise<Comment>((resolve, reject) => {
+        const listErrors = getInValidCommentFields(dataToUpdate)
 
         if (!listErrors.length) {
-            const url = `${urls.UPDATE_POST_BY_ID}/${postId}`
+            const url = `${urls.UPDATE_COMMENT_BY_ID}/${commentId}`
 
             api()
                 .put(url, dataToUpdate)
                 .then((res: AxiosResponse) => {
                     responseHandler(res)
-                        .then((data) => resolve(new Post(data.post)))
+                        .then((data) => resolve(new Comment(data.comment)))
                         .catch((err: AxiosError) => {
                             handlerError(err)
                             reject(err)
@@ -216,9 +183,9 @@ export const editPost = (postId: string, dataToUpdate: Post): Promise<Post> => {
         }
     })
 }
-export const deletePost = (postId: string): Promise<void> => {
+export const deleteComment = (commentId: string): Promise<void> => {
     return new Promise<void>((resolve, reject) => {
-        const url = `${urls.UPDATE_POST_BY_ID}/${postId}`
+        const url = `${urls.UPDATE_COMMENT_BY_ID}/${commentId}`
 
         api()
             .delete(url)

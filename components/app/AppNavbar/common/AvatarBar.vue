@@ -6,7 +6,7 @@
     <v-menu ref="avatarBarRef" offset-y>
         <template #activator="{ on, attrs }">
             <v-btn icon v-bind="attrs" :class="'avatar-bar-btn ' + nav.avatarClass" v-on="on">
-                <v-icon v-if="!nav.avatar"> mdi-cat </v-icon>
+                <v-icon v-if="!nav.avatar"> mdi-panda </v-icon>
                 <v-avatar v-if="nav.avatar">
                     <v-img :src="nav.avatar" />
                 </v-avatar>

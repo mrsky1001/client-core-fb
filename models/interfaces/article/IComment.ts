@@ -6,10 +6,18 @@ import { IGenericModel } from '@/core/models/interfaces/app/IGenericModel'
 import { IUser } from '@/core/models/interfaces/auth/IUser'
 import { IStatus } from '@/core/models/interfaces/article/IStatus'
 
+export interface IRawComment extends IGenericModel {
+    content: string
+    parentId?: string
+    postId: string
+}
+
 export interface IComment extends IGenericModel {
     author: IUser | null
     content: string
-    date: string
+    creatingDate: string
+    parentId: string
+    postId: string
     status: IStatus
     errorMsg: string
 }

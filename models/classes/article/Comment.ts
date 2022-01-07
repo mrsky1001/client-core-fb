@@ -9,8 +9,10 @@ import { IStatus } from '@/core/models/interfaces/article/IStatus'
 import GenericModel from '@/core/models/classes/app/GenericModel'
 
 export default class Comment extends GenericModel implements IComment {
-    private _date = ''
+    private _creatingDate = ''
     private _content = ''
+    private _postId = ''
+    private _parentId = ''
     private _errorMsg = ''
     private _author: IUser | null = null
     private _status: IStatus = statuses.DRAFT
@@ -23,9 +25,27 @@ export default class Comment extends GenericModel implements IComment {
     init(initObj: IComment): void {
         this.author = initObj.author ? initObj.author : this._author
         this.content = initObj.content ? initObj.content : this._content
-        this.date = initObj.date ? initObj.date : this._date
+        this.postId = initObj.postId ? initObj.postId : this._postId
+        this.parentId = initObj.parentId ? initObj.parentId : this._parentId
+        this.creatingDate = initObj.creatingDate ? initObj.creatingDate : this._creatingDate
         this.status = initObj.status ? initObj.status : this._status
         this.errorMsg = initObj.content ? initObj.content : this._errorMsg
+    }
+
+    get postId(): string {
+        return this._postId
+    }
+
+    set postId(value: string) {
+        this._postId = value
+    }
+
+    get parentId(): string {
+        return this._parentId
+    }
+
+    set parentId(value: string) {
+        this._parentId = value
     }
 
     get author(): IUser | null {
@@ -44,12 +64,12 @@ export default class Comment extends GenericModel implements IComment {
         this._content = value
     }
 
-    get date(): string {
-        return this._date
+    get creatingDate(): string {
+        return this._creatingDate
     }
 
-    set date(value: string) {
-        this._date = value
+    set creatingDate(value: string) {
+        this._creatingDate = value
     }
 
     get status(): IStatus {

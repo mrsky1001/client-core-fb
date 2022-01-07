@@ -3,6 +3,10 @@
  */
 
 export default {
+    /**
+     * USER
+     */
+
     LOGIN: '/api/loginST',
     ROLES: '/api/roles',
     REGISTRATION: '/api/registration',
@@ -20,6 +24,9 @@ export default {
 
     SEARCH: '/api/search/:search',
 
+    /**
+     * POST
+     */
     GET_POSTS: '/api/posts',
     GET_POST_BY_ID: '/api/post-id',
     GET_POSTS_BY_SECTION: '/api/posts',
@@ -33,12 +40,30 @@ export default {
     UPDATE_POST_STATUS: '/api/post-status',
     ADD_POST_SHARE: '/api/post-share',
 
+    /**
+     * COMMENTS
+     */
+    GET_COMMENTS: '/api/comments',
+    GET_COMMENT_BY_ID: '/api/comment-id',
+    CREATE_COMMENT: '/api/comment',
+    UPDATE_COMMENT_BY_ID: '/api/comment-id',
+
+    SET_COMMENT_LIKE: '/api/comment-like',
+    DELETE_COMMENT_LIKE: '/api/comment-like',
+
+    UPDATE_COMMENT_STATUS: '/api/comment-status',
+    /**
+     * PRODUCT
+     */
     GET_PRODUCTS: '/api/product',
     GET_PRODUCT_BY_ID: '/api/product-id',
     GET_PRODUCT_BY_TITLE: '/api/product',
     CREATE_PRODUCT: '/api/product',
     UPDATE_PRODUCT_BY_ID: '/api/product-id',
 
+    /**
+     * IMGS
+     */
     GET_IMG: '/api/uploads/images',
     GET_IMG_OLD: '/uploads/images',
     GET_IMGS: '/api/imgs',

@@ -7,4 +7,5 @@ export interface ICheckRule {
     type: string
     label?: string
     min?: number
+    max?: number
 }
