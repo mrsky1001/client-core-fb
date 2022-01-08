@@ -11,5 +11,8 @@ export interface IUser extends IGenericModel {
     password: string
     avatar: string
     username: string
+    lastRecaptchaDate: Date
+    lastLoginDate: Date
+    registrationDate: Date
     isAuthorized: boolean
 }

@@ -42,7 +42,6 @@ export class AuthStore extends VuexModule {
     }
 
     get isAuth() {
-        console.log(this.checkRole(roles.USER))
         return this.checkRole(roles.USER)
     }
 
