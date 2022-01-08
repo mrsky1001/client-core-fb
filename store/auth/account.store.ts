@@ -4,7 +4,7 @@
 
 import { deleteAccount, getUser, saveAccount } from '@/core/services/auth.services'
 import { deleteAvatarImage, uploadAvatarImage } from '@/core/services/img.services'
-import reCaptchaLib from '@/core/lib/reCaptcha.lib'
+import recaptchaLib from '@/core/lib/recaptcha.lib'
 import { getTimeSalt } from '@/core/lib/tools.lib'
 import { action, createModule, mutation } from 'vuex-class-component'
 import { vxc } from '@/core/store/store.vuex'
@@ -110,7 +110,7 @@ export class AccountStore extends VuexModule {
                     .catch(vxc.auth.resetRecaptcha)
             }
         } else {
-            reCaptchaLib.errorEvent()
+            recaptchaLib.errorEvent()
         }
     }
 

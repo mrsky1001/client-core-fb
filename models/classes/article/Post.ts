@@ -4,10 +4,8 @@
 
 import GenericModel from '@/core/models/classes/app/GenericModel'
 import { IAnnotation } from '@/core/models/interfaces/article/IAnnotation'
-import { IShare } from '@/core/models/interfaces/article/IShare'
 import { IComment } from '@/core/models/interfaces/article/IComment'
 import { IPost } from '@/core/models/interfaces/article/IPost'
-import { ILike } from '@/core/models/interfaces/article/ILike'
 import { IUser } from '@/core/models/interfaces/auth/IUser'
 import statuses from '@/core/collections/statuses'
 import User from '@/core/models/classes/auth/User'
@@ -23,8 +21,8 @@ export default class Post extends GenericModel implements IPost {
     private _views = 0
     private _readTime = 0
     private _tags: string[] = []
-    private _likes: ILike[] = []
-    private _shares: IShare[] = []
+    private _likes: string[] = []
+    private _shares: number = 0
     private _comments: IComment[] = []
     private _author: IUser = new User()
     private _status: number = statuses.DRAFT.value
@@ -63,6 +61,22 @@ export default class Post extends GenericModel implements IPost {
     //     this.content = obj.content ? obj.content : this._content
     //     this.tags = obj.tags ? obj.tags : this._tags
     // }
+
+    get likes(): string[] {
+        return this._likes
+    }
+
+    set likes(value: string[]) {
+        this._likes = value
+    }
+
+    get shares(): number {
+        return this._shares
+    }
+
+    set shares(value: number) {
+        this._shares = value
+    }
 
     get comments(): IComment[] {
         return this._comments
@@ -158,22 +172,6 @@ export default class Post extends GenericModel implements IPost {
 
     set views(value: number) {
         this._views = value
-    }
-
-    get likes(): ILike[] {
-        return this._likes
-    }
-
-    set likes(value: ILike[]) {
-        this._likes = value
-    }
-
-    get shares(): IShare[] {
-        return this._shares
-    }
-
-    set shares(value: IShare[]) {
-        this._shares = value
     }
 
     get tags(): string[] {

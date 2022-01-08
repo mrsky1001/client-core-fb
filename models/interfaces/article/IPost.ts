@@ -3,8 +3,6 @@
  */
 
 import { IGenericModel } from '@/core/models/interfaces/app/IGenericModel'
-import { ILike } from '@/core/models/interfaces/article/ILike'
-import { IShare } from '@/core/models/interfaces/article/IShare'
 import { IUser } from '@/core/models/interfaces/auth/IUser'
 import { IComment } from '@/core/models/interfaces/article/IComment'
 import { IAnnotation } from '@/core/models/interfaces/article/IAnnotation'
@@ -13,9 +11,9 @@ export interface IPostToUpdate extends IGenericModel {
     title?: string
     content?: string
     tags?: string[]
-    likes: ILike[]
+    likes: string[]
     status: number
-    shares: IShare[]
+    shares: number
     author: IUser // | null
     comments: IComment[]
     annotation: IAnnotation // | null
@@ -31,9 +29,9 @@ export interface IPost extends IGenericModel {
     views: number
     readTime: number
     tags: string[]
-    likes: ILike[]
+    likes: string[]
     status: number
-    shares: IShare[]
+    shares: number
     author: IUser // | null
     comments: IComment[]
     annotation: IAnnotation // | null

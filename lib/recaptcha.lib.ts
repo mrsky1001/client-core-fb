@@ -4,7 +4,7 @@
 
 import { vxc } from '@/core/store/store.vuex'
 
-const reCaptchaLib = {
+const recaptchaLib = {
     errorEvent: (): void => {
         const props = { classes: 'red', msg: 'Не выполнена проверка reCaptcha!' }
         vxc.snackbar.setSnackBarMsg(props)
@@ -12,4 +12,4 @@ const reCaptchaLib = {
     },
 }
 
-export default reCaptchaLib
+export default recaptchaLib

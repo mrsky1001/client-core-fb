@@ -3,7 +3,7 @@
  */
 
 import { login } from '@/core/services/auth.services'
-import reCaptchaLib from '@/core/lib/reCaptcha.lib'
+import recaptchaLib from '@/core/lib/recaptcha.lib'
 import { action, createModule, mutation } from 'vuex-class-component'
 import { vxc } from '@/core/store/store.vuex'
 import { IRoute } from '@/core/models/interfaces/app/IRoute'
@@ -46,7 +46,7 @@ export class LoginStore extends VuexModule {
                 responseKey: vxc.auth.responseKey,
             })
         } else {
-            reCaptchaLib.errorEvent()
+            recaptchaLib.errorEvent()
         }
     }
 }

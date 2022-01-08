@@ -112,7 +112,7 @@ export const addLikePost = (postId: string): Promise<Post> => {
         api()
             .post(url)
             .then((res: AxiosResponse) => {
-                responseHandler(res)
+                responseHandler(res, undefined, false)
                     .then((data) => resolve(new Post(data.post)))
                     .catch((err: AxiosError) => {
                         handlerError(err)
@@ -133,7 +133,7 @@ export const removeLikePost = (postId: string): Promise<Post> => {
         api()
             .delete(url)
             .then((res: AxiosResponse) => {
-                responseHandler(res)
+                responseHandler(res, undefined, false)
                     .then((data) => resolve(new Post(data.post)))
                     .catch((err: AxiosError) => {
                         handlerError(err)
