@@ -6,5 +6,7 @@ export interface IRegistration {
     username: string
     email: string
     password: string
+    agreeAgreement: boolean
+    agreeConditions: boolean
     responseKey: string
 }

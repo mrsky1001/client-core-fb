@@ -46,6 +46,44 @@
                                 />
                             </ValidationProvider>
 
+                            <div>
+                                <p style="text-align: justify">
+                                    Перед регистрацией необходимо прочесть и согласиться с нашей
+                                    <a target="_blank" :href="routes.CONDITIONS.path"
+                                        >политикой предоставления информации
+                                    </a>
+                                    и
+                                    <a target="_blank" :href="routes.AGREEMENT.path"
+                                        >условиями обработки персональных данных</a
+                                    >.
+                                </p>
+                            </div>
+                            <ValidationProvider
+                                v-slot="{ errors }"
+                                name="agreeConditions"
+                                :rules="regST.validDocsRules"
+                            >
+                                <v-checkbox
+                                    required
+                                    outlined
+                                    label="Согласен c условиями предоставления информации"
+                                    :value="regST.agreeConditions"
+                                    :error-messages="errors"
+                                    @change="regST.setAgreeConditions"
+                                />
+                                <input :value="regST.agreeConditions" style="display: none" />
+                            </ValidationProvider>
+                            <ValidationProvider v-slot="{ errors }" name="agreeAgreement" :rules="regST.validDocsRules">
+                                <v-checkbox
+                                    required
+                                    outlined
+                                    label="Согласен c условиями обработки персональных данных"
+                                    :value="regST.agreeAgreement"
+                                    :error-messages="errors"
+                                    @change="regST.setAgreeAgreement"
+                                />
+                                <input :value="regST.agreeAgreement" style="display: none" />
+                            </ValidationProvider>
                             <Recaptcha />
                             <v-row>
                                 <v-btn link plain small :to="routes.LOGIN.path"> Войти</v-btn>
@@ -125,7 +163,4 @@ export default class Registration extends Vue {
 }
 </script>
 
-<style lang="scss" scoped>
-.registration-form {
-}
-</style>
+<style lang="scss" scoped></style>

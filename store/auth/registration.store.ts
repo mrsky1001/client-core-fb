@@ -16,6 +16,8 @@ export class RegistrationStore extends VuexModule {
     email = ''
     username = ''
     password = ''
+    agreeConditions = false
+    agreeAgreement = false
     isShowPassword = false
 
     validUsernameRules = { required: true, min: 3, max: 10, regex: /(?![.\n])((?=.*[a-z])|(?=.*[A-Z])).*$/ }
@@ -27,6 +29,14 @@ export class RegistrationStore extends VuexModule {
     }
     validAvatarRules = { required: true }
     validEmailRules = { required: true, email: true }
+    validDocsRules = { required: true }
+
+    @mutation setAgreeConditions(val: boolean) {
+        this.agreeConditions = val
+    }
+    @mutation setAgreeAgreement(val: boolean) {
+        this.agreeAgreement = val
+    }
 
     @mutation setUsername(val: string) {
         this.username = val
@@ -51,6 +61,8 @@ export class RegistrationStore extends VuexModule {
                 username: this.username,
                 email: this.email,
                 password: this.password,
+                agreeAgreement: this.agreeAgreement,
+                agreeConditions: this.agreeConditions,
                 responseKey: vxc.auth.responseKey,
             })
         } else {
