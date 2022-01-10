@@ -66,4 +66,9 @@ import Component from 'vue-class-component'
 export default class SocialNetwork extends Vue {}
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.footer-btn {
+    min-width: 0 !important;
+    padding: 0 26px 0 0 !important;
+}
+</style>

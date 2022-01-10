@@ -6,7 +6,7 @@
     <div>
         <p class="font-weight-bold grey--text header-map-text p-size-h2">
             <v-icon class="grey--text"> mdi-map-outline</v-icon>
-            Карта сайта
+            Карта сайта:
         </p>
 
         <template v-for="route in routerST.routes">
@@ -49,7 +49,7 @@ export default class AppRoutes extends Vue {
 <style lang="scss" scoped>
 .header-map-text {
     width: fit-content;
-    border-bottom: 2px solid;
+    //border-bottom: 2px solid;
 }
 
 .p-size-h2 {
@@ -57,7 +57,7 @@ export default class AppRoutes extends Vue {
 }
 
 .footer-btn {
-    display: inline-block !important;
-    padding: 10px !important;
+    min-width: 0px !important;
+    padding: 0 16px 0 0 !important;
 }
 </style>

@@ -21,25 +21,28 @@
 </template>
 
 <script lang="ts">
+import routesObj from '@/app/routes/routes-obj'
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
 @Component
-export default class Contacts extends Vue {}
+export default class Contacts extends Vue {
+    routesObj = routesObj
+}
 </script>
 
 <style lang="scss" scoped>
 .header-map-text {
     width: fit-content;
-    border-bottom: 2px solid;
+    //border-bottom: 2px solid;
+}
+
+.footer-btn {
+    min-width: 0 !important;
+    padding: 0 16px 0 0 !important;
 }
 
 .p-size-h2 {
     font-size: 0.875rem;
-}
-
-.header-map-text {
-    width: fit-content;
-    border-bottom: 2px solid;
 }
 </style>
