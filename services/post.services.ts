@@ -18,6 +18,7 @@ const getInValidPostFields = (post: Post) => {
     const rules: IRule[] = [
         { name: 'title', label: 'Заголовок', type: 'string', min: 3 },
         { name: 'content', label: 'Содержание', type: 'string', min: 10 },
+        { name: 'sectionId', label: 'Раздел', type: 'string', min: 3 },
         {
             name: 'annotation',
             type: 'object',

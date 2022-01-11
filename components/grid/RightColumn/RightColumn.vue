@@ -4,9 +4,7 @@
 
 <template>
     <v-col :cols="cols" :lg="lg" :md="md" :sm="sm">
-        <v-container>
-            <slot />
-        </v-container>
+        <slot />
     </v-col>
 </template>
 
@@ -18,6 +16,7 @@ export default {
             type: [String, Number],
             default: 12,
         },
+
         md: {
             type: [String, Number],
             default: 12,

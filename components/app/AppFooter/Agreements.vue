@@ -8,46 +8,49 @@
             <v-icon class="grey--text"> mdi-information-outline</v-icon>
             Информация:
         </p>
-        <v-btn
-            x-small
-            :to="routesObj.AGREEMENT"
-            plain
-            class="footer-btn font-weight-black"
-            color="white"
-            target="_blank"
-        >
-            {{ routesObj.AGREEMENT.text }}
-        </v-btn>
-        <v-btn
-            x-small
-            :to="routesObj.DISCLAIMER"
-            plain
-            class="footer-btn font-weight-black"
-            color="white"
-            target="_blank"
-        >
-            {{ routesObj.CONDITIONS.text }}
-        </v-btn>
-        <v-btn
-            x-small
-            :to="routesObj.DISCLAIMER"
-            plain
-            class="footer-btn font-weight-black"
-            color="white"
-            target="_blank"
-        >
-            {{ routesObj.CONDITIONS.text }}
-        </v-btn>
-        <v-btn
-            x-small
-            :to="routesObj.COPYRIGHT_HOLDERS"
-            plain
-            class="footer-btn font-weight-black"
-            color="white"
-            target="_blank"
-        >
-            {{ routesObj.COPYRIGHT_HOLDERS.text }}
-        </v-btn>
+        <div style="margin-left: 20px">
+            <v-btn
+                x-small
+                :to="routesObj.AGREEMENT"
+                plain
+                class="footer-btn font-weight-black"
+                color="white"
+                target="_blank"
+            >
+                {{ routesObj.AGREEMENT.text }}
+            </v-btn>
+            <v-btn
+                x-small
+                :to="routesObj.CONDITIONS"
+                plain
+                class="footer-btn font-weight-black"
+                color="white"
+                target="_blank"
+            >
+                {{ routesObj.CONDITIONS.text }}
+            </v-btn>
+            <v-btn
+                x-small
+                :to="routesObj.DISCLAIMER"
+                plain
+                class="footer-btn font-weight-black"
+                color="white"
+                target="_blank"
+            >
+                {{ routesObj.DISCLAIMER.text }}
+            </v-btn>
+
+            <v-btn
+                x-small
+                :to="routesObj.COPYRIGHT_HOLDERS"
+                plain
+                class="footer-btn font-weight-black"
+                color="white"
+                target="_blank"
+            >
+                {{ routesObj.COPYRIGHT_HOLDERS.text }}
+            </v-btn>
+        </div>
     </div>
 </template>
 

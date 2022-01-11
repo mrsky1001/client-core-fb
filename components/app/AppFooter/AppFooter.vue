@@ -19,7 +19,6 @@
                 <v-row class="my-row">
                     <v-col class="copyright-col">
                         <Contacts />
-                        <SocialNetwork />
                     </v-col>
                 </v-row>
             </v-col>

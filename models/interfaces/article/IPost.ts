@@ -14,6 +14,7 @@ export interface IPostToUpdate extends IGenericModel {
     likes: string[]
     status: number
     shares: number
+    sectionId: string
     author: IUser // | null
     comments: IComment[]
     annotation: IAnnotation // | null
@@ -26,6 +27,7 @@ export interface IPost extends IGenericModel {
     creatingDate: Date
     updatingDate: Date
     publishedDate: Date
+    sectionId: string
     views: number
     readTime: number
     tags: string[]

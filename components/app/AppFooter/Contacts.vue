@@ -8,15 +8,19 @@
             <v-icon class="grey--text"> mdi-message-text-outline</v-icon>
             Контакты для связи:
         </p>
-        <v-btn
-            plain
-            class="footer-btn font-weight-black"
-            color="white"
-            target="_blank"
-            href="mailto:foma.blog@yandex.ru"
-        >
-            foma.blog@yandex.ru
-        </v-btn>
+
+        <div style="margin-left: 20px">
+            <v-btn
+                plain
+                class="footer-btn font-weight-black"
+                color="white"
+                target="_blank"
+                href="mailto:foma.blog@yandex.ru"
+            >
+                foma.blog@yandex.ru
+            </v-btn>
+            <social-network />
+        </div>
     </div>
 </template>
 
@@ -24,8 +28,11 @@
 import routesObj from '@/app/routes/routes-obj'
 import Vue from 'vue'
 import Component from 'vue-class-component'
+import SocialNetwork from '@/core/components/app/AppFooter/SocialNetwork.vue'
 
-@Component
+@Component({
+    components: { SocialNetwork },
+})
 export default class Contacts extends Vue {
     routesObj = routesObj
 }

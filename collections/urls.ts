@@ -62,6 +62,14 @@ export default {
     UPDATE_PRODUCT_BY_ID: '/api/product-id',
 
     /**
+     * SECTIONS
+     */
+    GET_SECTIONS: '/api/sections',
+    GET_SECTION_BY_ID: '/api/section-id/',
+    CREATE_SECTION: '/api/section',
+    UPDATE_SECTION_BY_ID: '/api/section-id/',
+
+    /**
      * IMGS
      */
     GET_IMG: '/api/uploads/images',

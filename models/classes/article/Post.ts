@@ -15,6 +15,7 @@ export default class Post extends GenericModel implements IPost {
     private _title = ''
     private _urlTitle = ''
     private _content = ''
+    private _sectionId = ''
     private _creatingDate = new Date()
     private _updatingDate = new Date()
     private _publishedDate = new Date()
@@ -37,6 +38,7 @@ export default class Post extends GenericModel implements IPost {
         this.title = initObj.title ? initObj.title : this._title
         this.urlTitle = initObj.urlTitle ? initObj.urlTitle : this._urlTitle
         this.content = initObj.content ? initObj.content : this._content
+        this.sectionId = initObj.sectionId ? initObj.sectionId : this._sectionId
         this.annotation = initObj.annotation ? initObj.annotation : this._annotation
         this.tags = initObj.tags ? initObj.tags : this._tags
 
@@ -61,6 +63,14 @@ export default class Post extends GenericModel implements IPost {
     //     this.content = obj.content ? obj.content : this._content
     //     this.tags = obj.tags ? obj.tags : this._tags
     // }
+
+    get sectionId(): string {
+        return this._sectionId
+    }
+
+    set sectionId(value: string) {
+        this._sectionId = value
+    }
 
     get likes(): string[] {
         return this._likes

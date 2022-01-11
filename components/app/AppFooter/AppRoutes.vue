@@ -9,29 +9,31 @@
             Карта сайта:
         </p>
 
-        <template v-for="route in routerST.routes">
-            <v-btn
-                v-if="route.onMainBar"
-                :key="route.name"
-                plain
-                color="white"
-                class="font-weight-black footer-btn"
-                :to="route.path"
-            >
-                <span> {{ route.text }}</span>
-            </v-btn>
-            <template v-for="subRoute in routerST.subRoutes(route)">
+        <div style="margin-left: 20px">
+            <template v-for="route in routerST.routes">
                 <v-btn
-                    :key="subRoute.name"
+                    v-if="route.onMainBar"
+                    :key="route.name"
                     plain
                     color="white"
                     class="font-weight-black footer-btn"
-                    :to="subRoute.path"
+                    :to="route.path"
                 >
-                    <span> {{ subRoute.text }}</span>
+                    <span> {{ route.text }}</span>
                 </v-btn>
+                <template v-for="subRoute in routerST.subRoutes(route)">
+                    <v-btn
+                        :key="subRoute.name"
+                        plain
+                        color="white"
+                        class="font-weight-black footer-btn"
+                        :to="subRoute.path"
+                    >
+                        <span> {{ subRoute.text }}</span>
+                    </v-btn>
+                </template>
             </template>
-        </template>
+        </div>
     </div>
 </template>
 
