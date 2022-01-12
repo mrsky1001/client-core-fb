@@ -92,15 +92,15 @@ export const addSection = (section: Section): Promise<Section> => {
     })
 }
 
-export const editSection = (sectionId: string, dataToUpdate: Section): Promise<Section> => {
+export const editSection = (section: Section): Promise<Section> => {
     return new Promise<Section>((resolve, reject) => {
-        const listErrors = getInValidSectionFields(dataToUpdate)
+        const listErrors = getInValidSectionFields(section)
 
         if (!listErrors.length) {
-            const url = `${urls.UPDATE_SECTION_BY_ID}/${sectionId}`
+            const url = `${urls.UPDATE_SECTION_BY_ID}/${section.id}`
 
             api()
-                .put(url, dataToUpdate)
+                .put(url, section)
                 .then((res: AxiosResponse) => {
                     responseHandler(res)
                         .then((data) => resolve(new Section(data.section)))

@@ -65,9 +65,9 @@ export default {
      * SECTIONS
      */
     GET_SECTIONS: '/api/sections',
-    GET_SECTION_BY_ID: '/api/section-id/',
+    GET_SECTION_BY_ID: '/api/section-id',
     CREATE_SECTION: '/api/section',
-    UPDATE_SECTION_BY_ID: '/api/section-id/',
+    UPDATE_SECTION_BY_ID: '/api/section-id',
 
     /**
      * IMGS

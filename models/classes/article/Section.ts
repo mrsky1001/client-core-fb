@@ -19,6 +19,18 @@ export default class Section extends GenericModel implements ISection {
         super(initObj)
         initObj && this.init(initObj)
     }
+
+    init(initObj: ISection): void {
+        console.log(initObj)
+        this.name = initObj.name ? initObj.name : this._name
+        this.description = initObj.description ? initObj.description : this._description
+        this.posts = initObj.posts ? initObj.posts : this._posts
+        this.author = initObj.author ? initObj.author : this._author
+        this.creatingDate = initObj.creatingDate ? initObj.creatingDate : this._creatingDate
+
+        this.jsonFormatObjects = [{ name: 'status', valuePath: 'value' }]
+    }
+
     get description(): string {
         return this._description
     }
@@ -57,14 +69,5 @@ export default class Section extends GenericModel implements ISection {
 
     set author(value: IUser) {
         this._author = value
-    }
-
-    init(initObj: ISection): void {
-        this.name = initObj.name ? initObj.name : this._name
-        this.posts = initObj.posts ? initObj.posts : this._posts
-        this.author = initObj.author ? initObj.author : this._author
-        this.creatingDate = initObj.creatingDate ? initObj.creatingDate : this._creatingDate
-
-        this.jsonFormatObjects = [{ name: 'status', valuePath: 'value' }]
     }
 }
