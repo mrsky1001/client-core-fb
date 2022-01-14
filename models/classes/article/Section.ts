@@ -21,7 +21,6 @@ export default class Section extends GenericModel implements ISection {
     }
 
     init(initObj: ISection): void {
-        console.log(initObj)
         this.name = initObj.name ? initObj.name : this._name
         this.description = initObj.description ? initObj.description : this._description
         this.posts = initObj.posts ? initObj.posts : this._posts

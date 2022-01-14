@@ -28,6 +28,7 @@ export default {
      * POST
      */
     GET_POSTS: '/api/posts',
+    GET_POSTS_BY_SECTION_ID: '/api/posts/section-id',
     GET_POST_BY_ID: '/api/post-id',
     GET_POSTS_BY_SECTION: '/api/posts',
     GET_POST_BY_TITLE: '/api/post',

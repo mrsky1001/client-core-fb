@@ -3,34 +3,32 @@
   -->
 
 <template>
-    <v-col :cols="cols" :lg="lg" :md="md" :sm="sm" class="my-left-col">
-        <v-container>
-            <slot />
-        </v-container>
-    </v-col>
+    <div>
+        <slot />
+    </div>
 </template>
 
 <script lang="ts">
 export default {
     name: 'LeftColumn',
-    props: {
-        sm: {
-            type: [String, Number],
-            default: 12,
-        },
-        md: {
-            type: [String, Number],
-            default: 12,
-        },
-        lg: {
-            type: [String, Number],
-            default: 3,
-        },
-        cols: {
-            type: [String, Number],
-            default: 12,
-        },
-    },
+    // props: {
+    //     sm: {
+    //         type: [String, Number],
+    //         default: 12,
+    //     },
+    //     md: {
+    //         type: [String, Number],
+    //         default: 12,
+    //     },
+    //     lg: {
+    //         type: [String, Number],
+    //         default: 3,
+    //     },
+    //     cols: {
+    //         type: [String, Number],
+    //         default: 12,
+    //     },
+    // },
 }
 </script>
 

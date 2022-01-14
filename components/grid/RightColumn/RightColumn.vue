@@ -3,33 +3,33 @@
   -->
 
 <template>
-    <v-col :cols="cols" :lg="lg" :md="md" :sm="sm">
+    <div>
         <slot />
-    </v-col>
+    </div>
 </template>
 
 <script lang="ts">
 export default {
     name: 'RightColumn',
-    props: {
-        sm: {
-            type: [String, Number],
-            default: 12,
-        },
-
-        md: {
-            type: [String, Number],
-            default: 12,
-        },
-        lg: {
-            type: [String, Number],
-            default: 3,
-        },
-        cols: {
-            type: [String, Number],
-            default: 12,
-        },
-    },
+    // props: {
+    //     sm: {
+    //         type: [String, Number],
+    //         default: 12,
+    //     },
+    //
+    //     md: {
+    //         type: [String, Number],
+    //         default: 12,
+    //     },
+    //     lg: {
+    //         type: [String, Number],
+    //         default: 3,
+    //     },
+    //     cols: {
+    //         type: [String, Number],
+    //         default: 12,
+    //     },
+    // },
 }
 </script>
 
