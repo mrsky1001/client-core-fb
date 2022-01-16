@@ -24,6 +24,7 @@ export default class Post extends GenericModel implements IPost {
     private _tags: string[] = []
     private _likes: string[] = []
     private _shares: number = 0
+    private _countComments: number = 0
     private _comments: IComment[] = []
     private _author: IUser = new User()
     private _status: number = statuses.DRAFT.value
@@ -52,6 +53,7 @@ export default class Post extends GenericModel implements IPost {
         this.status = initObj.status ? initObj.status : this._status
         this.readTime = initObj.readTime ? initObj.readTime : this._readTime
         this.comments = initObj.comments ? initObj.comments : this._comments
+        this.countComments = initObj.countComments ? initObj.countComments : this._countComments
 
         this.jsonFormatObjects = [{ name: 'status', valuePath: 'value' }]
     }
@@ -63,6 +65,14 @@ export default class Post extends GenericModel implements IPost {
     //     this.content = obj.content ? obj.content : this._content
     //     this.tags = obj.tags ? obj.tags : this._tags
     // }
+
+    get countComments(): number {
+        return this._countComments
+    }
+
+    set countComments(value: number) {
+        this._countComments = value
+    }
 
     get sectionId(): string {
         return this._sectionId

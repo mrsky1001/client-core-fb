@@ -14,6 +14,7 @@ export interface IPostToUpdate extends IGenericModel {
     likes: string[]
     status: number
     shares: number
+    countComments: number
     sectionId: string
     author: IUser // | null
     comments: IComment[]
@@ -30,6 +31,7 @@ export interface IPost extends IGenericModel {
     sectionId: string
     views: number
     readTime: number
+    countComments: number
     tags: string[]
     likes: string[]
     status: number

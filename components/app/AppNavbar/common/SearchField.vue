@@ -11,6 +11,7 @@
         placeholder="Что будем искать?"
         :value="navbar.searchText"
         @change="navbar.setSearchText"
+        @keydown.native.enter="navbar.callSearch"
         @focusout="navbar.setIsShowSearch(false)"
     />
 </template>

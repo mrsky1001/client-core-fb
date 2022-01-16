@@ -3,34 +3,22 @@
   -->
 
 <template>
-    <div>
+    <div class="right-col">
         <slot />
     </div>
 </template>
 
 <script lang="ts">
-export default {
-    name: 'RightColumn',
-    // props: {
-    //     sm: {
-    //         type: [String, Number],
-    //         default: 12,
-    //     },
-    //
-    //     md: {
-    //         type: [String, Number],
-    //         default: 12,
-    //     },
-    //     lg: {
-    //         type: [String, Number],
-    //         default: 3,
-    //     },
-    //     cols: {
-    //         type: [String, Number],
-    //         default: 12,
-    //     },
-    // },
-}
+import Vue from 'vue'
+import Component from 'vue-class-component'
+
+@Component
+export default class RightColumn extends Vue {}
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.right-col {
+    width: 100%;
+    padding: 0 10px 0 10px;
+}
+</style>

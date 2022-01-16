@@ -3,37 +3,26 @@
   -->
 
 <template>
-    <div>
+    <div class="left-col">
         <slot />
     </div>
 </template>
 
 <script lang="ts">
-export default {
-    name: 'LeftColumn',
-    // props: {
-    //     sm: {
-    //         type: [String, Number],
-    //         default: 12,
-    //     },
-    //     md: {
-    //         type: [String, Number],
-    //         default: 12,
-    //     },
-    //     lg: {
-    //         type: [String, Number],
-    //         default: 3,
-    //     },
-    //     cols: {
-    //         type: [String, Number],
-    //         default: 12,
-    //     },
-    // },
-}
+import Vue from 'vue'
+import Component from 'vue-class-component'
+
+@Component
+export default class LeftColumn extends Vue {}
 </script>
 
 <style lang="scss">
-.my-left-col {
-    z-index: 1;
+.left-col {
+    padding: 0 10px 0 10px;
+    min-width: 32rem;
+}
+
+@media screen and (max-width: 1300px) {
+    min-width: 10rem;
 }
 </style>

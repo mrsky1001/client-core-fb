@@ -7,15 +7,21 @@ const VuexModule = createModule({
 })
 
 export class AppNavbarStore extends VuexModule {
-    public searchText = ''
-    public noteRoute = ''
-    public activeClass = ''
-    public avatar = ''
-    public isShowSearch = false
-    public isShowDrawer = false
+    searchText = ''
+    noteRoute = ''
+    activeClass = ''
+    avatar = ''
+    isShowSearch = false
+    isShowDrawer = false
+    callSearch = (_: string) => ''
 
     get avatarClass() {
         return vxc.auth.user.isAuthorized ? 'active-btn' : ''
+    }
+
+    @mutation
+    setCallSearch(val: (_: string) => string) {
+        this.callSearch = val
     }
 
     @mutation

@@ -24,7 +24,7 @@ const getInValidPostFields = (post: Post) => {
             type: 'object',
             listCheckFields: [{ name: 'text', label: 'Текст аннотации', type: 'string', min: 3 }],
         },
-        { name: 'tags', label: 'Разделы', type: 'array', min: 1 },
+        { name: 'tags', label: 'Тэги', type: 'array', min: 1 },
     ]
     const listError: string[] = []
 
