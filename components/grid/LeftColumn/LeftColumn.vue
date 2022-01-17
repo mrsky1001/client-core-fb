@@ -19,10 +19,14 @@ export default class LeftColumn extends Vue {}
 <style lang="scss">
 .left-col {
     padding: 0 10px 0 10px;
-    min-width: 32rem;
+    margin-top: 5rem;
+
+    min-width: 28vw;
 }
 
-@media screen and (max-width: 1300px) {
-    min-width: 10rem;
+@media screen and (min-width: 0px) and (max-width: 1400px) {
+    //.left-col {
+    //    min-width: 10rem;
+    //}
 }
 </style>

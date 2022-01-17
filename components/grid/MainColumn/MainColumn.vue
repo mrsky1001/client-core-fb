@@ -3,39 +3,28 @@
   -->
 
 <template>
-    <v-col style="z-index: 1" :cols="cols" :lg="lg" :md="md" :sm="sm" class="min-width-700-lg">
+    <div class="main-column">
         <slot />
-    </v-col>
+    </div>
 </template>
 
 <script lang="ts">
-export default {
-    name: 'MainColumn',
-    props: {
-        sm: {
-            type: [String, Number],
-            default: 12,
-        },
-        md: {
-            type: [String, Number],
-            default: 12,
-        },
-        lg: {
-            type: [String, Number],
-            default: 5,
-        },
-        cols: {
-            type: [String, Number],
-            default: 12,
-        },
-    },
-}
+import Vue from 'vue'
+import Component from 'vue-class-component'
+
+@Component
+export default class MainColumn extends Vue {}
 </script>
 
 <style lang="scss">
-@media (max-width: 1904px) and (min-width: 960px) {
-    .min-width-700-lg {
-        //min-width: 700px;
+.main-column {
+    margin-top: 5rem;
+    min-width: 35vw;
+}
+
+@media screen and (max-width: 1235px) {
+    .main-column {
+        width: 90vw;
     }
 }
 </style>

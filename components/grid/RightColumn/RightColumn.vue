@@ -20,5 +20,6 @@ export default class RightColumn extends Vue {}
 .right-col {
     width: 100%;
     padding: 0 10px 0 10px;
+    margin-top: 5rem;
 }
 </style>

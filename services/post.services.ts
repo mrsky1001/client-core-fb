@@ -54,7 +54,7 @@ export const getPost = (postId: string, title = ''): Promise<Post> => {
     })
 }
 
-export const getPosts = (sectionId: string, lastCreateDate: Date, searchText: string): Promise<IPost[]> => {
+export const getPosts = (sectionId: string, lastCreateDate: Date, searchText = ''): Promise<IPost[]> => {
     return new Promise<IPost[]>((resolve, reject) => {
         const config = {
             params: {

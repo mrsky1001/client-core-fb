@@ -32,7 +32,21 @@ export default class Post extends GenericModel implements IPost {
 
     constructor(initObj?: IPost) {
         super(initObj)
-        initObj && this.init(initObj)
+
+        if (initObj) {
+            this.init(initObj)
+        } else {
+            this.emptyInit()
+        }
+    }
+
+    emptyInit() {
+        this.title = ''
+        this.urlTitle = ''
+        this.content = ''
+        this.sectionId = ''
+        this.annotation = new Annotation()
+        this.tags = []
     }
 
     init(initObj: IPost): void {

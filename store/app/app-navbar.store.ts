@@ -13,15 +13,9 @@ export class AppNavbarStore extends VuexModule {
     avatar = ''
     isShowSearch = false
     isShowDrawer = false
-    callSearch = (_: string) => ''
 
     get avatarClass() {
         return vxc.auth.user.isAuthorized ? 'active-btn' : ''
-    }
-
-    @mutation
-    setCallSearch(val: (_: string) => string) {
-        this.callSearch = val
     }
 
     @mutation

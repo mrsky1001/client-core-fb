@@ -13,7 +13,17 @@ export default class Annotation extends GenericModel {
 
     constructor(initObj?: IAnnotation) {
         super(initObj)
-        initObj && this.init(initObj)
+        if (initObj) {
+            this.init(initObj)
+        } else {
+            this.emptyInit()
+        }
+    }
+
+    emptyInit() {
+        this.text = ''
+        this.imgUrl = ''
+        this.keywords = []
     }
 
     init(initObj: IAnnotation): void {
