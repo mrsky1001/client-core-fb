@@ -14,7 +14,7 @@ import { vxc } from '@/core/store/store.vuex'
 import { ISnackbarProps } from '@/core/store/app/snackbar.store'
 import { validationProp } from '@/core/lib/validation'
 
-const getInValidPostFields = (post: Post) => {
+export const getInValidPostFields = (post: Post) => {
     const rules: IRule[] = [
         { name: 'title', label: 'Заголовок', type: 'string', min: 3 },
         { name: 'content', label: 'Содержание', type: 'string', min: 10 },
@@ -190,7 +190,7 @@ export const changeStatusPost = (postId: string, status: number): Promise<Post> 
     })
 }
 
-export const editPost = (postId: string, dataToUpdate: Post): Promise<Post> => {
+export const editPost = (postId: string, dataToUpdate: Post, isShowMsg = true): Promise<Post> => {
     return new Promise<Post>((resolve, reject) => {
         const listErrors = getInValidPostFields(dataToUpdate)
 
@@ -200,7 +200,7 @@ export const editPost = (postId: string, dataToUpdate: Post): Promise<Post> => {
             api()
                 .put(url, dataToUpdate)
                 .then((res: AxiosResponse) => {
-                    responseHandler(res)
+                    responseHandler(res, null, isShowMsg)
                         .then((data) => resolve(new Post(data.post)))
                         .catch((err: AxiosError) => {
                             handlerError(err)

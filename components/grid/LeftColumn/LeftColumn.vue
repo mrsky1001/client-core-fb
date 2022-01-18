@@ -16,7 +16,7 @@ import Component from 'vue-class-component'
 export default class LeftColumn extends Vue {}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .left-col {
     padding: 0 10px 0 10px;
     margin-top: 5rem;
