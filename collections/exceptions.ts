@@ -15,9 +15,9 @@ const exceptions = {
     INCORRECT_USERNAME_MIN_LENGTH: new AppMessage('Имя не может быть менее 8 символов!'),
     INCORRECT_USERNAME_MAX_LENGTH: new AppMessage('Имя не может быть более 20 символов!'),
     INCORRECT_EMAIL: new AppMessage('Не корректный e-mail!'),
-    NOT_ALLOWED_COMMENT: new AppMessage('Возможность коментирования доступна только авторизованным пользователям!'),
+    NOT_ALLOWED_COMMENT: new AppMessage('Возможность комментирования доступна только авторизованным пользователям!'),
     ONE_COMMENT_IN_MIN: new AppMessage(
-        'В целях улучшения безопасности, возможность коментирования ограничена до 1 коментария в минуту!'
+        'В целях улучшения безопасности, возможность комментирования ограничена до 1 комментария в минуту!'
     ),
     NOT_SAVED: new AppMessage('Внимание! Данные не сохранены!', 'red lighten-1'),
     DELETED: new AppMessage('Данные успешно удалены!', 'green lighten-1'),
