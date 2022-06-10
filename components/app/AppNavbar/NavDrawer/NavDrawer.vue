@@ -10,7 +10,7 @@
                 v-if="route.onMainBar"
                 :key="route.name"
                 plain
-                :to="route.path"
+                :href="route.path"
                 active-class="active-btn"
             >
                 <v-icon v-if="route.hasIcon">
