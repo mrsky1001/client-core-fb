@@ -4,13 +4,13 @@
 
 <template>
     <v-toolbar-title class="logo-bar">
-        <router-link to="/" class="logo-link">
+        <a href="https://foma-blog.ru/" class="logo-link">
             <v-img
                 :src="require('@/core/assets/fb15.svg')"
                 :class="'logo-img ' + (navbar.isShowSearch ? 'left-logo' : '')"
             />
             <!--            <v-img :src="require('@/core/assets/fomka&#45;&#45;small2.svg')" class="fomka-logo-img" />-->
-        </router-link>
+        </a>
         <SearchField class="search-field-small" />
     </v-toolbar-title>
 </template>
