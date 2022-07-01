@@ -9,6 +9,7 @@
                 :src="require('@/core/assets/fb15.svg')"
                 :class="'logo-img ' + (navbar.isShowSearch ? 'left-logo' : '')"
             />
+            <!--            <v-img :src="require('@/core/assets/fomka&#45;&#45;small2.svg')" class="fomka-logo-img" />-->
         </router-link>
         <SearchField class="search-field-small" />
     </v-toolbar-title>
@@ -31,6 +32,12 @@ export default class AppNavbar extends Vue {
 <style lang="scss" scoped>
 .search-field-small {
     display: none;
+}
+
+.fomka-logo-img {
+    position: absolute;
+    max-width: 40px;
+    top: 0;
 }
 
 .logo-bar {
