@@ -7,7 +7,7 @@ import { IUser } from '@/core/models/interfaces/auth/IUser'
 import { IComment } from '@/core/models/interfaces/article/IComment'
 import { IAnnotation } from '@/core/models/interfaces/article/IAnnotation'
 
-export interface IPostToUpdate extends IGenericModel {
+export interface IPost extends IGenericModel {
     title?: string
     content?: string
     tags?: string[]
