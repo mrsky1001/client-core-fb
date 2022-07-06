@@ -18,8 +18,14 @@ export default class RightColumn extends Vue {}
 
 <style scoped lang="scss">
 .right-col {
-    width: 100%;
+    min-width: 25vw;
     padding: 0 10px 0 10px;
     margin-top: 5rem;
+}
+
+@media screen and (max-width: 1235px) {
+    .right-col {
+        width: 90vw;
+    }
 }
 </style>

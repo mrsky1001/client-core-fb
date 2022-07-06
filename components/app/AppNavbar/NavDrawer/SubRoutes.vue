@@ -68,6 +68,6 @@ export default class SubRoutes extends Vue {
 }
 
 .sublist-item:hover {
-    color: #00bd007d !important;
+    //color: #00bd007d !important;
 }
 </style>

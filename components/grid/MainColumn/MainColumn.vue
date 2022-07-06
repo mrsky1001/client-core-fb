@@ -19,7 +19,7 @@ export default class MainColumn extends Vue {}
 <style lang="scss">
 .main-column {
     margin-top: 5rem;
-    min-width: 35vw;
+    min-width: 30vw;
 }
 
 @media screen and (max-width: 1235px) {

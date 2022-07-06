@@ -52,7 +52,7 @@ export default class AvatarBar extends Vue {
     margin-right: 5px !important;
 
     &.active-btn {
-        color: #00bd007d !important;
+        //color: #00bd007d !important;
     }
 }
 

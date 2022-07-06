@@ -60,7 +60,7 @@ export default class AppNavbar extends Vue {
                 margin-right: 16px;
             }
 
-            color: #2c3e50;
+            //color: #2c3e50;
 
             .my-label {
                 font-size: 1.17em;
@@ -78,6 +78,7 @@ export default class AppNavbar extends Vue {
         }
 
         .active-btn {
+            color: #1976d2;
             .v-icon {
                 margin-top: 4px;
                 font-size: 28px;
@@ -88,7 +89,7 @@ export default class AppNavbar extends Vue {
             }
 
             .my-label {
-                border-bottom: 0.2rem solid #2c3e50;
+                border-bottom: 0.2rem solid #1976d2;
             }
         }
     }
