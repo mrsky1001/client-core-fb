@@ -22,9 +22,9 @@ export interface IPost extends IGenericModel {
 }
 
 export interface IPost extends IGenericModel {
-    title: string
+    title?: string
     urlTitle: string
-    content: string
+    content?: string
     creatingDate: Date
     updatingDate: Date
     publishedDate: Date
@@ -32,7 +32,7 @@ export interface IPost extends IGenericModel {
     views: number
     readTime: number
     countComments: number
-    tags: string[]
+    tags?: string[]
     likes: string[]
     status: number
     shares: number
