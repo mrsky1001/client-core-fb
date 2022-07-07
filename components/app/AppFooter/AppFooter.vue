@@ -55,6 +55,7 @@ export default class AppFooter extends Vue {}
 <style lang="scss" scoped>
 .my-footer {
     z-index: 0;
+    padding: 25px 0;
     color: grey !important;
 }
 
