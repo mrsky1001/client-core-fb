@@ -6,9 +6,9 @@
     <v-menu ref="avatarBarRef" offset-y>
         <template #activator="{ on, attrs }">
             <v-btn icon v-bind="attrs" :class="'avatar-bar-btn ' + nav.avatarClass" v-on="on">
-                <v-icon v-if="!nav.avatar"> mdi-panda </v-icon>
-                <v-avatar v-if="nav.avatar">
-                    <v-img :src="nav.avatar" />
+                <v-icon v-if="!nav.avatar || hasErrorImg"> mdi-panda </v-icon>
+                <v-avatar v-if="nav.avatar && !hasErrorImg">
+                    <v-img :src="nav.avatar" @error="errorImgEvent" />
                 </v-avatar>
             </v-btn>
         </template>
@@ -38,6 +38,13 @@ import { vxc } from '@/core/store/store.vuex'
 export default class AvatarBar extends Vue {
     nav = vxc.appNavbar
     routerST = vxc.router
+
+    hasErrorImg = false
+
+    errorImgEvent(err: string) {
+        if (err) this.hasErrorImg = true
+        else this.hasErrorImg = false
+    }
 }
 </script>
 

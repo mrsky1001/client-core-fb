@@ -69,7 +69,7 @@ export default class User extends GenericModel implements IUser {
     }
 
     set avatar(value: string) {
-        this._avatar = value
+        this._avatar = value + getTimeSalt()
     }
 
     get token(): string {

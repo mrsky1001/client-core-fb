@@ -8,10 +8,12 @@
             <div class="v-input__slot">
                 <fieldset aria-hidden="true" />
                 <div class="v-text-field__slot">
-                    <v-icon v-if="!accountST.avatar" @click="clickAvatarImg"> mdi-camera-plus-outline</v-icon>
+                    <v-icon v-if="!accountST.avatar || hasErrorImg" @click="clickAvatarImg">
+                        mdi-camera-plus-outline
+                    </v-icon>
 
-                    <v-avatar v-if="accountST.avatar" class="avatar-img" @click="clickAvatarImg">
-                        <v-img :src="accountST.avatar" />
+                    <v-avatar v-if="accountST.avatar && !hasErrorImg" class="avatar-img" @click="clickAvatarImg">
+                        <v-img :src="accountST.avatar" @error="errorImgEvent" />
                     </v-avatar>
 
                     <v-divider vertical inset />
@@ -65,6 +67,13 @@ export default class AvatarField extends Vue {
     }
     inputClasses() {
         return this.errors.length ? 'error--text error-input' : null
+    }
+
+    hasErrorImg = false
+
+    errorImgEvent(err: string) {
+        if (err) this.hasErrorImg = true
+        else this.hasErrorImg = false
     }
 }
 </script>

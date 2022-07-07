@@ -13,7 +13,6 @@
                 :href="route.isHref ? route.path : undefined"
                 :to="!route.isHref ? route.path : undefined"
                 :target="route.isHref ? '_blank' : ''"
-                active-class="active-btn"
             >
                 <v-icon v-if="route.hasIcon">
                     {{ route.icon }}
