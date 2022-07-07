@@ -32,6 +32,7 @@ export default {
     GET_POST_BY_ID: '/api/post-id',
     GET_POSTS_BY_SECTION: '/api/posts',
     GET_POST_BY_TITLE: '/api/post',
+    GET_FILTERS_POSTS: '/api/post-filters',
     CREATE_POST: '/api/post',
     UPDATE_POST_BY_ID: '/api/post-id',
 

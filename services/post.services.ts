@@ -13,6 +13,7 @@ import Post from '@/core/models/classes/article/Post'
 import { vxc } from '@/core/store/store.vuex'
 import { ISnackbarProps } from '@/core/store/app/snackbar.store'
 import { validationProp } from '@/core/lib/validation'
+import { IPostsFilter } from '@/core/models/interfaces/filter/filters-posts'
 
 export const getInValidPostFields = (post: Post) => {
     const rules: IRule[] = [
@@ -69,6 +70,24 @@ export const getPosts = (sectionId: string, lastCreateDate: Date, searchText = '
             .then((res: AxiosResponse) => {
                 responseHandler(res, undefined, false)
                     .then((data) => resolve(data.posts.map((post: IPost) => new Post(post))))
+                    .catch((err: AxiosError) => {
+                        handlerError(err)
+                        reject(err)
+                    })
+            })
+            .catch((err: AxiosError) => {
+                handlerError(err)
+                reject(err)
+            })
+    })
+}
+export const getFiltersPosts = (): Promise<IPostsFilter[]> => {
+    return new Promise<IPostsFilter[]>((resolve, reject) => {
+        api()
+            .get(urls.GET_FILTERS_POSTS)
+            .then((res: AxiosResponse) => {
+                responseHandler(res, undefined, false)
+                    .then((data) => resolve(data.filtersPosts))
                     .catch((err: AxiosError) => {
                         handlerError(err)
                         reject(err)
