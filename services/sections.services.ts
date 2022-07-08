@@ -13,6 +13,7 @@ import { vxc } from '@/core/store/store.vuex'
 import { ISnackbarProps } from '@/core/store/app/snackbar.store'
 import { IRule } from '@/core/models/interfaces/lib/IRule'
 import { validationProp } from '@/core/lib/validation'
+import config from '../../../config/config'
 
 const getInValidSectionFields = (section: Section) => {
     const rules: IRule[] = [
@@ -68,6 +69,8 @@ export const getSections = (): Promise<Section[]> => {
 }
 export const addSection = (section: Section): Promise<Section> => {
     return new Promise<Section>((resolve, reject) => {
+        section.domain = config.server.domain
+
         const listErrors = getInValidSectionFields(section)
 
         if (!listErrors.length) {

@@ -7,9 +7,11 @@ import { IPost } from '@/core/models/interfaces/article/IPost'
 import { IUser } from '@/core/models/interfaces/auth/IUser'
 import User from '@/core/models/classes/auth/User'
 import { ISection } from '@/core/models/interfaces/article/ISection'
+import config from '../../../../../config/config'
 
 export default class Section extends GenericModel implements ISection {
     private _name: string = ''
+    private _domain: string = config.server.domain
     private _description: string = ''
     private _posts: IPost[] = []
     private _creatingDate = new Date()
@@ -23,11 +25,20 @@ export default class Section extends GenericModel implements ISection {
     init(initObj: ISection): void {
         this.name = initObj.name ? initObj.name : this._name
         this.description = initObj.description ? initObj.description : this._description
+        this.domain = initObj.domain ? initObj.domain : this.domain
         this.posts = initObj.posts ? initObj.posts : this._posts
         this.author = initObj.author ? initObj.author : this._author
         this.creatingDate = initObj.creatingDate ? initObj.creatingDate : this._creatingDate
 
         this.jsonFormatObjects = [{ name: 'status', valuePath: 'value' }]
+    }
+
+    get domain(): string {
+        return this._domain
+    }
+
+    set domain(value: string) {
+        this._domain = value
     }
 
     get description(): string {

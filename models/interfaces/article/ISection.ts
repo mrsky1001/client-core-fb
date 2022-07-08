@@ -15,6 +15,7 @@ export interface ISectionToUpdate extends IGenericModel {
 export interface ISection extends IGenericModel {
     author: IUser
     name: string
+    domain: string
     description: string
     creatingDate: Date
     posts: IPost[]
