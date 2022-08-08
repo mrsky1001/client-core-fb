@@ -33,6 +33,7 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import { vxc } from '@/core/store/store.vuex'
+import { Watch } from 'vue-property-decorator'
 
 @Component
 export default class AvatarBar extends Vue {
@@ -41,9 +42,13 @@ export default class AvatarBar extends Vue {
 
     hasErrorImg = false
 
+    @Watch('nav.avatar')
+    changedAvatar() {
+        this.hasErrorImg = false
+    }
+
     errorImgEvent(err: string) {
-        if (err) this.hasErrorImg = true
-        else this.hasErrorImg = false
+        this.hasErrorImg = !!err
     }
 }
 </script>

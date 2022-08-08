@@ -44,7 +44,7 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import { vxc } from '@/core/store/store.vuex'
-import { Prop } from 'vue-property-decorator'
+import { Prop, Watch } from 'vue-property-decorator'
 
 @Component
 export default class AvatarField extends Vue {
@@ -55,6 +55,12 @@ export default class AvatarField extends Vue {
 
     @Prop()
     clickAvatarImg: () => void
+
+    @Watch('accountST.avatar')
+    changedAvatar() {
+        this.errors = []
+        this.hasErrorImg = false
+    }
 
     get styleClasses() {
         const classes =
@@ -72,8 +78,7 @@ export default class AvatarField extends Vue {
     hasErrorImg = false
 
     errorImgEvent(err: string) {
-        if (err) this.hasErrorImg = true
-        else this.hasErrorImg = false
+        this.hasErrorImg = !!err
     }
 }
 </script>

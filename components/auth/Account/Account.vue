@@ -14,7 +14,7 @@
             :show-modal="accountST.isShowAvaUploadModal"
             :set-show-modal="accountST.setIsShowUploadModal"
             :img="accountST.avatar"
-            :set-img="accountST.saveAvatar"
+            :set-img="(file) => accountST.saveAvatar(file)"
             :cropper-options="cropOpts"
         />
         <v-row justify="center">
