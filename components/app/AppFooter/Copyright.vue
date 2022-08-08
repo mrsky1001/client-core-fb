@@ -4,7 +4,7 @@
 
 <template>
     <div>
-        <p>{{ new Date().getFullYear() }} — © Все права защищены. Никита и Анастасия Коляда.</p>
+        <p>{{ new Date().getFullYear() }} — © Все права защищены.</p>
         <p>{{ text }}</p>
     </div>
 </template>
