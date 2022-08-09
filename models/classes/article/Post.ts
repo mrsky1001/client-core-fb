@@ -18,7 +18,7 @@ export default class Post extends GenericModel implements IPost {
     private _sectionId = ''
     private _creatingDate = new Date()
     private _updatingDate = new Date()
-    private _publishedDate = new Date()
+    private _publishedDate: Date | undefined = undefined
     private _views = 0
     private _readTime = 0
     private _tags: string[] = []
@@ -184,11 +184,11 @@ export default class Post extends GenericModel implements IPost {
         this._updatingDate = value
     }
 
-    get publishedDate(): Date {
+    get publishedDate(): Date | undefined {
         return this._publishedDate
     }
 
-    set publishedDate(value: Date) {
+    set publishedDate(value: Date | undefined) {
         this._publishedDate = value
     }
 

@@ -7,19 +7,19 @@ import { IUser } from '@/core/models/interfaces/auth/IUser'
 import { IComment } from '@/core/models/interfaces/article/IComment'
 import { IAnnotation } from '@/core/models/interfaces/article/IAnnotation'
 
-export interface IPost extends IGenericModel {
-    title?: string
-    content?: string
-    tags?: string[]
-    likes: string[]
-    status: number
-    shares: number
-    countComments: number
-    sectionId: string
-    author: IUser // | null
-    comments: IComment[]
-    annotation: IAnnotation // | null
-}
+// export interface IPost extends IGenericModel {
+//     title?: string
+//     content?: string
+//     tags?: string[]
+//     likes: string[]
+//     status: number
+//     shares: number
+//     countComments: number
+//     sectionId: string
+//     author: IUser // | null
+//     comments: IComment[]
+//     annotation: IAnnotation // | null
+// }
 
 export interface IPost extends IGenericModel {
     title?: string
@@ -27,7 +27,7 @@ export interface IPost extends IGenericModel {
     content?: string
     creatingDate: Date
     updatingDate: Date
-    publishedDate: Date
+    publishedDate: Date | undefined
     sectionId: string
     views: number
     readTime: number
