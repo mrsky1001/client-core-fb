@@ -30,6 +30,7 @@ export interface IPost extends IGenericModel {
     publishedDate: Date | undefined
     sectionId: string
     views: number
+    countSymbols?: number
     readTime: number
     countComments: number
     tags?: string[]

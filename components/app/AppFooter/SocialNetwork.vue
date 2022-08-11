@@ -12,19 +12,19 @@
             class="footer-btn font-weight-black"
             color="white"
             target="_blank"
-            href="https://www.instagram.com/n_shurupchic/"
+            href="https://www.instagram.com/foma.blog.ru/"
         >
             <v-icon>mdi-instagram</v-icon>
         </v-btn>
-        <v-btn
-            plain
-            class="footer-btn font-weight-black"
-            color="white"
-            target="_blank"
-            href="https://twitter.com/BlogFoma"
-        >
-            <v-icon>mdi-twitter</v-icon>
-        </v-btn>
+        <!--        <v-btn-->
+        <!--            plain-->
+        <!--            class="footer-btn font-weight-black"-->
+        <!--            color="white"-->
+        <!--            target="_blank"-->
+        <!--            href="https://twitter.com/BlogFoma"-->
+        <!--        >-->
+        <!--            <v-icon>mdi-twitter</v-icon>-->
+        <!--        </v-btn>-->
         <v-btn
             plain
             class="footer-btn font-weight-black"
@@ -37,15 +37,15 @@
         <v-btn plain class="footer-btn font-weight-black" color="white" target="_blank" href="https://t.me/fomablog">
             <v-icon>mdi-telegram</v-icon>
         </v-btn>
-        <v-btn
-            plain
-            class="footer-btn font-weight-black"
-            color="white"
-            target="_blank"
-            href="https://www.facebook.com/groups/fomablogru"
-        >
-            <v-icon>mdi-facebook</v-icon>
-        </v-btn>
+        <!--        <v-btn-->
+        <!--            plain-->
+        <!--            class="footer-btn font-weight-black"-->
+        <!--            color="white"-->
+        <!--            target="_blank"-->
+        <!--            href="https://www.facebook.com/groups/fomablogru"-->
+        <!--        >-->
+        <!--            <v-icon>mdi-facebook</v-icon>-->
+        <!--        </v-btn>-->
         <v-btn
             plain
             class="footer-btn font-weight-black"
