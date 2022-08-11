@@ -41,7 +41,7 @@ export default class FooterImg extends Vue {
     bottom: 7px;
     right: 0;
     float: left;
-    padding-right: 119px;
+    //padding-right: 119px;
     padding-bottom: 90px;
 
     .v-image__image {
