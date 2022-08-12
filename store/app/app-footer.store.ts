@@ -31,7 +31,6 @@ export class AppFooterStore extends VuexModule {
         const num = Math.floor(Math.random() * length)
 
         this.footerImg = `${config.paths.footerImgs}${listFooterImg[num]}.png`
-        console.log(this.footerImg)
     }
 }
 
