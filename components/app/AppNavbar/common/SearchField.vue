@@ -27,9 +27,16 @@ export default class SearchField extends Vue {
     navbar = vxc.appNavbar
 
     callSearch() {
-        this.$router.push({ name: routesObj.SEARCH.name, params: { searchText: this.navbar.searchText } }).catch(() => {
-            null
-        })
+        this.$router
+            .push({ name: routesObj.SEARCH.name, params: { searchText: this.navbar.searchText } })
+            .then((res) => {
+                console.log('Search worked!')
+                console.log(res)
+            })
+            .catch((err) => {
+                console.log('Search dont worked!')
+                console.log(err)
+            })
     }
 }
 </script>
