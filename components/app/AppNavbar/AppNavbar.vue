@@ -29,12 +29,21 @@ import AvatarBar from '@/core/components/app/AppNavbar/common/AvatarBar.vue'
 import SideDrawer from '@/core/components/app/AppNavbar/SideDrawer/SideDrawer.vue'
 import LogoBar from '@/core/components/app/AppNavbar/common/LogoBar.vue'
 import SearchField from '../../../../core/components/app/AppNavbar/common/SearchField.vue'
+import { Watch } from 'vue-property-decorator'
+import { Route } from 'vue-router'
 
 @Component({
     components: { SearchField, SideDrawer, AvatarBar, SearchButton, NavDrawer, LogoBar },
 })
 export default class AppNavbar extends Vue {
     navbar = vxc.appNavbar
+
+    @Watch('$route')
+    routeUpdate(val: Route) {
+        if (Object.keys(val.params).length === 0) {
+            this.navbar.searchText = ''
+        }
+    }
 }
 </script>
 
