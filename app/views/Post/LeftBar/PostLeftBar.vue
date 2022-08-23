@@ -39,7 +39,7 @@ export default class PostLeftBar extends Vue {
 .ads-desktop {
     position: absolute;
     max-width: 400px !important;
-    bottom: 0;
+    //bottom: 0;
     opacity: 0.1;
     padding: 3vw;
     vertical-align: bottom;
