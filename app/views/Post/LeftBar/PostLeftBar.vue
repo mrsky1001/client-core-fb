@@ -36,7 +36,7 @@ export default class PostLeftBar extends Vue {
 }
 </script>
 <style scoped lang="scss">
-.ads-desktop {
+.ads-desktop .ads-mobile {
     position: absolute;
     max-width: 400px !important;
     //bottom: 0;
