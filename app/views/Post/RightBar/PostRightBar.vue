@@ -42,17 +42,17 @@ export default class PostRightBar extends Vue {
     }
 }
 
-.ads-mobile {
-    display: none;
-}
-
-@media screen and (max-width: 1264px) {
-    .ads-desktop-left {
-        display: none;
-    }
-
-    .ads-mobile {
-        display: block;
-    }
-}
+//.ads-mobile {
+//    display: none;
+//}
+//
+//@media screen and (max-width: 1264px) {
+//    .ads-desktop-left {
+//        display: none;
+//    }
+//
+//    .ads-mobile {
+//        display: block;
+//    }
+//}
 </style>

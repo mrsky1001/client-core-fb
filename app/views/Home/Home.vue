@@ -100,17 +100,17 @@ export default class Home extends Vue {
     vertical-align: bottom;
 }
 
-.ads-mobile {
-    display: none;
-}
+//.ads-mobile {
+//    display: none;
+//}
 
 @media screen and (max-width: 1264px) {
-    .ads-desktop {
-        display: none;
-    }
-
-    .ads-mobile {
-        display: block;
-    }
+    //.ads-desktop {
+    //    display: none;
+    //}
+    //
+    //.ads-mobile {
+    //    display: block;
+    //}
 }
 </style>
