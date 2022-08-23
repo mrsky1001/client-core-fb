@@ -1,6 +1,6 @@
 <template>
     <left-column>
-        <div>
+        <div class="ads-container">
             <div class="ads-desktop">
                 <div id="yandex_rtb_R-A-1248338-11" />
             </div>
@@ -50,8 +50,12 @@ export default class PostLeftBar extends Vue {
     }
 }
 
-.ads-mobile {
-    bottom: 0;
+.ads-container {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
 }
 @media screen and (max-width: 1264px) {
     //.ads-desktop-left {

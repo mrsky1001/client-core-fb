@@ -4,7 +4,7 @@
 
 <template>
     <right-column>
-        <div>
+        <div class="ads-container">
             <div class="ads-desktop">
                 <div id="yandex_rtb_R-A-1248338-15" />
             </div>
@@ -32,6 +32,14 @@ export default class PostRightBar extends Vue {
 }
 </script>
 <style scoped lang="scss">
+.ads-container {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .ads-desktop,
 .ads-mobile {
     opacity: 0.1;
@@ -41,10 +49,6 @@ export default class PostRightBar extends Vue {
     &:hover {
         opacity: 0.5;
     }
-}
-
-.ads-mobile {
-    bottom: 0;
 }
 //
 //@media screen and (max-width: 1264px) {
