@@ -34,7 +34,7 @@ export default class App extends Vue {
     }
 }
 </script>
-
+<!--sada-->
 <style lang="scss">
 @import '../public/assets/fonts/source sans pro/sourcesanspro.css';
 
