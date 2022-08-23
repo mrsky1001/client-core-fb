@@ -43,15 +43,16 @@ export default class PostRightBar extends Vue {
     }
 }
 .ads-container {
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: space-between;
-  max-width: 300px;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 300px;
 }
 @media screen and (max-width: 1264px) {
-  .ads-container {
-    max-width: 100%;
-  }
+    .ads-container {
+        max-width: 100%;
+    }
+}
 </style>
