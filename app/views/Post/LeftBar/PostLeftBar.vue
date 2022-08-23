@@ -23,16 +23,16 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import LeftColumn from '@/core/components/grid/LeftColumn/LeftColumn.vue'
-import {connectOneAds} from "@/app/lib/yandex-ads";
+import { connectOneAds } from '@/app/lib/yandex-ads'
 
 @Component({
     components: { LeftColumn },
 })
 export default class PostLeftBar extends Vue {
-  mounted(){
-    connectOneAds('yandex_rtb_R-A-1248338-11')
-    connectOneAds('yandex_rtb_R-A-1248338-13')
-  }
+    mounted() {
+        connectOneAds('yandex_rtb_R-A-1248338-11')
+        connectOneAds('yandex_rtb_R-A-1248338-13')
+    }
 }
 </script>
 <style scoped lang="scss">

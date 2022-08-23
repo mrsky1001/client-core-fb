@@ -6,10 +6,10 @@
     <right-column>
         <div>
             <div class="ads-desktop">
-                <div id="yandex_rtb_R-A-1248339-6" />
+                <div id="yandex_rtb_R-A-1248338-15" />
             </div>
             <div class="ads-mobile">
-                <div id="yandex_rtb_R-A-1248339-11" />
+                <div id="yandex_rtb_R-A-1248338-14" />
             </div>
         </div>
     </right-column>
@@ -19,11 +19,17 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import RightColumn from '@/core/components/grid/RightColumn/RightColumn.vue'
+import { connectOneAds } from '@/app/lib/yandex-ads'
 
 @Component({
     components: { RightColumn },
 })
-export default class PostRightBar extends Vue {}
+export default class PostRightBar extends Vue {
+    mounted() {
+        connectOneAds('yandex_rtb_R-A-1248338-14')
+        connectOneAds('yandex_rtb_R-A-1248338-15')
+    }
+}
 </script>
 <style scoped lang="scss">
 .ads-desktop {
