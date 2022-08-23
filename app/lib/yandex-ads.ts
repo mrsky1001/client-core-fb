@@ -26,6 +26,8 @@ export const listRtbRender = [
     { renderTo: 'yandex_rtb_R-A-1248338-8', blockId: 'R-A-1248338-8' },
     { renderTo: 'yandex_rtb_R-A-1248338-9', blockId: 'R-A-1248338-9' },
     { renderTo: 'yandex_rtb_R-A-1248338-10', blockId: 'R-A-1248338-10' },
+    { renderTo: 'yandex_rtb_R-A-1248338-11', blockId: 'R-A-1248338-11' },
+    { renderTo: 'yandex_rtb_R-A-1248338-13', blockId: 'R-A-1248338-13' },
 ]
 
 export const connectOneAds = (rtbId: string): void => {
@@ -34,25 +36,25 @@ export const connectOneAds = (rtbId: string): void => {
 
     if (blockId) {
         // @ts-ignore
-        // window.yaContextCb.push(() => {
-        //     // @ts-ignore
-        //     Ya.Context.AdvManager.render({
-        //         renderTo: rtbId,
-        //         blockId: blockId,
-        //     })
-        // })
+        window.yaContextCb.push(() => {
+            // @ts-ignore
+            Ya.Context.AdvManager.render({
+                renderTo: rtbId,
+                blockId: blockId,
+            })
+        })
     }
 }
 
 export const connectAds = (): void => {
     listRtbRender.forEach((rtb) => {
         // @ts-ignore
-        // window.yaContextCb.push(() => {
-        //     // @ts-ignore
-        //     Ya.Context.AdvManager.render({
-        //         renderTo: rtb.renderTo,
-        //         blockId: rtb.blockId,
-        //     })
-        // })
+        window.yaContextCb.push(() => {
+            // @ts-ignore
+            Ya.Context.AdvManager.render({
+                renderTo: rtb.renderTo,
+                blockId: rtb.blockId,
+            })
+        })
     })
 }

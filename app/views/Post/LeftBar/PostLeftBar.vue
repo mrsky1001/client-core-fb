@@ -1,15 +1,11 @@
-<!--
-  - Copyright (©) 09.07.2021, 17:13. Kolyada Nikita Vladimirovich (nikita.nk16@yandex.ru)
-  -->
-
 <template>
     <left-column>
         <div>
             <div class="ads-desktop">
-                <div id="yandex_rtb_R-A-1248339-1" />
+                <div id="yandex_rtb_R-A-1248338-11" />
             </div>
             <div class="ads-mobile">
-                <div id="yandex_rtb_R-A-1248339-8" />
+                <div id="yandex_rtb_R-A-1248338-13" />
             </div>
         </div>
         <!--    <div v-if="!isDev">-->
@@ -27,11 +23,17 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import LeftColumn from '@/core/components/grid/LeftColumn/LeftColumn.vue'
+import {connectOneAds} from "@/app/lib/yandex-ads";
 
 @Component({
     components: { LeftColumn },
 })
-export default class PostLeftBar extends Vue {}
+export default class PostLeftBar extends Vue {
+  mounted(){
+    connectOneAds('yandex_rtb_R-A-1248338-11')
+    connectOneAds('yandex_rtb_R-A-1248338-13')
+  }
+}
 </script>
 <style scoped lang="scss">
 .ads-desktop {
