@@ -28,6 +28,8 @@ export const listRtbRender = [
     { renderTo: 'yandex_rtb_R-A-1248338-10', blockId: 'R-A-1248338-10' },
     { renderTo: 'yandex_rtb_R-A-1248338-11', blockId: 'R-A-1248338-11' },
     { renderTo: 'yandex_rtb_R-A-1248338-13', blockId: 'R-A-1248338-13' },
+    { renderTo: 'yandex_rtb_R-A-1248338-14', blockId: 'R-A-1248338-14' },
+    { renderTo: 'yandex_rtb_R-A-1248338-15', blockId: 'R-A-1248338-15' },
 ]
 
 export const connectOneAds = (rtbId: string): void => {
