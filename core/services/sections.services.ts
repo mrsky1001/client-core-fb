@@ -52,7 +52,7 @@ export const getSection = (sectionId: string): Promise<Section> => {
 export const getSections = (): Promise<Section[]> => {
     return new Promise<Section[]>((resolve, reject) => {
         api()
-            .get(`${urls.GET_SECTIONS}`)
+            .get(`${urls.GET_SECTIONS}`, { params: { domain: config.server.domain } })
             .then((res: AxiosResponse) => {
                 responseHandler(res, undefined, false)
                     .then((data) => resolve(data.sections.map((section: ISection) => new Section(section))))

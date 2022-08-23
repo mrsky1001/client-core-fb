@@ -14,6 +14,7 @@ import { vxc } from '@/core/store/store.vuex'
 import { ISnackbarProps } from '@/core/store/app/snackbar.store'
 import { validationProp } from '@/core/lib/validation'
 import { IPostsFilter } from '@/core/models/interfaces/filter/filters-posts'
+import config from '../../../config/config'
 
 export const getInValidPostFields = (post: Post) => {
     const rules: IRule[] = [
@@ -57,8 +58,9 @@ export const getPost = (postId: string, title = ''): Promise<Post> => {
 
 export const getPosts = (sectionId: string, lastCreateDate: Date, searchText = ''): Promise<IPost[]> => {
     return new Promise<IPost[]>((resolve, reject) => {
-        const config = {
+        const options = {
             params: {
+                domain: config.server.domain,
                 sectionId,
                 searchText,
                 lastCreateDate,
@@ -66,7 +68,7 @@ export const getPosts = (sectionId: string, lastCreateDate: Date, searchText = '
         }
 
         api()
-            .get(`${urls.GET_POSTS}`, config)
+            .get(`${urls.GET_POSTS}`, options)
             .then((res: AxiosResponse) => {
                 responseHandler(res, undefined, false)
                     .then((data) => resolve(data.posts.map((post: IPost) => new Post(post))))
