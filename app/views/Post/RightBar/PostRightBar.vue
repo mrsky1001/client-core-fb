@@ -32,7 +32,8 @@ export default class PostRightBar extends Vue {
 }
 </script>
 <style scoped lang="scss">
-.ads-desktop .ads-mobile {
+.ads-desktop,
+.ads-mobile {
     opacity: 0.1;
     padding: 3vw;
     vertical-align: bottom;

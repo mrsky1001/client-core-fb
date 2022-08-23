@@ -93,7 +93,8 @@ export default class Home extends Vue {
     }
 }
 
-.ads-desktop .ads-mobile {
+.ads-desktop,
+.ads-mobile {
     position: absolute;
     //bottom: 0;
     padding: 3vw;
