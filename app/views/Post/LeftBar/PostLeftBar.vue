@@ -56,8 +56,12 @@ export default class PostLeftBar extends Vue {
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: space-between;
+    max-width: 300px;
 }
 @media screen and (max-width: 1264px) {
+    .ads-container {
+        max-width: 100%;
+    }
     //.ads-desktop-left {
     //    display: none;
     //}

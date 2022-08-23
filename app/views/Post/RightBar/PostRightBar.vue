@@ -32,14 +32,6 @@ export default class PostRightBar extends Vue {
 }
 </script>
 <style scoped lang="scss">
-.ads-container {
-    height: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
 .ads-desktop,
 .ads-mobile {
     opacity: 0.1;
@@ -50,14 +42,16 @@ export default class PostRightBar extends Vue {
         opacity: 0.5;
     }
 }
-//
-//@media screen and (max-width: 1264px) {
-//    .ads-desktop-left {
-//        display: none;
-//    }
-//
-//    .ads-mobile {
-//        display: block;
-//    }
-//}
+.ads-container {
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 300px;
+}
+@media screen and (max-width: 1264px) {
+  .ads-container {
+    max-width: 100%;
+  }
 </style>
