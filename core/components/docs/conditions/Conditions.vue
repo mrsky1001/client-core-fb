@@ -7,7 +7,7 @@
         <v-row>
             <left-column></left-column>
             <main-column>
-                <v-card>
+                <v-card class="card-info">
                     <v-card-title>Условия предоставления информации</v-card-title>
                     <v-card-text>
                         <div>

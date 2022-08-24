@@ -7,7 +7,7 @@
         <v-row>
             <left-column></left-column>
             <main-column>
-                <v-card>
+                <v-card class="card-info">
                     <v-card-title>Отказ от ответственности</v-card-title>
                     <v-card-text>
                         <p style="text-align: justify">
