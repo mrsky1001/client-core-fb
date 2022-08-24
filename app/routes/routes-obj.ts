@@ -143,9 +143,9 @@ export const routesObj = {
             description: 'Заметки на тему фотографии, обработки фотографии, работа в программе Adobe Photoshop и др',
         },
     },
-    TRIP: {
-        path: 'https://trip.foma-blog.ru',
-        name: 'TRIP',
+    TRAVEL: {
+        path: 'https://travel.foma-blog.ru',
+        name: 'TRAVEL',
         text: 'Путешествия',
         isSection: true,
         hasSubLine: true,

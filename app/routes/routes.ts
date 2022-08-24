@@ -37,7 +37,7 @@ const routesComponents = {
 
     // NOTES: routesObj.NOTES,
     // PHOTO: Object.assign(routesObj.PHOTO, { component: Store }),
-    // TRIP: Object.assign(routesObj.TRIP, { component: Store }),
+    // TRAVEL: Object.assign(routesObj.TRAVEL, { component: Store }),
     // YOUTUBE: Object.assign(routesObj.YOUTUBE, { component: Store }),
     // FLOWER: Object.assign(routesObj.FLOWER, { component: Store }),
     // ART: Object.assign(routesObj.ART, { component: Store }),
