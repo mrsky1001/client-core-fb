@@ -178,6 +178,10 @@ export class EditPostStore extends VuexModule {
         this.editSection = val
     }
 
+    @mutation setDomain(val: string) {
+        this.post.domain = val
+    }
+
     @mutation setPosts(val: Section[]) {
         this.sections = val
     }

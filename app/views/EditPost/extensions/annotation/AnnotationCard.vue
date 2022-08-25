@@ -4,6 +4,21 @@
 
 <template>
     <v-sheet shaped class="my-sheet">
+        <v-card class="my-annotation-card">
+            <v-card-title>Домен статьи<span class="red--text">*</span></v-card-title>
+            <v-card-text class="my-card-text">
+                <v-select
+                    outlined
+                    :items="domains"
+                    item-text="description"
+                    item-value="name"
+                    label="Выберите домен для статьи"
+                    :value="editST.post.domain"
+                    @change="editST.setDomain"
+                ></v-select>
+            </v-card-text>
+        </v-card>
+        <v-divider></v-divider>
         <section-editor />
         <v-divider></v-divider>
         <v-card class="my-annotation-card">
@@ -44,10 +59,12 @@ import Vue from 'vue'
 import { vxa } from '@/app/store/store.app'
 import SectionEditor from '../sectionEditor/SectionEditor.vue'
 import Tags from '@/app/views/EditPost/extensions/Tags.vue'
+import domains from '@/core/collections/domains'
 
 @Component({ components: { SectionEditor, Tags, AnnotationImg } })
 export default class AnnotationCard extends Vue {
     editST = vxa.edit
+    domains = Object.values(domains)
 }
 </script>
 
