@@ -5,8 +5,8 @@
 <template>
     <v-sheet shaped class="my-sheet">
         <v-card class="my-annotation-card">
-            <v-card-title>Домен статьи<span class="red--text">*</span></v-card-title>
-            <v-card-text class="my-card-text">
+            <v-card-title>Домен статьи</v-card-title>
+            <v-card-text class="domain-btns">
                 <v-select
                     outlined
                     :items="domains"
@@ -16,6 +16,15 @@
                     :value="editST.post.domain"
                     @change="editST.setDomain"
                 ></v-select>
+                <v-btn
+                    v-if="editST.domain !== editST.post.domain"
+                    class="secondary"
+                    title="Подтвердить изменения домена на котором будет располагаться статья"
+                    @click="() => editST.applySetDomain()"
+                >
+                    <v-icon dense>mdi-content-save-edit-outline</v-icon>
+                    Подтвердить
+                </v-btn>
             </v-card-text>
         </v-card>
         <v-divider></v-divider>
@@ -65,10 +74,28 @@ import domains from '@/core/collections/domains'
 export default class AnnotationCard extends Vue {
     editST = vxa.edit
     domains = Object.values(domains)
+
+    mounted() {
+        console.log(this.editST.domain)
+        console.log(this.editST.post.domain)
+        console.log(this.editST.post.domain !== this.editST.domain)
+    }
 }
 </script>
 
 <style lang="scss" scoped>
+.domain-btns {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+
+    > :last-child {
+        margin-left: 10px;
+    }
+}
+
 .my-annotation-card {
     //box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1) !important;
     box-shadow: none !important;

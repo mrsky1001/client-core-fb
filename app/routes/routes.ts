@@ -6,7 +6,6 @@
 //   User.checkRole(role) && services.isAuthorized() ? next() : next(routesObj.LOGIN)
 // }
 
-import Store from '@/app/views/Store.vue'
 import Login from '@/core/components/auth/Login/Login.vue'
 import Logout from '@/core/components/auth/Logout/Logout.vue'
 import Registration from '@/core/components/auth/Registration/Registration.vue'
@@ -23,12 +22,12 @@ import CopyrightHolders from '@/core/components/docs/copyrightHolders/CopyrightH
 import Agreement from '@/core/components/docs/agreement/Agreement.vue'
 
 const routesComponents = {
-    STORE: Object.assign(routesObj.STORE, { component: Store }),
+    // STORE: Object.assign(routesObj.STORE, { component: Store }),
     HOME: Object.assign(routesObj.HOME, { component: Home }),
     SECTION: Object.assign(routesObj.SECTION, { component: Home }),
     SEARCH: Object.assign(routesObj.SEARCH, { component: Home }),
     // DEV: Object.assign(routesObj.DEV, { component: Home }),
-    DESIGN: Object.assign(routesObj.DESIGN, { component: Store }),
+    // DESIGN: Object.assign(routesObj.DESIGN, { component: Store }),
     ABOUT: Object.assign(routesObj.ABOUT, { component: PostPage }),
     CONDITIONS: Object.assign(routesObj.CONDITIONS, { component: Conditions }),
     DISCLAIMER: Object.assign(routesObj.DISCLAIMER, { component: Disclaimer }),

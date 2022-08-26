@@ -24,9 +24,11 @@ import PostLeftBar from '@/app/views/Post/LeftBar/PostLeftBar.vue'
 import { vxa } from '@/app/store/store.app'
 import FlexContainer from '@/app/components/FlexContainer/FlexContainer.vue'
 import DeletePost from '@/app/views/Post/extensions/DeletePost/DeletePost.vue'
+import { getMetaInfo } from '@/core/lib/meta-info'
 
 @Component({
     components: { FlexContainer, PostRightBar, DeletePost, PostMainContainer, PostLeftBar },
+    metaInfo: getMetaInfo,
 })
 export default class PostPage extends Vue {
     postST = vxa.post

@@ -54,6 +54,7 @@ export class EditPostStore extends VuexModule {
     post = new Post()
     $router: VueRouter = new VueRouter()
     absolute = true
+    domain = this.post.domain
     loading = true
     prevRoute = null
     isNewPost = true
@@ -175,7 +176,7 @@ export class EditPostStore extends VuexModule {
     }
 
     @mutation setDomain(val: string) {
-        this.post.domain = val
+        this.domain = val
     }
 
     @mutation setPosts(val: Section[]) {
@@ -196,6 +197,15 @@ export class EditPostStore extends VuexModule {
 
     @mutation setDescriptionEditSection(val: string) {
         this.editSection.description = val
+    }
+
+    @action
+    async applySetDomain() {
+        this.post.domain = this.domain
+
+        void this.save().then(() => {
+            window.location.host = `${this.domain}.foma-blog.ru`
+        })
     }
 
     get btnClasses() {
@@ -245,6 +255,7 @@ export class EditPostStore extends VuexModule {
                 this.post = post
                 this.editor.commands.setContent(this.post.content)
 
+                this.domain = this.post.domain
                 this.isNewPost = false
                 this.getAllImgs()
             })
