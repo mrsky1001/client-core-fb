@@ -17,6 +17,7 @@ export default class Post extends GenericModel implements IPost {
     private _content = ''
     private _sectionId = ''
     private _countSymbols = 0
+    private _domain = 'dev'
     private _creatingDate = new Date()
     private _updatingDate = new Date()
     private _publishedDate: Date | undefined = undefined
@@ -55,6 +56,7 @@ export default class Post extends GenericModel implements IPost {
         this.urlTitle = initObj.urlTitle ? initObj.urlTitle : this._urlTitle
         this.content = initObj.content ? initObj.content : this._content
         this.sectionId = initObj.sectionId ? initObj.sectionId : this._sectionId
+        this.domain = initObj.domain ? initObj.domain : this._domain
         this.annotation = initObj.annotation ? initObj.annotation : this._annotation
         this.tags = initObj.tags ? initObj.tags : this._tags
         this.countSymbols = initObj.countSymbols ? initObj.countSymbols : this._countSymbols
@@ -81,6 +83,14 @@ export default class Post extends GenericModel implements IPost {
     //     this.content = obj.content ? obj.content : this._content
     //     this.tags = obj.tags ? obj.tags : this._tags
     // }
+
+    get domain(): string {
+        return this._domain
+    }
+
+    set domain(value: string) {
+        this._domain = value
+    }
 
     get countComments(): number {
         return this._countComments

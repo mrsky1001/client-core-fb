@@ -25,6 +25,7 @@ export interface IPost extends IGenericModel {
     title?: string
     urlTitle: string
     content?: string
+    domain: string
     creatingDate: Date
     updatingDate: Date
     publishedDate: Date | undefined
