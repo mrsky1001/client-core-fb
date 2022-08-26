@@ -12,11 +12,16 @@ import hljs from 'highlight.js'
 import { vuetifyPreset } from '@/app/lib/vue-app-styles'
 // @ts-ignore
 import VueDragResize from 'vue-drag-resize'
+import Meta from 'vue-meta'
 
 Vue.use(VueDragResize)
 
 Vue.config.productionTip = false
 Vue.use(Vuetify)
+
+Vue.use(Meta, {
+    refreshOnceOnNavigation: true,
+})
 
 Vue.directive('highlightjs', {
     // deep: true,
