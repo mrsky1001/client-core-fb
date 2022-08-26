@@ -96,11 +96,7 @@ export class EditPostStore extends VuexModule {
 
     postImgs: string[] = []
 
-    postCropOpts = {
-        isProportional: false,
-        isCircle: false,
-        maxCropperHeight: 300,
-    }
+    postCropOpts = { quality: 1, isProportional: false, isCircle: false, maxCropperHeight: 300 }
 
     annCropOpts = {
         isProportional: false,
