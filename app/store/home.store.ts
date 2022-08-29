@@ -9,13 +9,11 @@ import { getFiltersPosts, getPosts } from '@/core/services/post.services'
 import { getSections } from '@/core/services/sections.services'
 import { IPost } from '@/core/models/interfaces/article/IPost'
 import { action, createModule, mutation } from 'vuex-class-component'
-import statuses from '@/core/collections/statuses'
 import { ISection } from '@/core/models/interfaces/article/ISection'
 import Section from '@/core/models/classes/article/Section'
 import defaultSection from '@/app/views/Home/extensions/default-section'
 import { IPostsFilter } from '@/core/models/interfaces/filter/filters-posts'
 import Post from '@/core/models/classes/article/Post'
-import { vxc } from '@/core/store/store.vuex'
 
 const VuexModule = createModule({
     namespaced: 'home',

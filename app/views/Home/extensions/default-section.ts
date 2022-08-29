@@ -7,7 +7,7 @@ import routesObj from '@/app/routes/routes-obj'
 import User from '@/core/models/classes/auth/User'
 
 export default new Section({
-    name: routesObj.HOME.text,
+    name: 'Все статьи',
     description: routesObj.HOME.meta.description,
     author: new User(),
     domain: 'all',
