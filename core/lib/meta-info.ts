@@ -1,7 +1,7 @@
 import { vxa } from '@/app/store/store.app'
 import config from '../../../config/config'
 
-const getMetaInfo = () => {
+export const getMetaInfo = () => {
     const editST = vxa.edit
 
     return {
