@@ -6,6 +6,12 @@
     <v-list nav dense>
         <v-navigation-drawer :value="nav.isShowDrawer" fixed @transitionend="changeDrawer">
             <v-list dense nav class="my-slider">
+                <v-list-item href="https://foma-blog.ru">
+                    <a href="https://foma-blog.ru/" class="logo-link">
+                        <v-img :src="require('@/core/assets/fb15.svg')" max-width="150" />
+                        <!--            <v-img :src="require('@/core/assets/fomka&#45;&#45;small2.svg')" class="fomka-logo-img" />-->
+                    </a>
+                </v-list-item>
                 <template v-for="route in routerST.routes">
                     <SubRoute
                         v-if="route.onMainBar && !route.onCenterSidebar"
@@ -29,7 +35,51 @@
                         </div>
                     </div>
                 </template>
+                <v-divider></v-divider>
+                <v-list-item>Авторизация</v-list-item>
                 <SubRoute v-for="route in routerST.avatarRoutes" :key="'avatar ' + route.name" :route="route" />
+                <v-divider></v-divider>
+                <v-list-item>Мы в социальных сетях</v-list-item>
+                <v-list-item href="https://www.instagram.com/foma.blog.ru/">
+                    <v-list-item-icon>
+                        <v-icon> mdi-instagram</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                        <v-list-item-title>Instagram</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+                <v-list-item href="https://www.behance.net/foma_design">
+                    <v-list-item-icon>
+                        <v-icon> Be</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                        <v-list-item-title>Behance</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+                <v-list-item href="https://t.me/fomablogru">
+                    <v-list-item-icon>
+                        <v-icon> mdi-telegram</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                        <v-list-item-title>Telegram</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+                <v-list-item href="https://www.youtube.com/channel/UC_k_rdwbeDwf1KbMQmyK_pw/">
+                    <v-list-item-icon>
+                        <v-icon> mdi-youtube</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                        <v-list-item-title>Youtube</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+                <v-list-item href="https://vk.com/fomablog">
+                    <v-list-item-icon>
+                        <v-icon> mdi-vk</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                        <v-list-item-title>VK</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
             </v-list>
         </v-navigation-drawer>
     </v-list>
@@ -61,7 +111,19 @@ export default class SideDrawer extends Vue {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+.v-list--nav .v-list-item {
+    padding: 0 10px 8px !important;
+}
+.logo-link {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+
 .v-navigation-drawer {
     width: calc(100% - 48px);
     height: 100vh;

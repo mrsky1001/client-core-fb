@@ -34,7 +34,7 @@
         >
             <v-icon>Be</v-icon>
         </v-btn>
-        <v-btn plain class="footer-btn font-weight-black" color="white" target="_blank" href="https://t.me/fomablog">
+        <v-btn plain class="footer-btn font-weight-black" color="white" target="_blank" href="https://t.me/fomablogru">
             <v-icon>mdi-telegram</v-icon>
         </v-btn>
         <!--        <v-btn-->
