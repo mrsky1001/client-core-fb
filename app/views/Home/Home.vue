@@ -34,49 +34,67 @@ import DeletePost from '@/app/views/Post/extensions/DeletePost/DeletePost.vue'
 export default class Home extends Vue {
     homeST = vxa.home
 
-    checkParams() {
-        if (this.$route.params.sectionId) {
-            this.homeST.setCurrentSection(this.$route.params.sectionId)
+    async checkParams(): Promise<void> {
+        const checkSearch = () => {
+            if (this.$route.params.searchText) {
+                this.homeST.setSearchText(this.$route.params.searchText)
+            }
         }
 
-        if (this.$route.params.searchText) {
-            this.homeST.setSearchText(this.$route.params.searchText)
-        }
+        return new Promise((resolve, reject) => {
+            if (this.$route.params.sectionId) {
+                this.homeST
+                    .getSections()
+                    .then(() => {
+                        this.homeST.setCurrentSection(this.$route.params.sectionId)
+                        checkSearch()
+                        resolve()
+                    })
+                    .catch(() => {
+                        console.error('Cant get sections!')
+                        reject()
+                    })
+            } else {
+                checkSearch()
+                resolve()
+            }
+        })
     }
 
     mounted() {
         this.homeST.reset(false)
-        this.checkParams()
-        this.homeST.getPosts(true)
+        this.checkParams().finally(() => {
+            this.homeST.getPosts(true)
 
-        let timer: any = null
-        window.addEventListener('scroll', () => {
-            if (timer !== null) {
-                clearTimeout(timer)
-                timer = null
-            } else {
-                timer = setTimeout(
-                    () => {
-                        let windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom
-                        if (windowRelativeBottom < document.documentElement.clientHeight + 300) {
-                            !this.homeST.loading && this.homeST.getPosts()
-                        }
-                    },
-                    this.homeST.loading ? 1000 : 150
-                )
-            }
+            let timer: any = null
+            window.addEventListener('scroll', () => {
+                if (timer !== null) {
+                    clearTimeout(timer)
+                    timer = null
+                } else {
+                    timer = setTimeout(
+                        () => {
+                            let windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom
+                            if (windowRelativeBottom < document.documentElement.clientHeight + 300) {
+                                !this.homeST.loading && this.homeST.getPosts()
+                            }
+                        },
+                        this.homeST.loading ? 1000 : 150
+                    )
+                }
+            })
         })
     }
 
     @Watch('$route')
     routeUpdate(val: Route) {
-        this.checkParams()
-
-        if (Object.keys(val.params).length > 0) {
-            this.homeST.getPosts(true)
-        } else {
-            this.homeST.reset()
-        }
+        this.checkParams().finally(() => {
+            if (Object.keys(val.params).length > 0) {
+                this.homeST.getPosts(true)
+            } else {
+                this.homeST.reset()
+            }
+        })
     }
 }
 </script>

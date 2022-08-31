@@ -53,8 +53,11 @@ export class HomeStore extends VuexModule {
     }
 
     @mutation setCurrentSection(val: ISection | string) {
+        console.log(val)
         if (typeof val === 'string') {
             const sectionTemp = this.sections.find((s) => s.id === val)
+            console.log(this.sections)
+            console.log(sectionTemp)
             this.currentSection = sectionTemp ? sectionTemp : this.currentSection
         } else {
             this.currentSection = val
@@ -76,7 +79,7 @@ export class HomeStore extends VuexModule {
     async getSections() {
         this.loading = true
 
-        getSections()
+        return getSections()
             .then((sections) => {
                 this.setSections(sections)
             })
