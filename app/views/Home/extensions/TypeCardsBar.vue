@@ -34,8 +34,8 @@
             <v-btn
                 title="Показать карточками"
                 text
-                :class="typeHomeView === types.CARDS ? 'is-active' : null"
-                @click="setTypeHomeView(types.CARDS)"
+                :class="typeHomeView === types.CARDS.number ? 'is-active' : null"
+                @click="setTypeHomeView(types.CARDS.number)"
             >
                 <v-icon>mdi-view-quilt</v-icon>
             </v-btn>
