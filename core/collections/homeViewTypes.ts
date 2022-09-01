@@ -3,8 +3,8 @@
  */
 
 export default {
-    CARDS: 0,
-    TABLE: 1,
-    DRAFT: 2,
-    PUBLISHED: 3,
+    CARDS: { number: 0, description: 'Карточки' },
+    TABLE: { number: 1, description: 'Таблица' },
+    DRAFT: { number: 2, description: 'Черновики' },
+    PUBLISHED: { number: 3, description: 'Опубликованные' },
 }
