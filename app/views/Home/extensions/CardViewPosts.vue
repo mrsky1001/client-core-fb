@@ -41,12 +41,13 @@ export default class CardViewPosts extends Vue {
     }
 
     @Watch('$props.typeHomeView')
+    @Watch('homeST.posts')
     afterChangeType() {
         this.isChangedType = true
 
-        if (this.$props.typeHomeView === homeViewTypes.DRAFT) {
+        if (this.$props.typeHomeView === homeViewTypes.DRAFT.number) {
             this.posts = this.homeST.posts.filter((p) => p.status === statuses.DRAFT.value)
-        } else if (this.$props.typeHomeView === homeViewTypes.PUBLISHED) {
+        } else if (this.$props.typeHomeView === homeViewTypes.PUBLISHED.number) {
             this.posts = this.homeST.posts.filter((p) => p.status === statuses.PUBLISHED.value)
         } else {
             this.posts = this.homeST.posts

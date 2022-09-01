@@ -11,8 +11,8 @@
                 </v-btn>
             </div>
             <type-cards-bar :type-home-view="typeHomeView" :set-type-home-view="setTypeHomeView" />
-            <table-view-posts v-if="typeHomeView === types.TABLE" />
-            <card-view-posts v-if="typeHomeView !== types.TABLE" :type-home-view="typeHomeView" />
+            <table-view-posts v-if="typeHomeView === types.TABLE.number" />
+            <card-view-posts v-if="typeHomeView !== types.TABLE.number" :type-home-view="typeHomeView" />
         </div>
         <no-section-post v-if="!homeST.posts.length && isLoaded && !homeST.isNoFound"></no-section-post>
         <no-posts v-if="homeST.isNoFound && isLoaded"></no-posts>
