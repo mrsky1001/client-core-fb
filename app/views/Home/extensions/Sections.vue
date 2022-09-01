@@ -8,7 +8,7 @@
             <v-btn v-for="section in homeST.sections" :key="section.id" plain rounded :to="getLink(section.id)">
                 {{ section.name }}
             </v-btn>
-            <v-btn plain rounded :to="routesObj.HOME"> Все статьи </v-btn>
+            <v-btn plain rounded :to="routesObj.HOME">Все статьи{{ typeText }}</v-btn>
         </div>
     </div>
 </template>
@@ -18,11 +18,14 @@ import Vue from 'vue'
 import Component from 'vue-class-component'
 import { vxa } from '@/app/store/store.app'
 import routesObj from '@/app/routes/routes-obj'
+import { Watch } from 'vue-property-decorator'
+import homeViewTypes from '@/core/collections/homeViewTypes'
 
 @Component
 export default class Sections extends Vue {
     homeST = vxa.home
     routesObj = routesObj
+    typeText = ''
 
     getLink(sectionId: string) {
         return { name: routesObj.SECTION.name, params: { sectionId } }
@@ -30,6 +33,12 @@ export default class Sections extends Vue {
 
     mounted() {
         void this.homeST.getSections()
+    }
+
+    @Watch('homeST.typeHomeView')
+    afterChangedTypeHomeView() {
+        if (this.homeST.typeHomeView === homeViewTypes.DRAFT.number) {
+        }
     }
 }
 </script>

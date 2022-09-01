@@ -8,16 +8,16 @@
             <v-btn
                 title="Только черновики"
                 text
-                :class="typeHomeView === types.DRAFT ? 'is-active' : null"
-                @click="setTypeHomeView(types.DRAFT)"
+                :class="typeHomeView === types.DRAFT.number ? 'is-active' : null"
+                @click="setTypeHomeView(types.DRAFT.number)"
             >
                 <v-icon>mdi-upload-off</v-icon>
             </v-btn>
             <v-btn
                 title="Только опубликованные"
                 text
-                :class="typeHomeView === types.PUBLISHED ? 'is-active' : null"
-                @click="setTypeHomeView(types.PUBLISHED)"
+                :class="typeHomeView === types.PUBLISHED.number ? 'is-active' : null"
+                @click="setTypeHomeView(types.PUBLISHED.number)"
             >
                 <v-icon>mdi-upload</v-icon>
             </v-btn>
@@ -26,8 +26,8 @@
             <v-btn
                 title="Показать таблицей"
                 text
-                :class="typeHomeView === types.TABLE ? 'is-active' : null"
-                @click="setTypeHomeView(types.TABLE)"
+                :class="typeHomeView === types.TABLE.number ? 'is-active' : null"
+                @click="setTypeHomeView(types.TABLE.number)"
             >
                 <v-icon>mdi-format-list-bulleted-square</v-icon>
             </v-btn>
