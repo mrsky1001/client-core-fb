@@ -30,6 +30,11 @@ export class HomeStore extends VuexModule {
     currentSection: ISection = new Section()
     isNoFound = false
     filtersPosts: IPostsFilter[] = []
+    typeHomeView = 0
+
+    @mutation setTypeHomeView(val: number) {
+        this.typeHomeView = val === this.typeHomeView ? 0 : val
+    }
 
     @mutation addPosts(val: []) {
         this.posts = [...this.posts, ...val]

@@ -6,9 +6,9 @@
     <div class="sections-block">
         <div class="sections-btns">
             <v-btn v-for="section in homeST.sections" :key="section.id" plain rounded :to="getLink(section.id)">
-                {{ section.name }}
+                {{ section.name }}{{ getTypeText(section.id) }}
             </v-btn>
-            <v-btn plain rounded :to="routesObj.HOME">Все статьи{{ typeText }}</v-btn>
+            <v-btn plain rounded :to="routesObj.HOME">Все статьи{{ getTypeText() }}</v-btn>
         </div>
     </div>
 </template>
@@ -31,14 +31,22 @@ export default class Sections extends Vue {
         return { name: routesObj.SECTION.name, params: { sectionId } }
     }
 
+    getTypeText(sectionId: string | undefined) {
+        if ((!sectionId && !this.$route.params.sectionId) || this.$route.params.sectionId === sectionId) {
+            return this.typeText
+        } else return ''
+    }
+
     mounted() {
         void this.homeST.getSections()
+        const type = Object.values(homeViewTypes).find((val) => val.number === this.homeST.typeHomeView)
+        this.typeText = type && type.number > 1 ? `(${type.description})` : ''
     }
 
     @Watch('homeST.typeHomeView')
     afterChangedTypeHomeView() {
-        if (this.homeST.typeHomeView === homeViewTypes.DRAFT.number) {
-        }
+        const type = Object.values(homeViewTypes).find((val) => val.number === this.homeST.typeHomeView)
+        this.typeText = type && type.number > 1 ? `(${type.description})` : ''
     }
 }
 </script>

@@ -22,12 +22,6 @@ import statuses from '@/core/collections/statuses'
 import { Watch } from 'vue-property-decorator'
 
 @Component({
-    props: {
-        typeHomeView: {
-            type: Number,
-            required: true,
-        },
-    },
     components: { PostAnnotation },
 })
 export default class CardViewPosts extends Vue {
@@ -40,14 +34,14 @@ export default class CardViewPosts extends Vue {
         this.posts = this.homeST.posts
     }
 
-    @Watch('$props.typeHomeView')
+    @Watch('homeST.typeHomeView')
     @Watch('homeST.posts')
     afterChangeType() {
         this.isChangedType = true
 
-        if (this.$props.typeHomeView === homeViewTypes.DRAFT.number) {
+        if (this.homeST.typeHomeView === homeViewTypes.DRAFT.number) {
             this.posts = this.homeST.posts.filter((p) => p.status === statuses.DRAFT.value)
-        } else if (this.$props.typeHomeView === homeViewTypes.PUBLISHED.number) {
+        } else if (this.homeST.typeHomeView === homeViewTypes.PUBLISHED.number) {
             this.posts = this.homeST.posts.filter((p) => p.status === statuses.PUBLISHED.value)
         } else {
             this.posts = this.homeST.posts

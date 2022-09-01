@@ -10,9 +10,9 @@
                     <v-icon>mdi-chevron-up</v-icon>
                 </v-btn>
             </div>
-            <type-cards-bar :type-home-view="typeHomeView" :set-type-home-view="setTypeHomeView" />
-            <table-view-posts v-if="typeHomeView === types.TABLE.number" />
-            <card-view-posts v-if="typeHomeView !== types.TABLE.number" :type-home-view="typeHomeView" />
+            <type-cards-bar />
+            <table-view-posts v-if="homeST.typeHomeView === types.TABLE.number" />
+            <card-view-posts v-if="homeST.typeHomeView !== types.TABLE.number" />
         </div>
         <no-section-post v-if="!homeST.posts.length && isLoaded && !homeST.isNoFound"></no-section-post>
         <no-posts v-if="homeST.isNoFound && isLoaded"></no-posts>
@@ -25,7 +25,6 @@
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import ServiceStorage from '@/core/lib/service-storage'
 import { vxc } from '@/core/store/store.vuex'
 import TypeCardsBar from '@/app/views/Home/extensions/TypeCardsBar.vue'
 import TableViewPosts from '@/app/views/Home/extensions/tablePosts/TableViewPosts.vue'
@@ -44,7 +43,7 @@ export default class HomeMainContainer extends Vue {
     homeST = vxa.home
     authST = vxc.auth
     isLoaded = false
-    typeHomeView = 0
+
     types = homeViewTypes
     filter = {
         justPublished: false,
@@ -71,11 +70,6 @@ export default class HomeMainContainer extends Vue {
 
     goToUp() {
         window.scroll(0, 0)
-    }
-
-    setTypeHomeView(val: number) {
-        this.typeHomeView = val
-        ServiceStorage.setProp('typeHomeView', val)
     }
 }
 </script>

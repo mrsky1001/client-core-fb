@@ -8,16 +8,16 @@
             <v-btn
                 title="Только черновики"
                 text
-                :class="typeHomeView === types.DRAFT.number ? 'is-active' : null"
-                @click="setTypeHomeView(types.DRAFT.number)"
+                :class="homeST.typeHomeView === types.DRAFT.number ? 'is-active' : null"
+                @click="homeST.setTypeHomeView(types.DRAFT.number)"
             >
                 <v-icon>mdi-upload-off</v-icon>
             </v-btn>
             <v-btn
                 title="Только опубликованные"
                 text
-                :class="typeHomeView === types.PUBLISHED.number ? 'is-active' : null"
-                @click="setTypeHomeView(types.PUBLISHED.number)"
+                :class="homeST.typeHomeView === types.PUBLISHED.number ? 'is-active' : null"
+                @click="homeST.setTypeHomeView(types.PUBLISHED.number)"
             >
                 <v-icon>mdi-upload</v-icon>
             </v-btn>
@@ -26,16 +26,16 @@
             <v-btn
                 title="Показать таблицей"
                 text
-                :class="typeHomeView === types.TABLE.number ? 'is-active' : null"
-                @click="setTypeHomeView(types.TABLE.number)"
+                :class="homeST.typeHomeView === types.TABLE.number ? 'is-active' : null"
+                @click="homeST.setTypeHomeView(types.TABLE.number)"
             >
                 <v-icon>mdi-format-list-bulleted-square</v-icon>
             </v-btn>
             <v-btn
                 title="Показать карточками"
                 text
-                :class="typeHomeView === types.CARDS ? 'is-active' : null"
-                @click="setTypeHomeView(types.CARDS)"
+                :class="homeST.typeHomeView === types.CARDS.number ? 'is-active' : null"
+                @click="homeST.setTypeHomeView(types.CARDS.number)"
             >
                 <v-icon>mdi-view-quilt</v-icon>
             </v-btn>
@@ -51,20 +51,10 @@ import homeViewTypes from '@/core/collections/homeViewTypes'
 
 import { vxa } from '@/app/store/store.app'
 
-@Component({
-    props: {
-        typeHomeView: {
-            type: Number,
-            required: true,
-        },
-        setTypeHomeView: {
-            type: Function,
-            required: true,
-        },
-    },
-})
+@Component({})
 export default class TypeCardsBar extends Vue {
     authST = vxc.auth
+    homeST = vxa.home
     types = homeViewTypes
     // toggleFilter(filter: IPostsFilter) {
     //     const f = this.homeST.selectedFilters.find((f) => f.text === filter.text)
