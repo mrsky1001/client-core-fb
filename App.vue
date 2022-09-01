@@ -37,10 +37,15 @@ export default class App extends Vue {
 
 <style lang="scss">
 @import '../public/assets/fonts/source sans pro/sourcesanspro.css';
+@import '../public/assets/fonts/PTM55FT.ttf';
 
 $mdi-font-name: 'Source Sans Pro';
 $body-font-family: 'Source Sans Pro';
+$code-font-family: 'PT Mono';
 $title-font: 'Comfortaa';
+//$mdi-font-name: 'PT Mono';
+//$body-font-family: 'PT Mono';
+//$title-font: 'PT Mono';
 $my-color-button-1: '#00bd007d';
 
 $material-light: (
@@ -103,6 +108,7 @@ $material-light: (
             //    color: #2c3e50;
             //}
 
+            //font-family: 'PT Mono', monospace;
             &.vue-line-clamp {
                 overflow: visible;
             }
@@ -122,7 +128,7 @@ $material-light: (
             }
 
             font-size: 1.2em;
-            line-height: 25px;
+            //line-height: 25px;
 
             p {
                 font-size: 18px;
@@ -201,8 +207,10 @@ $material-light: (
                 border-radius: 0.5rem;
                 overflow-x: scroll;
 
-                * {
+                *,
+                > * {
                     font-family: 'JetBrainsMono', monospace !important;
+                    //font-family: $code-font-family, monospace !important;
                     font-size: small !important;
                 }
 
