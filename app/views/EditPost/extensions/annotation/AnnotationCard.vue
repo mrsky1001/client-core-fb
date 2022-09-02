@@ -91,7 +91,7 @@ export default class AnnotationCard extends Vue {
     justify-content: space-between;
     align-items: baseline;
 
-    > :last-child {
+    > .v-btn {
         margin-left: 10px;
     }
 }

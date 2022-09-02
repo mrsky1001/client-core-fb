@@ -32,6 +32,8 @@ export class HomeStore extends VuexModule {
     filtersPosts: IPostsFilter[] = []
     typeHomeView = 0
 
+    getImgsForPhotoDomain() {}
+
     @mutation setTypeHomeView(val: number) {
         this.typeHomeView = val === this.typeHomeView ? 0 : val
     }
@@ -86,6 +88,7 @@ export class HomeStore extends VuexModule {
 
         return getSections()
             .then((sections) => {
+                console.log('sections', sections)
                 this.setSections(sections)
             })
             .finally(() => {

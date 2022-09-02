@@ -10,6 +10,7 @@ import { IUser } from '@/core/models/interfaces/auth/IUser'
 import statuses from '@/core/collections/statuses'
 import User from '@/core/models/classes/auth/User'
 import Annotation from '@/core/models/classes/article/Annotation'
+import config from '../../../../../config/config'
 
 export default class Post extends GenericModel implements IPost {
     private _title = ''
@@ -17,7 +18,7 @@ export default class Post extends GenericModel implements IPost {
     private _content = ''
     private _sectionId = ''
     private _countSymbols = 0
-    private _domain = 'dev'
+    private _domain = config.server.domain
     private _creatingDate = new Date()
     private _updatingDate = new Date()
     private _publishedDate: Date | undefined = undefined
@@ -234,6 +235,10 @@ export default class Post extends GenericModel implements IPost {
 
     set tags(value: string[]) {
         this._tags = value
+    }
+
+    get photoImages() {
+        this._content.split('')
     }
 
     addTag(tag: string) {

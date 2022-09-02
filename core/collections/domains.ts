@@ -8,4 +8,5 @@ export default {
     HOME: { name: 'home', description: 'Дом и техника' },
     TRAVEL: { name: 'travel', description: 'Путешествия' },
     PHOTO: { name: 'photo', description: 'Фото' },
+    STORE: { name: 'store', description: 'Лавка' },
 }

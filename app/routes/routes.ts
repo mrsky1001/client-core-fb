@@ -20,12 +20,22 @@ import Conditions from '@/core/components/docs/conditions/Conditions.vue'
 import Disclaimer from '@/core/components/docs/disclaimer/Disclaimer.vue'
 import CopyrightHolders from '@/core/components/docs/copyrightHolders/CopyrightHolders.vue'
 import Agreement from '@/core/components/docs/agreement/Agreement.vue'
+import domains from '@/core/collections/domains'
+import config from '../../../config/config'
+import PhotoHome from '@/app/views/PhotoHome/PhotoHome.vue'
+
+let home = Home
+if (config.server.domain === domains.PHOTO.name) {
+    home = PhotoHome
+}
+// else if(config.server.domain === domains.STORE.name)
+//   home= StoreHome
 
 const routesComponents = {
     // STORE: Object.assign(routesObj.STORE, { component: Store }),
-    HOME: Object.assign(routesObj.HOME, { component: Home }),
-    SECTION: Object.assign(routesObj.SECTION, { component: Home }),
-    SEARCH: Object.assign(routesObj.SEARCH, { component: Home }),
+    HOME: Object.assign(routesObj.HOME, { component: home }),
+    SECTION: Object.assign(routesObj.SECTION, { component: home }),
+    SEARCH: Object.assign(routesObj.SEARCH, { component: home }),
     // DEV: Object.assign(routesObj.DEV, { component: Home }),
     // DESIGN: Object.assign(routesObj.DESIGN, { component: Store }),
     ABOUT: Object.assign(routesObj.ABOUT, { component: PostPage }),
