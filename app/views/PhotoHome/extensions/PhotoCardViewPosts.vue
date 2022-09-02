@@ -4,14 +4,9 @@
 
 <template>
     <v-row>
-        <v-col v-for="img in images" :key="img.name" class="d-flex child-flex" :cols="img.size">
+        <v-col v-for="img in photoImages" :key="img.name" class="d-flex child-flex" :cols="img.size">
             <v-hover v-slot:default="{ hover }">
-                <v-img
-                    :src="`https://picsum.photos/500/300?image=${img.name}`"
-                    :lazy-src="`https://picsum.photos/10/6?image=${img.name}`"
-                    class="grey lighten-2 img-class"
-                    @mouseenter="imgHover(img.name)"
-                >
+                <v-img :src="img.url" class="grey lighten-2 img-class">
                     <template v-slot:placeholder>
                         <v-row class="fill-height ma-0" align="center" justify="center">
                             <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
@@ -19,11 +14,11 @@
                     </template>
 
                     <transition name="fade" duration="1" enter-class="show" leave-active-class="hide">
-                        <div v-show="hover" :id="`imgOverlay${img.name}`" class="img-overlay">
+                        <div v-show="hover" :id="`imgOverlay${img.title}`" class="img-overlay">
                             <div class="img-overlay__title">
                                 <h4>{{ img.title }}</h4>
                             </div>
-                            <div :id="`imgDescriptionOverlay${img.name}`" class="img-overlay__content">
+                            <div :id="`imgDescriptionOverlay${img.title}`" class="img-overlay__content">
                                 {{ img.description }}
                                 <div class="overlay-text"></div>
                             </div>
@@ -42,7 +37,8 @@ import PostAnnotation from '@/app/views/Post/extensions/PostAnnotation/PostAnnot
 import { vxa } from '@/app/store/store.app'
 import homeViewTypes from '@/core/collections/homeViewTypes'
 import statuses from '@/core/collections/statuses'
-import { Watch } from 'vue-property-decorator'
+import { Prop, Watch } from 'vue-property-decorator'
+import { IPhotoPost } from '../../../../../newsrc/core/models/interfaces/article/IPhotoPost'
 
 @Component({
     components: { PostAnnotation },
@@ -51,6 +47,7 @@ export default class CardViewPosts extends Vue {
     homeST = vxa.home
     posts = this.homeST.posts
     isChangedType = false
+    @Prop() photoImages: IPhotoPost[]
 
     @Watch('homeST.posts')
     afterPosts() {
@@ -72,6 +69,7 @@ export default class CardViewPosts extends Vue {
     }
 
     mounted() {
+        console.log(this.photoImages)
         this.afterChangeType()
     }
 }

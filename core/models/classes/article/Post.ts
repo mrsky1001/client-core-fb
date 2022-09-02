@@ -11,6 +11,7 @@ import statuses from '@/core/collections/statuses'
 import User from '@/core/models/classes/auth/User'
 import Annotation from '@/core/models/classes/article/Annotation'
 import config from '../../../../../config/config'
+import { IPhotoPost } from '../../../../../newsrc/core/models/interfaces/article/IPhotoPost'
 
 export default class Post extends GenericModel implements IPost {
     private _title = ''
@@ -21,6 +22,7 @@ export default class Post extends GenericModel implements IPost {
     private _domain = config.server.domain
     private _creatingDate = new Date()
     private _updatingDate = new Date()
+    private _photoImages: IPhotoPost[] = []
     private _publishedDate: Date | undefined = undefined
     private _views = 0
     private _readTime = 0
@@ -56,6 +58,7 @@ export default class Post extends GenericModel implements IPost {
         this.title = initObj.title ? initObj.title : this._title
         this.urlTitle = initObj.urlTitle ? initObj.urlTitle : this._urlTitle
         this.content = initObj.content ? initObj.content : this._content
+        this.photoImages = initObj.photoImages ? initObj.photoImages : this._photoImages
         this.sectionId = initObj.sectionId ? initObj.sectionId : this._sectionId
         this.domain = initObj.domain ? initObj.domain : this._domain
         this.annotation = initObj.annotation ? initObj.annotation : this._annotation
@@ -91,6 +94,14 @@ export default class Post extends GenericModel implements IPost {
 
     set domain(value: string) {
         this._domain = value
+    }
+
+    get photoImages(): IPhotoPost[] {
+        return this._photoImages
+    }
+
+    set photoImages(value: IPhotoPost[]) {
+        this._photoImages = value
     }
 
     get countComments(): number {
@@ -235,10 +246,6 @@ export default class Post extends GenericModel implements IPost {
 
     set tags(value: string[]) {
         this._tags = value
-    }
-
-    get photoImages() {
-        this._content.split('')
     }
 
     addTag(tag: string) {

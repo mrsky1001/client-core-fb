@@ -12,14 +12,17 @@
             </div>
             <!--            <type-cards-bar />-->
             <!--            <table-view-posts v-if="homeST.typeHomeView === types.TABLE.number" />-->
-            <div v-for="section in homeST.sections" :key="section.id" class="photo-section">
+            <div v-for="post in homeST.posts" :key="post.id" class="photo-post">
                 <v-row>
                     <v-col cols="12">
-                        <h3 class="section-photo__header">{{ section.name }}</h3>
+                        <h3 class="post-photo__header">{{ post.title }}</h3>
                     </v-col>
                 </v-row>
                 <v-divider></v-divider>
-                <photo-card-view-posts v-if="homeST.typeHomeView !== types.TABLE.number" />
+                <photo-card-view-posts
+                    v-if="homeST.typeHomeView !== types.TABLE.number"
+                    :photo-images="post.photoImages"
+                />
             </div>
         </div>
         <no-section-post v-if="!homeST.posts.length && isLoaded && !homeST.isNoFound"></no-section-post>
@@ -124,7 +127,7 @@ export default class HomeMainContainer extends Vue {
     }
 }
 
-.section-photo__header {
+.post-photo__header {
     font-size: xx-large;
     font-weight: 100;
 }
@@ -134,7 +137,7 @@ export default class HomeMainContainer extends Vue {
     position: relative;
     z-index: 3;
     padding: 0 2% 0 5%;
-    .photo-section {
+    .photo-post {
         margin: 0 0 100px 0;
     }
 }
