@@ -13,9 +13,64 @@
             <!--            <type-cards-bar />-->
             <!--            <table-view-posts v-if="homeST.typeHomeView === types.TABLE.number" />-->
             <div v-for="post in homeST.posts" :key="post.id" class="photo-post">
-                <v-row>
+                <v-row class="photo-post-header">
                     <v-col cols="12">
-                        <h3 class="post-photo__header">{{ post.title }}</h3>
+                        <router-link :to="`/post-id/${post.id}`">
+                            <h3 class="post-photo__header">{{ post.title }}</h3>
+                        </router-link>
+                    </v-col>
+                    <v-col>
+                        <v-card-actions class="my-card-actions">
+                            <v-list-item class="my-list-item">
+                                <v-list-item-avatar v-if="post.author.avatar && !hasErrorImg" class="user-avatar">
+                                    <v-img :src="post.author.avatar" @error="errorImgEvent" />
+                                </v-list-item-avatar>
+                                <v-list-item-avatar v-if="hasErrorImg" class="user-avatar">
+                                    <v-icon> mdi-panda </v-icon>
+                                </v-list-item-avatar>
+                                <v-list-item-action-text>
+                                    <v-list-item-title>@{{ post.author.username }}</v-list-item-title>
+                                </v-list-item-action-text>
+                                <v-row align="center" justify="end" class="my-row-item-action">
+                                    <v-list-item-action-text
+                                        v-if="authST.isEditor"
+                                        :title="postST.statusObj(post.status).text"
+                                    >
+                                        <v-list-item-title>
+                                            <v-icon small :color="postST.statusObj(post.status).color">
+                                                {{ postST.statusObj(post.status).icon }}
+                                            </v-icon>
+                                        </v-list-item-title>
+                                    </v-list-item-action-text>
+
+                                    <v-list-item-action-text v-show="post.readTime > 0" title="Время чтения">
+                                        <v-list-item-title>
+                                            <v-icon small> mdi-clock-outline</v-icon>
+                                            {{ post.readTime }} мин.
+                                        </v-list-item-title>
+                                    </v-list-item-action-text>
+                                    <v-list-item-action-text v-show="post.likes.length > 0" title="Нравится">
+                                        <v-list-item-title>
+                                            <v-icon small> mdi-thumb-up-outline</v-icon>
+                                            {{ post.likes.length }}
+                                        </v-list-item-title>
+                                    </v-list-item-action-text>
+                                    <v-list-item-action-text v-show="post.countComments > 0" title="Комментарии">
+                                        <v-list-item-title>
+                                            <v-icon small> mdi-comment-text-outline</v-icon>
+                                            {{ post.countComments }}
+                                        </v-list-item-title>
+                                    </v-list-item-action-text>
+                                    <v-list-item-action-text v-show="post.views" title="Просмотров">
+                                        <v-list-item-title>
+                                            <v-icon small> mdi-eye-outline</v-icon>
+                                            {{ post.views }}
+                                        </v-list-item-title>
+                                    </v-list-item-action-text>
+                                    <header-buttons v-if="authST.isEditor" :post="post" />
+                                </v-row>
+                            </v-list-item>
+                        </v-card-actions>
                     </v-col>
                 </v-row>
                 <v-divider></v-divider>
@@ -50,8 +105,10 @@ import PhotoCardViewPosts from '@/app/views/PhotoHome/extensions/PhotoCardViewPo
 })
 export default class PhotoHomeMainContainer extends Vue {
     homeST = vxa.home
+    postST = vxa.post
     authST = vxc.auth
     isLoaded = false
+    hasErrorImg = false
 
     types = homeViewTypes
     filter = {
@@ -61,6 +118,11 @@ export default class PhotoHomeMainContainer extends Vue {
         sortPopular: true,
         sortOld: false,
         all: false,
+    }
+
+    errorImgEvent(err: string) {
+        if (err) this.hasErrorImg = true
+        else this.hasErrorImg = false
     }
 
     mounted() {
@@ -85,6 +147,10 @@ export default class PhotoHomeMainContainer extends Vue {
 }
 </script>
 <style lang="scss" scoped>
+.photo-post-header{
+  header
+}
+
 .footer-actions {
     display: flex;
     justify-content: center;
