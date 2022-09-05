@@ -6,7 +6,7 @@ import { IGenericModel } from '@/core/models/interfaces/app/IGenericModel'
 import { IUser } from '@/core/models/interfaces/auth/IUser'
 import { IComment } from '@/core/models/interfaces/article/IComment'
 import { IAnnotation } from '@/core/models/interfaces/article/IAnnotation'
-import { IPhotoPost } from '../../../../../newsrc/core/models/interfaces/article/IPhotoPost'
+import IPhotoPost from '@/core/models/interfaces/article/IPhotoPost'
 
 // export interface IPost extends IGenericModel {
 //     title?: string
@@ -26,6 +26,7 @@ export interface IPost extends IGenericModel {
     title?: string
     urlTitle: string
     content?: string
+    photoContent?: string
     domain: string
     creatingDate: Date
     updatingDate: Date

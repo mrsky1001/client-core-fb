@@ -4,30 +4,32 @@
 
 <template>
     <v-row>
-        <v-col v-for="img in photoImages" :key="img.name" class="d-flex child-flex" :cols="img.size">
+        <v-col v-for="img in post.photoImages" :key="img.title" class="d-flex child-flex" :cols="img.size">
             <v-hover v-slot:default="{ hover }">
-                <v-img :src="img.url" class="grey lighten-2 img-class">
-                    <template v-slot:placeholder>
-                        <v-row class="fill-height ma-0" align="center" justify="center">
-                            <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                        </v-row>
-                    </template>
+                <router-link :to="`/post-id/${post.id}`">
+                    <v-img :src="img.url" class="grey lighten-2 img-class">
+                        <template v-slot:placeholder>
+                            <v-row class="fill-height ma-0" align="center" justify="center">
+                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                            </v-row>
+                        </template>
 
-                    <transition name="fade" duration="1" enter-class="show" leave-active-class="hide">
-                        <div v-show="hover" :id="`imgOverlay${img.title}`" class="img-overlay">
-                            <div class="img-overlay__title">
-                                <h4>{{ img.title }}</h4>
+                        <transition name="fade" duration="1" enter-class="show" leave-active-class="hide">
+                            <div v-show="hover" :id="`imgOverlay${img.title}`" class="img-overlay">
+                                <div class="img-overlay__title">
+                                    <h4>{{ img.title }}</h4>
+                                </div>
+                                <div
+                                    :id="`imgDescriptionOverlay${img.title}`"
+                                    class="img-overlay__content"
+                                    v-html="img.description"
+                                >
+                                    <div class="overlay-text"></div>
+                                </div>
                             </div>
-                            <div
-                                :id="`imgDescriptionOverlay${img.title}`"
-                                class="img-overlay__content"
-                                v-html="img.description"
-                            >
-                                <div class="overlay-text"></div>
-                            </div>
-                        </div>
-                    </transition>
-                </v-img>
+                        </transition>
+                    </v-img>
+                </router-link>
             </v-hover>
         </v-col>
     </v-row>
@@ -41,7 +43,7 @@ import { vxa } from '@/app/store/store.app'
 import homeViewTypes from '@/core/collections/homeViewTypes'
 import statuses from '@/core/collections/statuses'
 import { Prop, Watch } from 'vue-property-decorator'
-import { IPhotoPost } from '../../../../../newsrc/core/models/interfaces/article/IPhotoPost'
+import { IPost } from '@/core/models/interfaces/article/IPost'
 
 @Component({
     components: { PostAnnotation },
@@ -50,7 +52,7 @@ export default class CardViewPosts extends Vue {
     homeST = vxa.home
     posts = this.homeST.posts
     isChangedType = false
-    @Prop() photoImages: IPhotoPost[]
+    @Prop() post: IPost
 
     @Watch('homeST.posts')
     afterPosts() {
@@ -72,12 +74,11 @@ export default class CardViewPosts extends Vue {
     }
 
     mounted() {
-        console.log(this.photoImages)
         this.afterChangeType()
     }
 }
 </script>
-<style scoped lang="scss">
+<style lang="scss">
 .my-sheet {
     margin: 0 0 50px 0;
 }
@@ -103,12 +104,19 @@ export default class CardViewPosts extends Vue {
     background: linear-gradient(to top, rgba(0, 0, 0, 0.52), transparent);
     //transition: box-shadow 10s ease-in-out;
 
+    p {
+        margin: 0 !important;
+    }
+
     .img-overlay__content {
         //padding: 50px;
         height: 10vh;
         overflow: auto;
         -ms-overflow-style: none;
         scrollbar-width: none;
+        p {
+            margin-bottom: 0 !important;
+        }
 
         &::-webkit-scrollbar {
             width: 0;

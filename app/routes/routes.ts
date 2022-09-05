@@ -23,10 +23,14 @@ import Agreement from '@/core/components/docs/agreement/Agreement.vue'
 import domains from '@/core/collections/domains'
 import config from '../../../config/config'
 import PhotoHome from '@/app/views/PhotoHome/PhotoHome.vue'
+import PhotoPostPage from '@/app/views/PhotoPost/PhotoPostPage.vue'
 
 let home = Home
+let post = PostPage
+
 if (config.server.domain === domains.PHOTO.name) {
     home = PhotoHome
+    post = PhotoPostPage
 }
 // else if(config.server.domain === domains.STORE.name)
 //   home= StoreHome
@@ -38,7 +42,7 @@ const routesComponents = {
     SEARCH: Object.assign(routesObj.SEARCH, { component: home }),
     // DEV: Object.assign(routesObj.DEV, { component: Home }),
     // DESIGN: Object.assign(routesObj.DESIGN, { component: Store }),
-    ABOUT: Object.assign(routesObj.ABOUT, { component: PostPage }),
+    ABOUT: Object.assign(routesObj.ABOUT, { component: post }),
     CONDITIONS: Object.assign(routesObj.CONDITIONS, { component: Conditions }),
     DISCLAIMER: Object.assign(routesObj.DISCLAIMER, { component: Disclaimer }),
     COPYRIGHT_HOLDERS: Object.assign(routesObj.COPYRIGHT_HOLDERS, { component: CopyrightHolders }),
@@ -53,8 +57,8 @@ const routesComponents = {
     // EMBROIDERY: Object.assign(routesObj.EMBROIDERY, { component: Store }),
     // GADGETS: Object.assign(routesObj.GADGETS, { component: Store }),
 
-    POST: Object.assign(routesObj.POST, { component: PostPage }),
-    POST_BY_ID: Object.assign(routesObj.POST_BY_ID, { component: PostPage }),
+    POST: Object.assign(routesObj.POST, { component: post }),
+    POST_BY_ID: Object.assign(routesObj.POST_BY_ID, { component: post }),
     NEW_POST: Object.assign(routesObj.NEW_POST, { component: EditPostPage }),
     EDIT_POST: Object.assign(routesObj.EDIT_POST, { component: EditPostPage }),
 

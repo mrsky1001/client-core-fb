@@ -11,7 +11,7 @@ import statuses from '@/core/collections/statuses'
 import User from '@/core/models/classes/auth/User'
 import Annotation from '@/core/models/classes/article/Annotation'
 import config from '../../../../../config/config'
-import { IPhotoPost } from '../../../../../newsrc/core/models/interfaces/article/IPhotoPost'
+import IPhotoPost from '@/core/models/interfaces/article/IPhotoPost'
 
 export default class Post extends GenericModel implements IPost {
     private _title = ''
@@ -254,5 +254,9 @@ export default class Post extends GenericModel implements IPost {
 
     removeTag(tag: string) {
         this.tags = this.tags.filter((t) => t !== tag)
+    }
+
+    get photoContent() {
+        return this.content.replace(/(\[\[.*?\]\])|(\*\*\*\*)/g, '')
     }
 }

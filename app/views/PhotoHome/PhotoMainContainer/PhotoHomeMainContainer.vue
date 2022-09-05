@@ -19,10 +19,7 @@
                     </v-col>
                 </v-row>
                 <v-divider></v-divider>
-                <photo-card-view-posts
-                    v-if="homeST.typeHomeView !== types.TABLE.number"
-                    :photo-images="post.photoImages"
-                />
+                <photo-card-view-posts v-if="homeST.typeHomeView !== types.TABLE.number" :post="post" />
             </div>
         </div>
         <no-section-post v-if="!homeST.posts.length && isLoaded && !homeST.isNoFound"></no-section-post>
@@ -51,7 +48,7 @@ import PhotoCardViewPosts from '@/app/views/PhotoHome/extensions/PhotoCardViewPo
 @Component({
     components: { PhotoCardViewPosts, NoPosts, NoSectionPost, TypeCardsBar, TableViewPosts, CardViewPosts, MainColumn },
 })
-export default class HomeMainContainer extends Vue {
+export default class PhotoHomeMainContainer extends Vue {
     homeST = vxa.home
     authST = vxc.auth
     isLoaded = false
@@ -67,10 +64,8 @@ export default class HomeMainContainer extends Vue {
     }
 
     mounted() {
-        console.log('mounted')
         this.homeST.getSections()
 
-        console.log(this.homeST.sections)
         setTimeout(() => {
             this.isLoaded = true
         }, 1000)
