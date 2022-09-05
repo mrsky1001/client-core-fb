@@ -18,8 +18,11 @@
                             <div class="img-overlay__title">
                                 <h4>{{ img.title }}</h4>
                             </div>
-                            <div :id="`imgDescriptionOverlay${img.title}`" class="img-overlay__content">
-                                {{ img.description }}
+                            <div
+                                :id="`imgDescriptionOverlay${img.title}`"
+                                class="img-overlay__content"
+                                v-html="img.description"
+                            >
                                 <div class="overlay-text"></div>
                             </div>
                         </div>
@@ -84,10 +87,13 @@ export default class CardViewPosts extends Vue {
 }
 .img-overlay {
     height: 100%;
+    width: 100%;
     display: flex;
-    align-items: flex-end;
-    align-content: flex-end;
+    align-items: flex-start;
+    flex-direction: column;
     flex-wrap: wrap;
+    justify-content: flex-end;
+    align-content: flex-start;
     position: absolute;
     padding: 0 20px 20px 20px;
 
