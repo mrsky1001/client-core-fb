@@ -13,25 +13,16 @@
             <!--            <type-cards-bar />-->
             <!--            <table-view-posts v-if="homeST.typeHomeView === types.TABLE.number" />-->
             <div v-for="post in homeST.posts" :key="post.id" class="photo-post">
-                <v-row class="photo-post-header">
-                    <v-col cols="12">
+                <div class="photo-post__header">
+                    <div>
                         <router-link :to="`/post-id/${post.id}`">
-                            <h3 class="post-photo__header">{{ post.title }}</h3>
+                            <h3>{{ post.title }}</h3>
                         </router-link>
-                    </v-col>
-                    <v-col>
-                        <v-card-actions class="my-card-actions">
-                            <v-list-item class="my-list-item">
-                                <v-list-item-avatar v-if="post.author.avatar && !hasErrorImg" class="user-avatar">
-                                    <v-img :src="post.author.avatar" @error="errorImgEvent" />
-                                </v-list-item-avatar>
-                                <v-list-item-avatar v-if="hasErrorImg" class="user-avatar">
-                                    <v-icon> mdi-panda </v-icon>
-                                </v-list-item-avatar>
-                                <v-list-item-action-text>
-                                    <v-list-item-title>@{{ post.author.username }}</v-list-item-title>
-                                </v-list-item-action-text>
-                                <v-row align="center" justify="end" class="my-row-item-action">
+                    </div>
+                    <div>
+                        <v-card-actions class="actions">
+                            <v-list-item class="action__list-item">
+                                <v-row align="center" justify="end">
                                     <v-list-item-action-text
                                         v-if="authST.isEditor"
                                         :title="postST.statusObj(post.status).text"
@@ -67,12 +58,26 @@
                                             {{ post.views }}
                                         </v-list-item-title>
                                     </v-list-item-action-text>
-                                    <header-buttons v-if="authST.isEditor" :post="post" />
+                                    <photo-header-buttons v-if="authST.isEditor" :post="post" />
+                                    <div>
+                                        <v-list-item-avatar
+                                            v-if="post.author.avatar && !hasErrorImg"
+                                            class="user-avatar"
+                                        >
+                                            <v-img :src="post.author.avatar" @error="errorImgEvent" />
+                                        </v-list-item-avatar>
+                                        <v-list-item-avatar v-if="hasErrorImg" class="user-avatar">
+                                            <v-icon> mdi-panda </v-icon>
+                                        </v-list-item-avatar>
+                                        <v-list-item-action-text>
+                                            <v-list-item-title> @{{ post.author.username }}</v-list-item-title>
+                                        </v-list-item-action-text>
+                                    </div>
                                 </v-row>
                             </v-list-item>
                         </v-card-actions>
-                    </v-col>
-                </v-row>
+                    </div>
+                </div>
                 <v-divider></v-divider>
                 <photo-card-view-posts v-if="homeST.typeHomeView !== types.TABLE.number" :post="post" />
             </div>
@@ -99,9 +104,19 @@ import NoPosts from '@/app/components/NoPosts/NoPosts.vue'
 import { Watch } from 'vue-property-decorator'
 import homeViewTypes from '@/core/collections/homeViewTypes'
 import PhotoCardViewPosts from '@/app/views/PhotoHome/extensions/PhotoCardViewPosts.vue'
+import PhotoHeaderButtons from '@/app/views/PhotoPost/extensions/PostHeader/HeaderButtons/PhotoHeaderButtons.vue'
 
 @Component({
-    components: { PhotoCardViewPosts, NoPosts, NoSectionPost, TypeCardsBar, TableViewPosts, CardViewPosts, MainColumn },
+    components: {
+        PhotoHeaderButtons,
+        PhotoCardViewPosts,
+        NoPosts,
+        NoSectionPost,
+        TypeCardsBar,
+        TableViewPosts,
+        CardViewPosts,
+        MainColumn,
+    },
 })
 export default class PhotoHomeMainContainer extends Vue {
     homeST = vxa.home
@@ -147,8 +162,32 @@ export default class PhotoHomeMainContainer extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-.photo-post-header{
-  header
+.photo-post__header {
+    display: flex;
+    justify-content: space-between;
+
+    a {
+        text-decoration: none;
+        color: gray;
+        h3 {
+            font-size: xx-large;
+            font-weight: 100;
+        }
+    }
+
+    .actions {
+        .action__list-item {
+            .row {
+                > * {
+                    margin-left: 20px;
+                }
+                :last-child {
+                    margin: 0;
+                    display: flex;
+                }
+            }
+        }
+    }
 }
 
 .footer-actions {
@@ -186,11 +225,6 @@ export default class PhotoHomeMainContainer extends Vue {
     &:hover {
         opacity: 100%;
     }
-}
-
-.post-photo__header {
-    font-size: xx-large;
-    font-weight: 100;
 }
 
 .home-main-column {
