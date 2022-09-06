@@ -47,7 +47,7 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import { vxc } from '@/core/store/store.vuex'
-import homeViewTypes from '@/core/collections/homeViewTypes'
+import homeViewTypes from '@/core/collections/home-view-types'
 
 import { vxa } from '@/app/store/store.app'
 

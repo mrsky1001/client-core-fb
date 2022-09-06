@@ -17,7 +17,7 @@ import Vue from 'vue'
 import Component from 'vue-class-component'
 import PostAnnotation from '@/app/views/Post/extensions/PostAnnotation/PostAnnotation.vue'
 import { vxa } from '@/app/store/store.app'
-import homeViewTypes from '@/core/collections/homeViewTypes'
+import homeViewTypes from '@/core/collections/home-view-types'
 import statuses from '@/core/collections/statuses'
 import { Watch } from 'vue-property-decorator'
 

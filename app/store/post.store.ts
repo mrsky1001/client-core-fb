@@ -7,7 +7,14 @@
 
 import Vuex from 'vuex'
 import Vue from 'vue'
-import { addLikePost, changeStatusPost, deletePost, getPost, removeLikePost } from '@/core/services/post.services'
+import {
+    addLikePost,
+    changeStatusPost,
+    deletePost,
+    editPost,
+    getPost,
+    removeLikePost,
+} from '@/core/services/post.services'
 import { addComment, deleteComment, getComments } from '@/core/services/comment.services'
 import { IPost } from '@/core/models/interfaces/article/IPost'
 import routesObj from '@/app/routes/routes-obj'
@@ -18,6 +25,7 @@ import statuses from '@/core/collections/statuses'
 import { vxc } from '@/core/store/store.vuex'
 import recaptchaLib from '@/core/lib/recaptcha.lib'
 import { vxa } from '@/app/store/store.app'
+import IPhotoPost from '@/core/models/interfaces/article/IPhotoPost'
 
 Vue.use(Vuex)
 
@@ -106,6 +114,15 @@ export class PostStore extends VuexModule {
             clearInterval(interval)
             clearTimeout(timer)
         }, seconds * 1000)
+    }
+
+    @action
+    async onChangeSizePhotoImg(props: { img: IPhotoPost; size: number }) {
+        props.img.size = props.size
+
+        if (this.post) {
+            return changeSizePhotoPost(this.post.id, props.img.url, props.size)
+        }
     }
 
     @action

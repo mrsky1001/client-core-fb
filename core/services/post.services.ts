@@ -15,6 +15,7 @@ import { ISnackbarProps } from '@/core/store/app/snackbar.store'
 import { validationProp } from '@/core/lib/validation'
 import { IPostsFilter } from '@/core/models/interfaces/filter/filters-posts'
 import config from '../../../config/config'
+import IPhotoPost from '@/core/models/interfaces/article/IPhotoPost'
 
 export const getInValidPostFields = (post: Post) => {
     const rules: IRule[] = [
@@ -199,6 +200,27 @@ export const changeStatusPost = (postId: string, status: number): Promise<Post> 
             .then((res: AxiosResponse) => {
                 responseHandler(res)
                     .then((data) => resolve(new Post(data.post)))
+                    .catch((err: AxiosError) => {
+                        handlerError(err)
+                        reject(err)
+                    })
+            })
+            .catch((err: AxiosError) => {
+                handlerError(err)
+                reject(err)
+            })
+    })
+}
+
+export const changeSizePhotoPost = (postId: string, imgUrl: string, size: number): Promise<IPhotoPost> => {
+    return new Promise<IPhotoPost>((resolve, reject) => {
+        const url = `${urls.UPDATE_POST_PHOTO_SIZE}/${postId}`
+
+        api()
+            .post(url, { size }, { params: { imgUrl } })
+            .then((res: AxiosResponse) => {
+                responseHandler(res)
+                    .then((data) => resolve(data.photoImages))
                     .catch((err: AxiosError) => {
                         handlerError(err)
                         reject(err)

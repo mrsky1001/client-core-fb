@@ -19,7 +19,7 @@ import Component from 'vue-class-component'
 import { vxa } from '@/app/store/store.app'
 import routesObj from '@/app/routes/routes-obj'
 import { Watch } from 'vue-property-decorator'
-import homeViewTypes from '@/core/collections/homeViewTypes'
+import homeViewTypes from '@/core/collections/home-view-types'
 
 @Component
 export default class Sections extends Vue {

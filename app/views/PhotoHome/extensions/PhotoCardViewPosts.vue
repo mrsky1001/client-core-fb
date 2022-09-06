@@ -6,30 +6,54 @@
     <v-row>
         <v-col v-for="img in post.photoImages" :key="img.title" class="d-flex child-flex" :cols="img.size">
             <v-hover v-slot:default="{ hover }">
-                <router-link :to="`/post-id/${post.id}`">
-                    <v-img :src="img.url" class="grey lighten-2 img-class">
-                        <template v-slot:placeholder>
-                            <v-row class="fill-height ma-0" align="center" justify="center">
-                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                            </v-row>
+                <div class="img-container">
+                    <v-menu v-if="authST.isEditor" v-show="hover" bottom left>
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-btn fab small v-bind="attrs" v-on="on">
+                                <v-icon>mdi-image-size-select-large</v-icon>
+                            </v-btn>
                         </template>
 
-                        <transition name="fade" duration="1" enter-class="show" leave-active-class="hide">
-                            <div v-show="hover" :id="`imgOverlay${img.title}`" class="img-overlay">
-                                <div class="img-overlay__title">
-                                    <h4>{{ img.title }}</h4>
+                        <v-list class="img-sizer">
+                            <v-list-item
+                                v-for="(size, i) in photoSizes"
+                                :key="i"
+                                class="sizer-item"
+                                :value="img.size"
+                                @click="
+                                    postST.setPost(post)
+                                    postST.onChangeSizePhotoImg({ img, size })
+                                "
+                            >
+                                <v-list-item-title>{{ size }}</v-list-item-title>
+                            </v-list-item>
+                        </v-list>
+                    </v-menu>
+                    <router-link :to="`/post-id/${post.id}`">
+                        <v-img :src="img.url" class="grey lighten-2 img-class">
+                            <template v-slot:placeholder>
+                                <v-row class="fill-height ma-0" align="center" justify="center">
+                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                </v-row>
+                            </template>
+
+                            <transition name="fade" duration="1" enter-class="show" leave-active-class="hide">
+                                <div v-show="hover" :id="`imgOverlay${img.title}`" class="img-overlay">
+                                    <div class="img-overlay__title">
+                                        <h4>{{ img.title }}</h4>
+                                    </div>
+                                    <div
+                                        :id="`imgDescriptionOverlay${img.title}`"
+                                        class="img-overlay__content"
+                                        v-html="img.description"
+                                    >
+                                        <div class="overlay-text"></div>
+                                    </div>
                                 </div>
-                                <div
-                                    :id="`imgDescriptionOverlay${img.title}`"
-                                    class="img-overlay__content"
-                                    v-html="img.description"
-                                >
-                                    <div class="overlay-text"></div>
-                                </div>
-                            </div>
-                        </transition>
-                    </v-img>
-                </router-link>
+                            </transition>
+                        </v-img>
+                    </router-link>
+                </div>
             </v-hover>
         </v-col>
     </v-row>
@@ -40,18 +64,23 @@ import Vue from 'vue'
 import Component from 'vue-class-component'
 import PostAnnotation from '@/app/views/Post/extensions/PostAnnotation/PostAnnotation.vue'
 import { vxa } from '@/app/store/store.app'
-import homeViewTypes from '@/core/collections/homeViewTypes'
+import homeViewTypes from '@/core/collections/home-view-types'
 import statuses from '@/core/collections/statuses'
 import { Prop, Watch } from 'vue-property-decorator'
 import { IPost } from '@/core/models/interfaces/article/IPost'
+import photoSizes from '@/core/collections/photo-sizes'
+import { vxc } from '@/core/store/store.vuex'
 
 @Component({
     components: { PostAnnotation },
 })
 export default class CardViewPosts extends Vue {
     homeST = vxa.home
+    authST = vxc.auth
+    postST = vxa.post
     posts = this.homeST.posts
     isChangedType = false
+    photoSizes = photoSizes
     @Prop() post: IPost
 
     @Watch('homeST.posts')
@@ -154,6 +183,22 @@ export default class CardViewPosts extends Vue {
 
     .col {
         min-width: 300px;
+    }
+}
+
+.img-container {
+    position: relative;
+    > .v-btn {
+        position: absolute;
+        z-index: 1;
+        top: 10px;
+        right: 10px;
+    }
+}
+
+.img-sizer {
+    .sizer-item {
+        text-align: center;
     }
 }
 

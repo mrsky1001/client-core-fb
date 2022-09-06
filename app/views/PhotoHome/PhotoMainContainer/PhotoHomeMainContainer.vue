@@ -102,7 +102,7 @@ import { vxa } from '@/app/store/store.app'
 import NoSectionPost from '@/app/components/NoSectionPosts/NoSectionPost.vue'
 import NoPosts from '@/app/components/NoPosts/NoPosts.vue'
 import { Watch } from 'vue-property-decorator'
-import homeViewTypes from '@/core/collections/homeViewTypes'
+import homeViewTypes from '@/core/collections/home-view-types'
 import PhotoCardViewPosts from '@/app/views/PhotoHome/extensions/PhotoCardViewPosts.vue'
 import PhotoHeaderButtons from '@/app/views/PhotoPost/extensions/PostHeader/HeaderButtons/PhotoHeaderButtons.vue'
 
