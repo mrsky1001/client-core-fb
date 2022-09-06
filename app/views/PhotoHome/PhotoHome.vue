@@ -8,9 +8,7 @@
         <!--        <div class="section-header">-->
         <!--            <h2 class="section-title">- {{ homeST.currentSection.name }} -</h2>-->
         <!--        </div>-->
-        <flex-container>
-            <photo-home-main-container></photo-home-main-container>
-        </flex-container>
+        <photo-home-main-container></photo-home-main-container>
     </v-main>
 </template>
 

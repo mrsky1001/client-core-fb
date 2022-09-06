@@ -212,12 +212,12 @@ export const changeStatusPost = (postId: string, status: number): Promise<Post> 
     })
 }
 
-export const changeSizePhotoPost = (postId: string, imgUrl: string, size: number): Promise<IPhotoPost> => {
+export const changeSizePhotoPost = (postId: string, title: string, size: number): Promise<IPhotoPost> => {
     return new Promise<IPhotoPost>((resolve, reject) => {
         const url = `${urls.UPDATE_POST_PHOTO_SIZE}/${postId}`
 
         api()
-            .post(url, { size }, { params: { imgUrl } })
+            .post(url, { size }, { params: { title } })
             .then((res: AxiosResponse) => {
                 responseHandler(res)
                     .then((data) => resolve(data.photoImages))

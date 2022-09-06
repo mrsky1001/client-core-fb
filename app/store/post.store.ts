@@ -122,7 +122,7 @@ export class PostStore extends VuexModule {
         props.img.size = props.size
 
         if (this.post) {
-            return changeSizePhotoPost(this.post.id, props.img.url, props.size)
+            return changeSizePhotoPost(this.post.id, props.img.title, props.size)
         }
     }
 

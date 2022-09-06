@@ -18,8 +18,8 @@
                             <v-list-item
                                 v-for="(size, i) in photoSizes"
                                 :key="i"
-                                class="sizer-item"
-                                :value="img.size"
+                                :class="`sizer-item ${img.size === size ? 'sizer-item__active' : ''}`"
+                                active-class="sizer-item__active"
                                 @click="
                                     postST.setPost(post)
                                     postST.onChangeSizePhotoImg({ img, size })
@@ -199,6 +199,11 @@ export default class CardViewPosts extends Vue {
 .img-sizer {
     .sizer-item {
         text-align: center;
+    }
+
+    .sizer-item__active {
+        color: #000000;
+        background: lightgray;
     }
 }
 
