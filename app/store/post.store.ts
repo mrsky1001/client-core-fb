@@ -9,6 +9,7 @@ import Vuex from 'vuex'
 import Vue from 'vue'
 import {
     addLikePost,
+    changeSizePhotoPost,
     changeStatusPost,
     deletePost,
     editPost,
