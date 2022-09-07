@@ -34,12 +34,12 @@
                                         </v-list-item-title>
                                     </v-list-item-action-text>
 
-                                    <v-list-item-action-text v-show="post.readTime > 0" title="Время чтения">
-                                        <v-list-item-title>
-                                            <v-icon small> mdi-clock-outline</v-icon>
-                                            {{ post.readTime }} мин.
-                                        </v-list-item-title>
-                                    </v-list-item-action-text>
+                                    <!--                                    <v-list-item-action-text v-show="post.readTime > 0" title="Время чтения">-->
+                                    <!--                                        <v-list-item-title>-->
+                                    <!--                                            <v-icon small> mdi-clock-outline</v-icon>-->
+                                    <!--                                            {{ post.readTime }} мин.-->
+                                    <!--                                        </v-list-item-title>-->
+                                    <!--                                    </v-list-item-action-text>-->
                                     <v-list-item-action-text v-show="post.likes.length > 0" title="Нравится">
                                         <v-list-item-title>
                                             <v-icon small> mdi-thumb-up-outline</v-icon>
