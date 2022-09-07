@@ -8,7 +8,7 @@
             <v-icon class="grey--text"> mdi-information-outline</v-icon>
             Информация:
         </p>
-        <div style="margin-left: 20px">
+        <div>
             <v-btn
                 x-small
                 :to="routesObj.AGREEMENT"

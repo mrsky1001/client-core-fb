@@ -9,7 +9,7 @@
             Контакты для связи:
         </p>
 
-        <div style="margin-left: 20px">
+        <div>
             <v-btn
                 plain
                 class="footer-btn font-weight-black"

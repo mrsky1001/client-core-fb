@@ -59,8 +59,10 @@ export default class AppFooter extends Vue {}
     color: grey !important;
 }
 
-.copyright-col {
-    min-width: 250px;
+@media screen and (max-width: 500px) {
+    .copyright-col {
+        min-width: 90vw;
+    }
 }
 
 @media screen and (max-width: 1264px) {

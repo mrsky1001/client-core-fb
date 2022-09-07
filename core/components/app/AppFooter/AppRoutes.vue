@@ -9,7 +9,7 @@
             Карта сайта:
         </p>
 
-        <div style="margin-left: 20px">
+        <div>
             <template v-for="route in routerST.routes">
                 <v-btn
                     v-if="route.onMainBar"
