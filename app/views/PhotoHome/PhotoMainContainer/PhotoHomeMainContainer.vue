@@ -21,8 +21,8 @@
                     </div>
                     <div>
                         <v-card-actions class="actions">
-                            <v-list-item class="action__list-item">
-                                <v-row align="center" justify="end">
+                            <v-list-item class="actions__list-item">
+                                <v-row align="center" justify="end" class="actions-row">
                                     <v-list-item-action-text
                                         v-if="authST.isEditor"
                                         :title="postST.statusObj(post.status).text"
@@ -176,8 +176,12 @@ export default class PhotoHomeMainContainer extends Vue {
     }
 
     .actions {
-        .action__list-item {
-            .row {
+        .actions__list-item {
+            .actions-row {
+                display: flex;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+
                 > * {
                     margin-left: 20px;
                 }
@@ -234,6 +238,27 @@ export default class PhotoHomeMainContainer extends Vue {
     padding: 0 2% 0 5%;
     .photo-post {
         margin: 0 0 100px 0;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .photo-post__header {
+        flex-direction: column;
+
+        .actions {
+            .actions__list-item {
+                padding: 0;
+                .actions-row {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between !important;
+
+                    > * {
+                        margin-left: 0;
+                    }
+                }
+            }
+        }
     }
 }
 </style>
