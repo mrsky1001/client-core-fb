@@ -127,6 +127,15 @@ export class PostStore extends VuexModule {
     }
 
     @action
+    async onChangeLikePhotoImg(props: { img: IPhotoPost }) {
+        props.img.likes =
+
+        if (this.post) {
+            return changeSizePhotoPost(this.post.id, props.img.title, props.size)
+        }
+    }
+
+    @action
     async getPost(props: { postId: string; title: string }) {
         // if (!this.loading) {
         this.loading = true

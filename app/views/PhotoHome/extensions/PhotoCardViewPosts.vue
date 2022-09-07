@@ -7,28 +7,40 @@
         <v-col v-for="img in post.photoImages" :key="img.title" class="d-flex child-flex" :cols="img.size">
             <v-hover v-slot:default="{ hover }">
                 <div class="img-container">
-                    <v-menu v-if="authST.isEditor" v-show="hover" bottom left>
-                        <template v-slot:activator="{ on, attrs }">
-                            <v-btn fab small v-bind="attrs" v-on="on">
-                                <v-icon>mdi-image-size-select-large</v-icon>
-                            </v-btn>
-                        </template>
+                    <div class="img-actions">
+                        <v-btn
+                            fab
+                            small
+                            @click="
+                                postST.setPost(post)
+                                postST.onChangeSizePhotoImg({ img, size })
+                            "
+                        >
+                            <v-icon>mdi-heart-multiple-outline</v-icon>
+                        </v-btn>
+                        <v-menu v-if="authST.isEditor" v-show="hover" bottom left>
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-btn fab small v-bind="attrs" v-on="on">
+                                    <v-icon>mdi-image-size-select-large</v-icon>
+                                </v-btn>
+                            </template>
 
-                        <v-list class="img-sizer">
-                            <v-list-item
-                                v-for="(size, i) in photoSizes"
-                                :key="i"
-                                :class="`sizer-item ${img.size === size ? 'sizer-item__active' : ''}`"
-                                active-class="sizer-item__active"
-                                @click="
-                                    postST.setPost(post)
-                                    postST.onChangeSizePhotoImg({ img, size })
-                                "
-                            >
-                                <v-list-item-title>{{ size }}</v-list-item-title>
-                            </v-list-item>
-                        </v-list>
-                    </v-menu>
+                            <v-list class="img-sizer">
+                                <v-list-item
+                                    v-for="(size, i) in photoSizes"
+                                    :key="i"
+                                    :class="`sizer-item ${img.size === size ? 'sizer-item__active' : ''}`"
+                                    active-class="sizer-item__active"
+                                    @click="
+                                        postST.setPost(post)
+                                        postST.onChangeSizePhotoImg({ img, size })
+                                    "
+                                >
+                                    <v-list-item-title>{{ size }}</v-list-item-title>
+                                </v-list-item>
+                            </v-list>
+                        </v-menu>
+                    </div>
                     <router-link :to="`/post-id/${post.id}`">
                         <v-img :src="img.url" class="grey lighten-2 img-class">
                             <template v-slot:placeholder>
@@ -188,11 +200,17 @@ export default class CardViewPosts extends Vue {
 
 .img-container {
     position: relative;
-    > .v-btn {
+    > .img-actions {
+        width: 100%;
+        display: flex;
+        justify-content: end;
         position: absolute;
         z-index: 1;
         top: 10px;
         right: 10px;
+        > * {
+            margin-left: 10px;
+        }
     }
 }
 
