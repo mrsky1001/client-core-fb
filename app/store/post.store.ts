@@ -8,12 +8,14 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
 import {
+    addLikePhotoPost,
     addLikePost,
     changeSizePhotoPost,
     changeStatusPost,
     deletePost,
     editPost,
     getPost,
+    removeLikePhotoPost,
     removeLikePost,
 } from '@/core/services/post.services'
 import { addComment, deleteComment, getComments } from '@/core/services/comment.services'
@@ -127,11 +129,27 @@ export class PostStore extends VuexModule {
     }
 
     @action
-    async onChangeLikePhotoImg(props: { img: IPhotoPost }) {
-        props.img.likes =
-
+    async setPhotoLike(img: IPhotoPost) {
         if (this.post) {
-            return changeSizePhotoPost(this.post.id, props.img.title, props.size)
+            this.loading = true
+
+            if (img.likes.includes(vxc.auth.user.id)) {
+                return removeLikePhotoPost(this.post.id)
+                    .then((post) => {
+                        this.post = post
+                    })
+                    .finally(() => {
+                        this.loading = false
+                    })
+            } else {
+                return addLikePhotoPost(this.post.id)
+                    .then((post) => {
+                        this.post = post
+                    })
+                    .finally(() => {
+                        this.loading = false
+                    })
+            }
         }
     }
 

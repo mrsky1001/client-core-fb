@@ -170,6 +170,48 @@ export const removeLikePost = (postId: string): Promise<Post> => {
     })
 }
 
+export const addLikePhotoPost = (postId: string): Promise<Post> => {
+    return new Promise<Post>((resolve, reject) => {
+        const url = `${urls.SET_POST_LIKE}/${postId}`
+
+        api()
+            .post(url)
+            .then((res: AxiosResponse) => {
+                responseHandler(res, undefined, false)
+                    .then((data) => resolve(new Post(data.post)))
+                    .catch((err: AxiosError) => {
+                        handlerError(err)
+                        reject(err)
+                    })
+            })
+            .catch((err: AxiosError) => {
+                handlerError(err)
+                reject(err)
+            })
+    })
+}
+
+export const removeLikePhotoPost = (postId: string): Promise<Post> => {
+    return new Promise<Post>((resolve, reject) => {
+        const url = `${urls.DELETE_POST_LIKE}/${postId}`
+
+        api()
+            .delete(url)
+            .then((res: AxiosResponse) => {
+                responseHandler(res, undefined, false)
+                    .then((data) => resolve(new Post(data.post)))
+                    .catch((err: AxiosError) => {
+                        handlerError(err)
+                        reject(err)
+                    })
+            })
+            .catch((err: AxiosError) => {
+                handlerError(err)
+                reject(err)
+            })
+    })
+}
+
 export const addSharePost = (postId: string): Promise<Post> => {
     return new Promise<Post>((resolve, reject) => {
         const url = `${urls.ADD_POST_SHARE}/${postId}`
@@ -212,15 +254,15 @@ export const changeStatusPost = (postId: string, status: number): Promise<Post> 
     })
 }
 
-export const changeSizePhotoPost = (postId: string, title: string, size: number): Promise<IPhotoPost> => {
+export const changeSizePhotoPost = (photoPostId: string, size: number): Promise<IPhotoPost> => {
     return new Promise<IPhotoPost>((resolve, reject) => {
-        const url = `${urls.UPDATE_POST_PHOTO_SIZE}/${postId}`
+        const url = `${urls.UPDATE_POST_PHOTO_SIZE}/${photoPostId}`
 
         api()
-            .post(url, { size }, { params: { title } })
+            .post(url, { size })
             .then((res: AxiosResponse) => {
                 responseHandler(res)
-                    .then((data) => resolve(data.photoImages))
+                    .then((data) => resolve(data.photoPost))
                     .catch((err: AxiosError) => {
                         handlerError(err)
                         reject(err)

@@ -39,8 +39,11 @@ export default {
     SET_POST_LIKE: '/api/post-like',
     DELETE_POST_LIKE: '/api/post-like',
 
+    SET_PHOTO_POST_LIKE: '/api/photo-post-like',
+    DELETE_PHOTO_POST_LIKE: '/api/photo-post-like',
+    UPDATE_POST_PHOTO_SIZE: '/api/photo-post-size',
+
     UPDATE_POST_STATUS: '/api/post-status',
-    UPDATE_POST_PHOTO_SIZE: '/api/post-photo-size',
     ADD_POST_SHARE: '/api/post-share',
 
     /**
