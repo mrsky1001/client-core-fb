@@ -124,27 +124,35 @@ export class PostStore extends VuexModule {
         props.img.size = props.size
 
         if (this.post) {
-            return changeSizePhotoPost(this.post.id, props.img.title, props.size)
+            return changeSizePhotoPost(this.post.id, props.size)
         }
     }
 
     @action
     async setPhotoLike(img: IPhotoPost) {
-        if (this.post) {
+        let imgIdx = 0
+
+        const postImg = this.post?.photoImages.find((i, idx) => {
+            imgIdx = idx
+            return i.id === img.id
+        })
+
+        // console.log(this.post && postImg && postImg.id)
+        if (this.post && postImg && postImg.id) {
             this.loading = true
 
             if (img.likes.includes(vxc.auth.user.id)) {
-                return removeLikePhotoPost(this.post.id)
-                    .then((post) => {
-                        this.post = post
+                return removeLikePhotoPost(postImg.id)
+                    .then((photoPost) => {
+                        this.post && (this.post.photoImages[imgIdx] = photoPost)
                     })
                     .finally(() => {
                         this.loading = false
                     })
             } else {
-                return addLikePhotoPost(this.post.id)
-                    .then((post) => {
-                        this.post = post
+                return addLikePhotoPost(postImg.id)
+                    .then((photoPost) => {
+                        this.post && (this.post.photoImages[imgIdx] = photoPost)
                     })
                     .finally(() => {
                         this.loading = false

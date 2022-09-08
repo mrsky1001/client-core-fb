@@ -13,7 +13,7 @@
             <v-card-actions class="btns-actions" :title="titleButtons">
                 <v-btn
                     text
-                    title="Мне нравится"
+                    :title="!authST.isAuth ? msgs.NOT_ALLOWED_LIKE.text : 'Мне нравится'"
                     :disabled="!authST.isAuth"
                     :color="postST.hasLikeUser ? 'red' : ''"
                     @click="postST.setLike"
@@ -40,6 +40,7 @@ import PostContent from '@/app/views/Post/extensions/PostContent/PostContent.vue
 import PostComments from '@/app/views/Post/extensions/PostComments/PostComments.vue'
 import { vxa } from '@/app/store/store.app'
 import { vxc } from '@/core/store/store.vuex'
+import exceptions from '@/core/collections/exceptions'
 
 @Component({
     components: { PostComments, PostHeader, PostContent },
@@ -47,6 +48,7 @@ import { vxc } from '@/core/store/store.vuex'
 export default class PostSheet extends Vue {
     authST = vxc.auth
     postST = vxa.post
+    msgs = exceptions
     titleButtons = this.authST.isAuth ? '' : 'Возможность взаимодействия доступна авторизованным пользователям'
     @Prop() post!: IPost
 }

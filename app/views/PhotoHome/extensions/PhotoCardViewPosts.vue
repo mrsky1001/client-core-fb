@@ -11,9 +11,12 @@
                         <v-btn
                             fab
                             small
+                            :disabled="!authST.isAuth"
+                            :title="!authST.isAuth ? exceptions.NOT_ALLOWED_LIKE.text : 'Мне нравится'"
+                            :style="!authST.isAuth ? { 'background-color': 'rgba(255, 255, 255, 50%) !important' } : ''"
                             @click="
                                 postST.setPost(post)
-                                postST.onChangeSizePhotoImg({ img, size })
+                                postST.setPhotoLike(img)
                             "
                         >
                             <v-icon>mdi-heart-multiple-outline</v-icon>
@@ -82,6 +85,7 @@ import { Prop, Watch } from 'vue-property-decorator'
 import { IPost } from '@/core/models/interfaces/article/IPost'
 import photoSizes from '@/core/collections/photo-sizes'
 import { vxc } from '@/core/store/store.vuex'
+import exceptions from '@/core/collections/exceptions'
 
 @Component({
     components: { PostAnnotation },
@@ -90,6 +94,7 @@ export default class CardViewPosts extends Vue {
     homeST = vxa.home
     authST = vxc.auth
     postST = vxa.post
+    exceptions = exceptions
     posts = this.homeST.posts
     isChangedType = false
     photoSizes = photoSizes
@@ -172,6 +177,7 @@ export default class CardViewPosts extends Vue {
             position: absolute;
             background-image: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
         }
+
         //.overlay-text {
         //    height: 100%;
         //    width: 100%;

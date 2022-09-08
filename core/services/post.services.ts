@@ -16,6 +16,7 @@ import { validationProp } from '@/core/lib/validation'
 import { IPostsFilter } from '@/core/models/interfaces/filter/filters-posts'
 import config from '../../../config/config'
 import IPhotoPost from '@/core/models/interfaces/article/IPhotoPost'
+import PhotoPost from '@/core/models/classes/article/PhotoPost'
 
 export const getInValidPostFields = (post: Post) => {
     const rules: IRule[] = [
@@ -170,15 +171,15 @@ export const removeLikePost = (postId: string): Promise<Post> => {
     })
 }
 
-export const addLikePhotoPost = (postId: string): Promise<Post> => {
-    return new Promise<Post>((resolve, reject) => {
-        const url = `${urls.SET_POST_LIKE}/${postId}`
+export const addLikePhotoPost = (photoPostId: string): Promise<PhotoPost> => {
+    return new Promise<PhotoPost>((resolve, reject) => {
+        const url = `${urls.SET_PHOTO_POST_LIKE}/${photoPostId}`
 
         api()
             .post(url)
             .then((res: AxiosResponse) => {
                 responseHandler(res, undefined, false)
-                    .then((data) => resolve(new Post(data.post)))
+                    .then((data) => resolve(new PhotoPost(data.photoPost)))
                     .catch((err: AxiosError) => {
                         handlerError(err)
                         reject(err)
@@ -191,15 +192,15 @@ export const addLikePhotoPost = (postId: string): Promise<Post> => {
     })
 }
 
-export const removeLikePhotoPost = (postId: string): Promise<Post> => {
-    return new Promise<Post>((resolve, reject) => {
-        const url = `${urls.DELETE_POST_LIKE}/${postId}`
+export const removeLikePhotoPost = (photoPostId: string): Promise<PhotoPost> => {
+    return new Promise<PhotoPost>((resolve, reject) => {
+        const url = `${urls.DELETE_PHOTO_POST_LIKE}/${photoPostId}`
 
         api()
             .delete(url)
             .then((res: AxiosResponse) => {
                 responseHandler(res, undefined, false)
-                    .then((data) => resolve(new Post(data.post)))
+                    .then((data) => resolve(new PhotoPost(data.photoPost)))
                     .catch((err: AxiosError) => {
                         handlerError(err)
                         reject(err)
@@ -211,27 +212,27 @@ export const removeLikePhotoPost = (postId: string): Promise<Post> => {
             })
     })
 }
-
-export const addSharePost = (postId: string): Promise<Post> => {
-    return new Promise<Post>((resolve, reject) => {
-        const url = `${urls.ADD_POST_SHARE}/${postId}`
-
-        api()
-            .post(url)
-            .then((res: AxiosResponse) => {
-                responseHandler(res)
-                    .then((data) => resolve(new Post(data.post)))
-                    .catch((err: AxiosError) => {
-                        handlerError(err)
-                        reject(err)
-                    })
-            })
-            .catch((err: AxiosError) => {
-                handlerError(err)
-                reject(err)
-            })
-    })
-}
+//
+// export const addSharePost = (postId: string): Promise<Post> => {
+//     return new Promise<Post>((resolve, reject) => {
+//         const url = `${urls.ADD_POST_SHARE}/${postId}`
+//
+//         api()
+//             .post(url)
+//             .then((res: AxiosResponse) => {
+//                 responseHandler(res)
+//                     .then((data) => resolve(new Post(data.post)))
+//                     .catch((err: AxiosError) => {
+//                         handlerError(err)
+//                         reject(err)
+//                     })
+//             })
+//             .catch((err: AxiosError) => {
+//                 handlerError(err)
+//                 reject(err)
+//             })
+//     })
+// }
 
 export const changeStatusPost = (postId: string, status: number): Promise<Post> => {
     return new Promise<Post>((resolve, reject) => {
@@ -254,15 +255,15 @@ export const changeStatusPost = (postId: string, status: number): Promise<Post> 
     })
 }
 
-export const changeSizePhotoPost = (photoPostId: string, size: number): Promise<IPhotoPost> => {
-    return new Promise<IPhotoPost>((resolve, reject) => {
+export const changeSizePhotoPost = (photoPostId: string, size: number): Promise<PhotoPost> => {
+    return new Promise<PhotoPost>((resolve, reject) => {
         const url = `${urls.UPDATE_POST_PHOTO_SIZE}/${photoPostId}`
 
         api()
             .post(url, { size })
             .then((res: AxiosResponse) => {
                 responseHandler(res)
-                    .then((data) => resolve(data.photoPost))
+                    .then((data) => resolve(new PhotoPost(data.photoPost)))
                     .catch((err: AxiosError) => {
                         handlerError(err)
                         reject(err)
