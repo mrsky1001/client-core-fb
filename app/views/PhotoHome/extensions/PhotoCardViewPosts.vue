@@ -4,19 +4,25 @@
 
 <template>
     <v-row>
-        <v-col v-for="img in post.photoImages" :key="img.title" class="d-flex child-flex" :cols="img.size">
+        <v-col
+            v-for="photoPost in post.photoPosts"
+            :key="photoPost.title"
+            class="d-flex child-flex"
+            :cols="photoPost.size"
+        >
             <v-hover v-slot:default="{ hover }">
                 <div class="img-container">
-                    <div class="img-actions">
+                    <div v-show="hover" class="img-actions">
                         <v-btn
                             fab
                             small
+                            :class="hasLikePhotoPost(photoPost) ? 'isLiked' : ''"
                             :disabled="!authST.isAuth"
                             :title="!authST.isAuth ? exceptions.NOT_ALLOWED_LIKE.text : 'Мне нравится'"
                             :style="!authST.isAuth ? { 'background-color': 'rgba(255, 255, 255, 50%) !important' } : ''"
                             @click="
                                 postST.setPost(post)
-                                postST.setPhotoLike(img)
+                                postST.setPhotoLike(photoPost)
                             "
                         >
                             <v-icon>mdi-heart-multiple-outline</v-icon>
@@ -32,11 +38,11 @@
                                 <v-list-item
                                     v-for="(size, i) in photoSizes"
                                     :key="i"
-                                    :class="`sizer-item ${img.size === size ? 'sizer-item__active' : ''}`"
+                                    :class="`sizer-item ${photoPost.size === size ? 'sizer-item__active' : ''}`"
                                     active-class="sizer-item__active"
                                     @click="
                                         postST.setPost(post)
-                                        postST.onChangeSizePhotoImg({ img, size })
+                                        postST.onChangeSizePhotoImg({ photoPost, size })
                                     "
                                 >
                                     <v-list-item-title>{{ size }}</v-list-item-title>
@@ -45,7 +51,7 @@
                         </v-menu>
                     </div>
                     <router-link :to="`/post-id/${post.id}`">
-                        <v-img :src="img.url" class="grey lighten-2 img-class">
+                        <v-img :src="photoPost.url" class="grey lighten-2 img-class">
                             <template v-slot:placeholder>
                                 <v-row class="fill-height ma-0" align="center" justify="center">
                                     <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
@@ -53,14 +59,14 @@
                             </template>
 
                             <transition name="fade" duration="1" enter-class="show" leave-active-class="hide">
-                                <div v-show="hover" :id="`imgOverlay${img.title}`" class="img-overlay">
+                                <div v-show="hover" :id="`imgOverlay${photoPost.title}`" class="img-overlay">
                                     <div class="img-overlay__title">
-                                        <h4>{{ img.title }}</h4>
+                                        <h4>{{ photoPost.title }}</h4>
                                     </div>
                                     <div
-                                        :id="`imgDescriptionOverlay${img.title}`"
+                                        :id="`imgDescriptionOverlay${photoPost.title}`"
                                         class="img-overlay__content"
-                                        v-html="img.description"
+                                        v-html="photoPost.description"
                                     >
                                         <div class="overlay-text"></div>
                                     </div>
@@ -86,6 +92,7 @@ import { IPost } from '@/core/models/interfaces/article/IPost'
 import photoSizes from '@/core/collections/photo-sizes'
 import { vxc } from '@/core/store/store.vuex'
 import exceptions from '@/core/collections/exceptions'
+import IPhotoPost from '@/core/models/interfaces/article/IPhotoPost'
 
 @Component({
     components: { PostAnnotation },
@@ -103,6 +110,10 @@ export default class CardViewPosts extends Vue {
     @Watch('homeST.posts')
     afterPosts() {
         this.posts = this.homeST.posts
+    }
+
+    hasLikePhotoPost(photoPost: IPhotoPost) {
+        return photoPost.likes.includes(vxc.auth.user.id)
     }
 
     @Watch('homeST.typeHomeView')
@@ -214,6 +225,17 @@ export default class CardViewPosts extends Vue {
         z-index: 1;
         top: 10px;
         right: 10px;
+        > .v-btn {
+            opacity: 0.5;
+            &.isLiked {
+                color: red;
+                opacity: 1;
+            }
+
+            &:hover {
+                opacity: 1;
+            }
+        }
         > * {
             margin-left: 10px;
         }

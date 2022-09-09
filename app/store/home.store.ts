@@ -32,8 +32,6 @@ export class HomeStore extends VuexModule {
     filtersPosts: IPostsFilter[] = []
     typeHomeView = 0
 
-    getImgsForPhotoDomain() {}
-
     @mutation setTypeHomeView(val: number) {
         this.typeHomeView = val === this.typeHomeView ? 0 : val
     }
@@ -60,11 +58,8 @@ export class HomeStore extends VuexModule {
     }
 
     @mutation setCurrentSection(val: ISection | string) {
-        console.log(val)
         if (typeof val === 'string') {
             const sectionTemp = this.sections.find((s) => s.id === val)
-            console.log(this.sections)
-            console.log(sectionTemp)
             this.currentSection = sectionTemp ? sectionTemp : this.currentSection
         } else {
             this.currentSection = val
@@ -88,7 +83,6 @@ export class HomeStore extends VuexModule {
 
         return getSections()
             .then((sections) => {
-                console.log('sections', sections)
                 this.setSections(sections)
             })
             .finally(() => {

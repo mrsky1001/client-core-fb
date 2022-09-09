@@ -29,6 +29,7 @@ import { vxc } from '@/core/store/store.vuex'
 import recaptchaLib from '@/core/lib/recaptcha.lib'
 import { vxa } from '@/app/store/store.app'
 import IPhotoPost from '@/core/models/interfaces/article/IPhotoPost'
+import PhotoPost from '@/core/models/classes/article/PhotoPost'
 
 Vue.use(Vuex)
 
@@ -120,39 +121,39 @@ export class PostStore extends VuexModule {
     }
 
     @action
-    async onChangeSizePhotoImg(props: { img: IPhotoPost; size: number }) {
-        props.img.size = props.size
-
-        if (this.post) {
-            return changeSizePhotoPost(this.post.id, props.size)
-        }
+    async onChangeSizePhotoImg(props: { photoPost: PhotoPost; size: number }) {
+        props.photoPost.size = props.size
+        return changeSizePhotoPost(props.photoPost._id, props.size)
     }
 
     @action
-    async setPhotoLike(img: IPhotoPost) {
-        let imgIdx = 0
+    async setPhotoLike(photoPost: IPhotoPost) {
+        const resetPhotoPost = (photoPost: IPhotoPost) => {
+            if (this.post) {
+                this.post.photoPosts.forEach((p) => {
+                    if (p._id === photoPost.id) {
+                        p.likes = photoPost.likes
+                    }
+                })
+                this.post.photoPosts = [...this.post.photoPosts]
+            }
+        }
 
-        const postImg = this.post?.photoImages.find((i, idx) => {
-            imgIdx = idx
-            return i.id === img.id
-        })
-
-        // console.log(this.post && postImg && postImg.id)
-        if (this.post && postImg && postImg.id) {
+        if (this.post && photoPost && photoPost._id) {
             this.loading = true
 
-            if (img.likes.includes(vxc.auth.user.id)) {
-                return removeLikePhotoPost(postImg.id)
+            if (photoPost.likes.includes(vxc.auth.user.id)) {
+                return removeLikePhotoPost(photoPost._id)
                     .then((photoPost) => {
-                        this.post && (this.post.photoImages[imgIdx] = photoPost)
+                        resetPhotoPost(photoPost)
                     })
                     .finally(() => {
                         this.loading = false
                     })
             } else {
-                return addLikePhotoPost(postImg.id)
+                return addLikePhotoPost(photoPost._id)
                     .then((photoPost) => {
-                        this.post && (this.post.photoImages[imgIdx] = photoPost)
+                        resetPhotoPost(photoPost)
                     })
                     .finally(() => {
                         this.loading = false

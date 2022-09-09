@@ -22,7 +22,7 @@ export default class Post extends GenericModel implements IPost {
     private _domain = config.server.domain
     private _creatingDate = new Date()
     private _updatingDate = new Date()
-    private _photoImages: IPhotoPost[] = []
+    private _photoPosts: IPhotoPost[] = []
     private _publishedDate: Date | undefined = undefined
     private _views = 0
     private _readTime = 0
@@ -58,7 +58,7 @@ export default class Post extends GenericModel implements IPost {
         this.title = initObj.title ? initObj.title : this._title
         this.urlTitle = initObj.urlTitle ? initObj.urlTitle : this._urlTitle
         this.content = initObj.content ? initObj.content : this._content
-        this.photoImages = initObj.photoImages ? initObj.photoImages : this._photoImages
+        this.photoPosts = initObj.photoPosts ? initObj.photoPosts : this._photoPosts
         this.sectionId = initObj.sectionId ? initObj.sectionId : this._sectionId
         this.domain = initObj.domain ? initObj.domain : this._domain
         this.annotation = initObj.annotation ? initObj.annotation : this._annotation
@@ -96,12 +96,12 @@ export default class Post extends GenericModel implements IPost {
         this._domain = value
     }
 
-    get photoImages(): IPhotoPost[] {
-        return this._photoImages
+    get photoPosts(): IPhotoPost[] {
+        return this._photoPosts
     }
 
-    set photoImages(value: IPhotoPost[]) {
-        this._photoImages = value
+    set photoPosts(value: IPhotoPost[]) {
+        this._photoPosts = value
     }
 
     get countComments(): number {
