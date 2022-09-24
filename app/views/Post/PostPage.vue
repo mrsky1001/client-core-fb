@@ -44,7 +44,7 @@ export default class PostPage extends Vue {
 <style lang="scss">
 .post-page {
     .my-router-link {
-        font-size: 38px;
+         font-size: 38px; line-height: normal;
     }
 
     .annotation-img {
