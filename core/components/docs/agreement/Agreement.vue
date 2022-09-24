@@ -8,7 +8,7 @@
             <left-column></left-column>
             <main-column>
                 <v-card class="card-info">
-                    <v-card-title>Согласие на обработку персональных данных </v-card-title>
+                    <v-card-title>Согласие на обработку персональных данных</v-card-title>
                     <v-card-text>
                         <p>
                             Настоящим я, далее – «Субъект персональных данных», во исполнение требований Федерального

@@ -124,7 +124,8 @@ export class AccountStore extends VuexModule {
         })
     }
 
-    @action async deleteAccount() {
+    @action
+    async deleteAccount() {
         return deleteAccount()
     }
 }

@@ -97,6 +97,7 @@ export default class MenuToolbar extends Vue {
 <style lang="scss">
 .menu-toolbar {
     margin: 5px 0 0 0;
+
     .row {
         padding: 0 !important;
     }

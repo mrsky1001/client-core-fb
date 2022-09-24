@@ -5,7 +5,9 @@
 <template>
     <v-card shaped elevation="0">
         <div class="to-up-block" @click="goToUp">
-            <v-btn icon x-large> <v-icon>mdi-chevron-up</v-icon></v-btn>
+            <v-btn icon x-large>
+                <v-icon>mdi-chevron-up</v-icon>
+            </v-btn>
         </div>
         <v-card-text>
             <div class="font-weight-bold ml-8 mb-2">Комментарии</div>
@@ -228,6 +230,7 @@ export default class PostComments extends Vue {
         }
     }
 }
+
 .my-sheet {
     //margin: 20px 0 0 0;
 

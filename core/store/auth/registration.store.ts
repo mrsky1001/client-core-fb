@@ -34,6 +34,7 @@ export class RegistrationStore extends VuexModule {
     @mutation setAgreeConditions(val: boolean) {
         this.agreeConditions = val
     }
+
     @mutation setAgreeAgreement(val: boolean) {
         this.agreeAgreement = val
     }

@@ -75,6 +75,7 @@ export default class Agreements extends Vue {
     min-width: 0 !important;
     padding: 0 16px 0 0 !important;
 }
+
 .p-size-h2 {
     font-size: 0.875rem;
 }

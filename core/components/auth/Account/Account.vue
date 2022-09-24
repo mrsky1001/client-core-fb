@@ -143,6 +143,7 @@ export default class Account extends Vue {
         this.accountST.setIsShowUploadModal(true)
         this.accountST.setIsShowAvaMenuModal(false)
     }
+
     showAvaMenuModal() {
         if (this.accountST.avatar && this.accountST.isLoaded) {
             this.accountST.setIsShowUploadModal(false)
@@ -151,6 +152,7 @@ export default class Account extends Vue {
             this.accountST.setIsShowUploadModal(true)
         }
     }
+
     mounted() {
         this.accountST.getAccountData()
     }

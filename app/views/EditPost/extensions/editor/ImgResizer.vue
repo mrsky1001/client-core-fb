@@ -104,6 +104,7 @@ export default class ImgResizer extends Vue {
         this.style = style
         this.updateAttributes({ style })
     }
+
     mounted() {
         this.tempImg = this.$refs.imgRef ? (this.$refs.imgRef as HTMLImageElement) : null
 

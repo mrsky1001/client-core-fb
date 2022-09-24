@@ -26,7 +26,6 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import { vxa } from '@/app/store/store.app'
-import { Watch } from 'vue-property-decorator'
 
 @Component
 export default class DeletePost extends Vue {

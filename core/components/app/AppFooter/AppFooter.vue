@@ -12,7 +12,9 @@
                         <AppRoutes />
                     </v-col>
                     <v-col cols="12" sm="2" md="2" lg="1" />
-                    <v-col cols="12" sm="10" md="5" lg="6"> <Agreements /></v-col>
+                    <v-col cols="12" sm="10" md="5" lg="6">
+                        <Agreements />
+                    </v-col>
                 </v-row>
             </v-col>
             <v-col cols="12" sm="10" md="3" lg="4">

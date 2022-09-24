@@ -6,7 +6,7 @@
     <div>
         <v-app-bar app light color="white" class="my-app-bar" scroll-target="#scrolling-techniques-2">
             <v-btn v-if="!navbar.isShowSearch" class="d-flex d-md-none" icon @click="navbar.setIsShowDrawer(true)">
-                <v-icon> mdi-menu </v-icon>
+                <v-icon> mdi-menu</v-icon>
             </v-btn>
             <LogoBar />
             <NavDrawer />
@@ -88,6 +88,7 @@ export default class AppNavbar extends Vue {
 
         .active-btn {
             color: #1976d2;
+
             .v-icon {
                 margin-top: 4px;
                 font-size: 28px;

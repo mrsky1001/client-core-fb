@@ -73,7 +73,8 @@ export class AuthStore extends VuexModule {
         this.user = user
     }
 
-    @action async clearUser() {
+    @action
+    async clearUser() {
         this.saveUser(new User())
     }
 
@@ -94,7 +95,8 @@ export class AuthStore extends VuexModule {
         this.isCaptchaVerify = false
     }
 
-    @action async logout() {
+    @action
+    async logout() {
         return logout()
     }
 

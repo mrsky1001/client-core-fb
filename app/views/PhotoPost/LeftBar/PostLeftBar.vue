@@ -58,6 +58,7 @@ export default class PostLeftBar extends Vue {
     justify-content: space-between;
     max-width: 300px;
 }
+
 @media screen and (max-width: 1264px) {
     .ads-container {
         max-width: 100%;

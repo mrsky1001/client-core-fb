@@ -1,20 +1,31 @@
-import { vxa } from '@/app/store/store.app'
 import config from '../../../config/config'
+import { vxa } from '@/app/store/store.app'
+import Post from '@/core/models/classes/article/Post'
 
-export const getMetaInfo = () => {
-    const editST = vxa.edit
-
+const getMetaInfo = (title: string, description: string) => {
     return {
-        title: editST.post.title,
+        title: title,
         meta: [
             {
                 name: 'description',
-                content: editST.post.annotation.text,
+                content: description,
             },
-            { property: 'og:title', content: editST.post.title },
+            { property: 'og:title', content: title },
             { property: 'og:site_name', content: config.server.domain + 'foma-blog.ru' },
             { property: 'og:type', content: 'website' },
             { name: 'robots', content: 'index,follow' },
         ],
     }
+}
+
+export const getMetaInfoForPost = () => {
+    const post = vxa.post.post ?? new Post()
+
+    return getMetaInfo(post.title, post.annotation.text)
+}
+
+export const getMetaInfoForEditPost = () => {
+    const post = vxa.edit.post ?? new Post()
+
+    return getMetaInfo(post.title, post.annotation.text)
 }

@@ -71,6 +71,7 @@ export default class AvatarField extends Vue {
 
         return this.errors.length ? errorClasses : normalClasses
     }
+
     inputClasses() {
         return this.errors.length ? 'error--text error-input' : null
     }

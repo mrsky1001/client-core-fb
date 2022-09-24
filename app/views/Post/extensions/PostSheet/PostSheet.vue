@@ -64,6 +64,7 @@ export default class PostSheet extends Vue {
         //justify-content: flex-end;
         flex-wrap: wrap;
     }
+
     .animation-icon {
         &:hover,
         &.active {

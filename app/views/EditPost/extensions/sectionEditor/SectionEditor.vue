@@ -44,6 +44,7 @@ import NewSectionEditor from '@/app/views/EditPost/extensions/sectionEditor/NewS
 })
 export default class SectionEditor extends Vue {
     editST = vxa.edit
+
     mounted() {
         void this.editST.getSections()
     }
@@ -58,6 +59,7 @@ export default class SectionEditor extends Vue {
 .card-sections {
     box-shadow: none !important;
 }
+
 .sections-btns {
     display: flex;
     flex-wrap: nowrap;

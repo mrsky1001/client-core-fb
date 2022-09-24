@@ -13,7 +13,6 @@ import {
     changeSizePhotoPost,
     changeStatusPost,
     deletePost,
-    editPost,
     getPost,
     removeLikePhotoPost,
     removeLikePost,

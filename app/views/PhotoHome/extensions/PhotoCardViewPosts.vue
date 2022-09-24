@@ -143,6 +143,7 @@ export default class CardViewPosts extends Vue {
 .img-class {
     position: relative;
 }
+
 .img-overlay {
     height: 100%;
     width: 100%;
@@ -171,6 +172,7 @@ export default class CardViewPosts extends Vue {
         overflow: auto;
         -ms-overflow-style: none;
         scrollbar-width: none;
+
         p {
             margin-bottom: 0 !important;
         }
@@ -179,6 +181,7 @@ export default class CardViewPosts extends Vue {
             width: 0;
             height: 0;
         }
+
         &:before {
             content: '';
             height: 70px;
@@ -195,6 +198,7 @@ export default class CardViewPosts extends Vue {
         //    box-shadow: 0 -151px 83px -60px black inset;
         //}
     }
+
     transition: all 0.5s ease-in-out;
 }
 
@@ -202,6 +206,7 @@ export default class CardViewPosts extends Vue {
     background: linear-gradient(to top, rgba(0, 0, 0, 0), transparent);
     opacity: 0.5;
 }
+
 .hide {
     background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
     opacity: 1;
@@ -217,6 +222,7 @@ export default class CardViewPosts extends Vue {
 
 .img-container {
     position: relative;
+
     > .img-actions {
         width: 100%;
         display: flex;
@@ -225,8 +231,10 @@ export default class CardViewPosts extends Vue {
         z-index: 1;
         top: 10px;
         right: 10px;
+
         > .v-btn {
             opacity: 0.5;
+
             &.isLiked {
                 color: red;
                 opacity: 1;
@@ -236,6 +244,7 @@ export default class CardViewPosts extends Vue {
                 opacity: 1;
             }
         }
+
         > * {
             margin-left: 10px;
         }

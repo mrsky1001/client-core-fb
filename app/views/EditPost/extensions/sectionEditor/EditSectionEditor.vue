@@ -23,8 +23,8 @@
             ></v-textarea>
             <div class="section-btn">
                 <v-btn title="Удалить раздел" @click="editST.deleteSection">
-                    <v-icon>mdi-trash-can-outline</v-icon></v-btn
-                >
+                    <v-icon>mdi-trash-can-outline</v-icon>
+                </v-btn>
                 <v-btn class="ml-3" color="success" title="Сохранить изменения в разделе" @click="editST.updateSection">
                     <v-icon>mdi-content-save-edit-outline</v-icon>
                 </v-btn>

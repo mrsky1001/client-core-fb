@@ -64,6 +64,7 @@ import { vxa } from '@/app/store/store.app'
 export default class ImagesGrid extends Vue {
     editST = vxa.edit
     panel = false
+
     addImg(img: string) {
         this.editST.editor.chain().setImage({ src: img }).run()
     }

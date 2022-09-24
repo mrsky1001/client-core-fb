@@ -6,6 +6,7 @@ import store from './store'
 import 'vuetify/dist/vuetify.min.css'
 import '@mdi/font/css/materialdesignicons.min.css'
 import '../public/assets/fonts/source sans pro/sourcesanspro.css'
+
 Vue.config.productionTip = false
 new Vue({
   router: router,

@@ -115,6 +115,7 @@ export default class SideDrawer extends Vue {
 .v-list--nav .v-list-item {
     padding: 0 10px 8px !important;
 }
+
 .logo-link {
     display: flex;
     flex-direction: row;

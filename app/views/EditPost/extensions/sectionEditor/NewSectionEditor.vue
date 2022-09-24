@@ -46,6 +46,7 @@ export default class NewSectionEditor extends Vue {
     flex-direction: row;
     justify-content: right;
 }
+
 .sections-btns {
     display: flex;
     flex-wrap: nowrap;

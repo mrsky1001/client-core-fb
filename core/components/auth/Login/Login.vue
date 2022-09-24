@@ -101,6 +101,7 @@ export default class Login extends Vue {
                 handlerError(err)
             })
     }
+
     beforeRouteEnter(to: IRoute, from: IRoute, next: any) {
         next(() => {
             this.loginST.prevRoute = from

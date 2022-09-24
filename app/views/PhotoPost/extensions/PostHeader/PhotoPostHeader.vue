@@ -18,7 +18,7 @@
                     <v-img :src="post.author.avatar" @error="errorImgEvent" />
                 </v-list-item-avatar>
                 <v-list-item-avatar v-if="hasErrorImg" class="my-avatar">
-                    <v-icon> mdi-panda </v-icon>
+                    <v-icon> mdi-panda</v-icon>
                 </v-list-item-avatar>
                 <v-list-item-action-text>
                     <v-list-item-title>@{{ post.author.username }}</v-list-item-title>
@@ -67,11 +67,10 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import Post from '../../../../../core/models/classes/article/Post'
-import { Prop, Watch } from 'vue-property-decorator'
+import { Prop } from 'vue-property-decorator'
 import HeaderButtons from '@/app/views/Post/extensions/PostHeader/HeaderButtons/HeaderButtons.vue'
 import { vxc } from '@/core/store/store.vuex'
 import { vxa } from '@/app/store/store.app'
-import { getTimeSalt } from '@/core/lib/tools.lib'
 
 @Component({
     components: { HeaderButtons },

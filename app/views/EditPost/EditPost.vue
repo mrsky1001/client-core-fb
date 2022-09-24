@@ -38,7 +38,7 @@ import { IRoute } from '@/core/models/interfaces/app/IRoute'
 import routesObj from '@/app/routes/routes-obj'
 import DeletePost from '@/app/views/Post/extensions/DeletePost/DeletePost.vue'
 import config from '../../../../config/config'
-import { getMetaInfo } from '@/core/lib/meta-info'
+import { getMetaInfoForEditPost } from '@/core/lib/meta-info'
 
 @Component({
     components: {
@@ -49,7 +49,7 @@ import { getMetaInfo } from '@/core/lib/meta-info'
         LeftBar,
         DeletePost,
     },
-    metaInfo: getMetaInfo,
+    metaInfo: getMetaInfoForEditPost,
 })
 export default class EditPostPage extends Vue {
     editST = vxa.edit

@@ -62,6 +62,7 @@ import SectionEditor from '@/app/views/EditPost/extensions/sectionEditor/EditSec
 export default class MainContainer extends Vue {
     editST = vxa.edit
     e6 = 1
+
     mounted() {
         this.editST.autoSave()
     }

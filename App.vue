@@ -20,9 +20,23 @@ import Component from 'vue-class-component'
 import AppFooter from '@/core/components/app/AppFooter/AppFooter.vue'
 import SnackBar from '@/core/components/app/SnackBar/SnackBar.vue'
 import CookieSnackBar from '@/core/components/app/CookieSnackBar/CookieSnackBar.vue'
+import config from '../config/config'
 
 @Component({
     components: { AppFooter, AppNavbar, SnackBar, CookieSnackBar },
+    metaInfo: {
+        title: config.router.metaTitle,
+        meta: [
+            {
+                name: 'description',
+                content: config.router.metaDescription,
+            },
+            { property: 'og:title', content: config.router.metaTitle },
+            { property: 'og:site_name', content: config.server.domain + 'foma-blog.ru' },
+            { property: 'og:type', content: 'website' },
+            { name: 'robots', content: 'index,follow' },
+        ],
+    },
 })
 export default class App extends Vue {
     mounted(): void {
@@ -37,11 +51,9 @@ export default class App extends Vue {
 
 <style lang="scss">
 @import '../public/assets/fonts/source sans pro/sourcesanspro.css';
-@import '../public/assets/fonts/PTM55FT.ttf';
 
 $mdi-font-name: 'Source Sans Pro';
 $body-font-family: 'Source Sans Pro';
-$code-font-family: 'PT Mono';
 $title-font: 'Comfortaa';
 //$mdi-font-name: 'PT Mono';
 //$body-font-family: 'PT Mono';
@@ -59,6 +71,7 @@ $material-light: (
 * {
     font-family: $body-font-family, sans-serif;
 }
+
 //
 //.theme--light.v-btn:hover,
 //.theme--light.v-btn:active,
@@ -83,6 +96,7 @@ $material-light: (
     .container {
         padding: 0 !important;
     }
+
     p,
     .v-card__text,
     .my-card-text {

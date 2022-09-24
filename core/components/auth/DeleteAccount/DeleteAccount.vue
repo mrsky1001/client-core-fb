@@ -55,6 +55,7 @@ export default class DeleteAccount extends Vue {
                 handlerError(err)
             })
     }
+
     goToHome() {
         this.$router.push(routesObj.HOME)
     }

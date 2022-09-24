@@ -67,7 +67,7 @@
                                             <v-img :src="post.author.avatar" @error="errorImgEvent" />
                                         </v-list-item-avatar>
                                         <v-list-item-avatar v-if="hasErrorImg" class="user-avatar">
-                                            <v-icon> mdi-panda </v-icon>
+                                            <v-icon> mdi-panda</v-icon>
                                         </v-list-item-avatar>
                                         <v-list-item-action-text>
                                             <v-list-item-title> @{{ post.author.username }}</v-list-item-title>
@@ -169,6 +169,7 @@ export default class PhotoHomeMainContainer extends Vue {
     a {
         text-decoration: none;
         color: gray;
+
         h3 {
             font-size: xx-large;
             font-weight: 100;
@@ -185,6 +186,7 @@ export default class PhotoHomeMainContainer extends Vue {
                 > * {
                     margin-left: 20px;
                 }
+
                 :last-child {
                     margin: 0;
                     display: flex;
@@ -236,6 +238,7 @@ export default class PhotoHomeMainContainer extends Vue {
     position: relative;
     z-index: 3;
     padding: 0 2% 0 5%;
+
     .photo-post {
         margin: 0 0 100px 0;
     }
@@ -248,6 +251,7 @@ export default class PhotoHomeMainContainer extends Vue {
         .actions {
             .actions__list-item {
                 padding: 0;
+
                 .actions-row {
                     display: flex;
                     flex-wrap: wrap;

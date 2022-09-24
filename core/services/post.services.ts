@@ -15,7 +15,6 @@ import { ISnackbarProps } from '@/core/store/app/snackbar.store'
 import { validationProp } from '@/core/lib/validation'
 import { IPostsFilter } from '@/core/models/interfaces/filter/filters-posts'
 import config from '../../../config/config'
-import IPhotoPost from '@/core/models/interfaces/article/IPhotoPost'
 import PhotoPost from '@/core/models/classes/article/PhotoPost'
 
 export const getInValidPostFields = (post: Post) => {
