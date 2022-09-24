@@ -19,36 +19,36 @@ import StartKit from '@tiptap/starter-kit'
 import Document from '@tiptap/extension-document'
 import CustomImage from '@/app/views/EditPost/extensions/editor/customElements/custom-img'
 
-const CustomEditor = (content: string, onUpdate: (val: string) => void = (val: string) => undefined): Editor => {
-  const editor = new Editor({
-    extensions: [
-      CustomImage,
-      StartKit,
-      Document,
-      TextAlign.configure({types: ['heading', 'paragraph', 'image']}),
-      Blockquote,
-      Underline,
-      Link,
-      Typography,
-      TaskList,
-      TaskItem,
-      TextStyle,
-      Dropcursor,
-      // ColorHighlighter,
-      // SmilieReplacer,
-      Placeholder.configure({placeholder: getRandomQuotes()}),
-      Highlight.configure({multicolor: true}),
-      CustomCodeBlock.configure({lowlight}),
-      // @ts-ignore
-      Mention.configure(mentionConf),
-    ],
-    content: content,
-  })
+const CustomEditor = (content: string, onUpdate: (_val: string) => void = (_val: string) => undefined): Editor => {
+    const editor = new Editor({
+        extensions: [
+            CustomImage,
+            StartKit,
+            Document,
+            TextAlign.configure({ types: ['heading', 'paragraph', 'image'] }),
+            Blockquote,
+            Underline,
+            Link,
+            Typography,
+            TaskList,
+            TaskItem,
+            TextStyle,
+            Dropcursor,
+            // ColorHighlighter,
+            // SmilieReplacer,
+            Placeholder.configure({ placeholder: getRandomQuotes() }),
+            Highlight.configure({ multicolor: true }),
+            CustomCodeBlock.configure({ lowlight }),
+            // @ts-ignore
+            Mention.configure(mentionConf),
+        ],
+        content: content,
+    })
 
-  editor.on('update', ({editor}) => {
-    onUpdate(editor.getHTML())
-  })
+    editor.on('update', ({ editor }) => {
+        onUpdate(editor.getHTML())
+    })
 
-  return editor
+    return editor
 }
 export default CustomEditor

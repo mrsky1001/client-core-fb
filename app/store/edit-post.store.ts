@@ -7,37 +7,37 @@
 
 import Vuex from 'vuex'
 import Vue from 'vue'
-import { action, createModule, mutation } from 'vuex-class-component'
-import { addPost, changeStatusPost, editPost, getInValidPostFields, getPost } from '@/core/services/post.services'
-import { addSection, deleteSection, editSection, getSections } from '@/core/services/sections.services'
-import { deletePostImage, getAllImgs, uploadPostImage } from '@/core/services/img.services'
+import {action, createModule, mutation} from 'vuex-class-component'
+import {addPost, changeStatusPost, editPost, getInValidPostFields, getPost} from '@/core/services/post.services'
+import {addSection, deleteSection, editSection, getSections} from '@/core/services/sections.services'
+import {deletePostImage, getAllImgs, uploadPostImage} from '@/core/services/img.services'
 import ServiceStorage from '@/core/lib/service-storage'
 import routesObj from '@/app/routes/routes-obj'
 import VueRouter from 'vue-router'
 import statuses from '@/core/collections/statuses'
 import customEditor from '@/app/views/EditPost/extensions/editor/customElements/custom-editor'
 import Section from '@/core/models/classes/article/Section'
-import { vxc } from '@/core/store/store.vuex'
+import {vxc} from '@/core/store/store.vuex'
 import Post from '@/core/models/classes/article/Post'
-import { Editor } from '@tiptap/vue-2'
+import {Editor} from '@tiptap/vue-2'
 import CustomImage from '@/app/views/EditPost/extensions/editor/customElements/custom-img'
 import StartKit from '@tiptap/starter-kit'
 import Document from '@tiptap/extension-document'
-import { TextAlign } from '@tiptap/extension-text-align'
-import { Blockquote } from '@tiptap/extension-blockquote'
-import { Underline } from '@tiptap/extension-underline'
-import { Link } from '@tiptap/extension-link'
-import { Typography } from '@tiptap/extension-typography'
-import { TaskList } from '@tiptap/extension-task-list'
-import { TaskItem } from '@tiptap/extension-task-item'
-import { TextStyle } from '@tiptap/extension-text-style'
-import { Dropcursor } from '@tiptap/extension-dropcursor'
-import { Placeholder } from '@tiptap/extension-placeholder'
-import { getRandomQuotes } from '@/core/lib/editor/editor-quotes'
-import { Highlight } from '@tiptap/extension-highlight'
+import {TextAlign} from '@tiptap/extension-text-align'
+import {Blockquote} from '@tiptap/extension-blockquote'
+import {Underline} from '@tiptap/extension-underline'
+import {Link} from '@tiptap/extension-link'
+import {Typography} from '@tiptap/extension-typography'
+import {TaskList} from '@tiptap/extension-task-list'
+import {TaskItem} from '@tiptap/extension-task-item'
+import {TextStyle} from '@tiptap/extension-text-style'
+import {Dropcursor} from '@tiptap/extension-dropcursor'
+import {Placeholder} from '@tiptap/extension-placeholder'
+import {getRandomQuotes} from '@/core/lib/editor/editor-quotes'
+import {Highlight} from '@tiptap/extension-highlight'
 import CustomCodeBlock from '@/app/views/EditPost/extensions/editor/customElements/custom-code'
-import { lowlight } from 'lowlight'
-import { Mention } from '@tiptap/extension-mention'
+import {lowlight} from 'lowlight'
+import {Mention} from '@tiptap/extension-mention'
 import mentionConf from '@/app/views/EditPost/extensions/mention/mention-conf'
 
 Vue.use(Vuex)
@@ -456,7 +456,7 @@ export class EditPostStore extends VuexModule {
         this.rules = []
 
         this.postImgs = []
-        this.editor = customEditor(this.post.content, (val) => this.setContent(val))
+        this.editor = customEditor(this.post.content, (val: string) => this.setContent(val))
     }
 
     @action
