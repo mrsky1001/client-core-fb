@@ -24,7 +24,6 @@ export default class SearchButton extends Vue {
             classes += ' search-btn__active'
         }
 
-        console.log(classes)
         return classes
     }
 }

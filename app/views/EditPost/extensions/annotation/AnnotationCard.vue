@@ -76,9 +76,9 @@ export default class AnnotationCard extends Vue {
     domains = Object.values(domains)
 
     mounted() {
-        console.log(this.editST.domain)
-        console.log(this.editST.post.domain)
-        console.log(this.editST.post.domain !== this.editST.domain)
+        // console.log(this.editST.domain)
+        // console.log(this.editST.post.domain)
+        // console.log(this.editST.post.domain !== this.editST.domain)
     }
 }
 </script>
