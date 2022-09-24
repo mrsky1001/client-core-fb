@@ -25,14 +25,14 @@
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import { Prop } from 'vue-property-decorator'
+import {Prop} from 'vue-property-decorator'
 
 @Component
 export default class ModalImageMenu extends Vue {
     @Prop() deleteImg: () => void
     @Prop() uploadImg: () => void
     @Prop() showModal: () => void
-    @Prop() setShowModal: (is: boolean) => void
+    @Prop() setShowModal: (_is: boolean) => void
 }
 </script>
 

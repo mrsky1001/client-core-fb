@@ -18,13 +18,13 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { Prop, Watch } from 'vue-property-decorator'
+import {Prop, Watch} from 'vue-property-decorator'
 import Component from 'vue-class-component'
 
 @Component
 export default class MentionsList extends Vue {
     @Prop() items: []
-    @Prop() command: ({ id }: { id: number }) => void
+    @Prop() command: ({ _id }: { _id: number }) => void
 
     selectedIndex = 0
 
@@ -68,7 +68,7 @@ export default class MentionsList extends Vue {
         const item = this.items[index]
 
         if (item) {
-            this.command({ id: item })
+            this.command({ _id: item })
         }
     }
 }

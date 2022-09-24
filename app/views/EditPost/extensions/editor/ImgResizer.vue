@@ -30,13 +30,13 @@
 </template>
 
 <script lang="ts">
-import { Prop } from 'vue-property-decorator'
+import {Prop} from 'vue-property-decorator'
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import { NodeViewContent, NodeViewWrapper } from '@tiptap/vue-2'
+import {NodeViewContent, NodeViewWrapper} from '@tiptap/vue-2'
 // @ts-ignore
 import VueDragResize from 'vue-drag-resize'
-import { NodeViewProps } from '@tiptap/core'
+import {NodeViewProps} from '@tiptap/core'
 
 @Component({
     components: { NodeViewWrapper, NodeViewContent, VueDragResize },
@@ -44,7 +44,7 @@ import { NodeViewProps } from '@tiptap/core'
 export default class ImgResizer extends Vue {
     @Prop() readonly node!: NodeViewProps
     @Prop() readonly extension!: Node
-    @Prop() readonly updateAttributes!: (attributes: { style: string }) => void
+    @Prop() readonly updateAttributes!: (_attributes: { style: string }) => void
 
     // @ts-ignore
     style = this.node.attrs.style
