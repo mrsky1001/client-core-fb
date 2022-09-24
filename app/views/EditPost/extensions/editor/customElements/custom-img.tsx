@@ -1,5 +1,5 @@
-import {Attributes, mergeAttributes, VueNodeViewRenderer} from '@tiptap/vue-2'
-import {Image} from '@tiptap/extension-image'
+import { Attributes, mergeAttributes, VueNodeViewRenderer } from '@tiptap/vue-2'
+import { Image } from '@tiptap/extension-image'
 import ImgResizer from '@/app/views/EditPost/extensions/editor/ImgResizer.vue'
 
 const CustomImage = Image.extend({

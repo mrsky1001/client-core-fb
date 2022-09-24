@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import {Prop, Watch} from 'vue-property-decorator'
+import { Prop, Watch } from 'vue-property-decorator'
 import Component from 'vue-class-component'
 
 @Component

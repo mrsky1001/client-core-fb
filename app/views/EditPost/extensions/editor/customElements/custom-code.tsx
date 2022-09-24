@@ -1,6 +1,6 @@
 import CodeBlock from '@/app/views/EditPost/extensions/editor/CodeBlock.vue'
-import {CodeBlockLowlight} from '@tiptap/extension-code-block-lowlight'
-import {VueNodeViewRenderer} from '@tiptap/vue-2'
+import { CodeBlockLowlight } from '@tiptap/extension-code-block-lowlight'
+import { VueNodeViewRenderer } from '@tiptap/vue-2'
 
 const CustomCodeBlock = CodeBlockLowlight.extend({
     addNodeView() {
