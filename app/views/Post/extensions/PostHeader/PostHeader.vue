@@ -5,11 +5,11 @@
 <template>
     <div class="post-header">
         <v-card-title style="padding: 16px 16px 25px 16px">
-            <h1>
-                <router-link class="my-router-link" :to="postST.getPostRoute(post)">
+            <router-link class="my-router-link" :to="postST.getPostRoute(post)">
+                <h1>
                     {{ post.title }}
-                </router-link>
-            </h1>
+                </h1>
+            </router-link>
         </v-card-title>
 
         <v-card-actions class="my-card-actions">
