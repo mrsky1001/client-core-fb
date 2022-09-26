@@ -133,9 +133,12 @@ export default class PostHeader extends Vue {
 
 .my-router-link {
     color: #2c3e50;
-    font-size: 28px;
+    //font-size: 28px;
     text-decoration: none;
     word-break: break-word;
+    h1 {
+        font-size: 2rem;
+    }
     //opacity: 60% !important;
 }
 

@@ -137,6 +137,9 @@ export default class PostHeader extends Vue {
     text-decoration: none;
     word-break: break-word;
     //opacity: 60% !important;
+    h1 {
+        font-size: 2rem;
+    }
 }
 
 //.my-router-link:hover {
