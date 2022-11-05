@@ -32,7 +32,7 @@ import config from '../config/config'
                 content: config.router.metaDescription,
             },
             { property: 'og:title', content: config.router.metaTitle },
-            { property: 'og:site_name', content: config.server.domain + 'foma-blog.ru' },
+            { property: 'og:site_name', content: config.router.siteName },
             { property: 'og:type', content: 'website' },
             { name: 'robots', content: 'index,follow' },
         ],
