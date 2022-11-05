@@ -6,7 +6,7 @@
     <v-dialog :value="showModal" @click:outside="setShowModal(false)">
         <v-card>
             <v-card-title> Загрузить изображение</v-card-title>
-            <x-cropper :options="opts" @cropper-saved="callSaveImg" />
+            <x-cropper :options="opts" @cropper-error="cropperError" @cropper-saved="callSaveImg" />
             <v-divider />
         </v-card>
     </v-dialog>
@@ -19,6 +19,8 @@ import 'x-cropper/dist/XCropper.css'
 import Component from 'vue-class-component'
 import Vue from 'vue'
 import { Prop } from 'vue-property-decorator'
+import { vxc } from '@/core/store/store.vuex'
+import { ISnackbarProps } from '@/core/store/app/snackbar.store'
 
 @Component({
     components: { XCropper },
@@ -30,6 +32,12 @@ export default class ModalImageUploader extends Vue {
     @Prop() showModal: boolean
     @Prop() cropperOptions: any
     @Prop() setShowModal: (_: boolean) => void
+
+    cropperError = (msg: string) => {
+        console.log(msg)
+        const msgs: ISnackbarProps = { msg: msg, classes: 'error' }
+        vxc.snackbar.setSnackBarMsg(msgs)
+    }
 
     defaultCropOptions = {
         layoutBreakpoint: 850,
