@@ -86,11 +86,11 @@ export default class ModalImageUploader extends Vue {
     display: flex;
     justify-content: center;
     //
-    //.cropper .cropper-card .crop-area {
-    //    display: flex;
-    //    flex-wrap: wrap;
-    //    flex-direction: column;
-    //}
+    .cropper .cropper-card .crop-area {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
     //.crop-area-classes {
     //    .cropper-main-card {
     //        padding-bottom: 25px;
