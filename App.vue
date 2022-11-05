@@ -20,23 +20,22 @@ import Component from 'vue-class-component'
 import AppFooter from '@/core/components/app/AppFooter/AppFooter.vue'
 import SnackBar from '@/core/components/app/SnackBar/SnackBar.vue'
 import CookieSnackBar from '@/core/components/app/CookieSnackBar/CookieSnackBar.vue'
-import config from '../config/config'
 
 @Component({
     components: { AppFooter, AppNavbar, SnackBar, CookieSnackBar },
-    metaInfo: {
-        title: config.router.metaTitle,
-        meta: [
-            {
-                name: 'description',
-                content: config.router.metaDescription,
-            },
-            { property: 'og:title', content: config.router.metaTitle },
-            { property: 'og:site_name', content: config.router.siteName },
-            { property: 'og:type', content: 'website' },
-            { name: 'robots', content: 'index,follow' },
-        ],
-    },
+    // metaInfo: {
+    //     title: config.router.metaTitle,
+    //     meta: [
+    //         {
+    //             name: 'description',
+    //             content: config.router.metaDescription,
+    //         },
+    //         { property: 'og:title', content: config.router.metaTitle },
+    //         { property: 'og:site_name', content: config.router.siteName },
+    //         { property: 'og:type', content: 'website' },
+    //         { name: 'robots', content: 'index,follow' },
+    //     ],
+    // },
 })
 export default class App extends Vue {
     mounted(): void {
