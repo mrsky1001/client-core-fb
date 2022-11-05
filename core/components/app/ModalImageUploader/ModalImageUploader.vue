@@ -32,6 +32,18 @@ export default class ModalImageUploader extends Vue {
     @Prop() setShowModal: (_: boolean) => void
 
     defaultCropOptions = {
+        layoutBreakpoint: 850,
+        maxCropperHeight: 600,
+        croppedAreaHeight: 400,
+        croppedAreaWidth: 400,
+        maxCroppedAreaWidth: 400,
+        rotation: 0,
+        quality: 0.85,
+        handleSize: 10,
+        aspectRatio: 1,
+        maxCropAreaHeight: 0,
+        frameLineDash: [5, 3],
+
         circleLabel: 'Круг',
         qualityLabel: 'Качество',
         cropAreaWidthLabel: 'Ширина области обрезки',
@@ -73,33 +85,46 @@ export default class ModalImageUploader extends Vue {
     width: auto !important;
     display: flex;
     justify-content: center;
+    //
+    //.cropper .cropper-card .crop-area {
+    //    display: flex;
+    //    flex-wrap: wrap;
+    //    flex-direction: column;
+    //}
+    //.crop-area-classes {
+    //    .cropper-main-card {
+    //        padding-bottom: 25px;
+    //    }
 
-    .crop-area-classes {
-        .cropper-main-card {
-            div,
-            canvas {
-                max-width: inherit;
-            }
-        }
-
-        .cropper-preview-card {
-            height: fit-content;
-
-            div {
-                max-width: 200px;
-                max-height: 150px;
-
-                img {
-                    transform: scale(0.3);
-                }
-            }
-        }
-    }
+    //.cropper-preview-card {
+    //    height: fit-content;
+    //
+    //    div {
+    //        max-width: 200px;
+    //        max-height: 150px;
+    //
+    //        img {
+    //            transform: scale(0.3);
+    //        }
+    //    }
+    //}
+    //}
 }
 
 @media screen and (max-width: 580px) {
     .v-dialog {
         margin: 0 !important;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .cropper-form-toolbar {
+        > div {
+            max-width: 300px;
+            .row .col {
+                min-width: 200px;
+            }
+        }
     }
 }
 </style>
