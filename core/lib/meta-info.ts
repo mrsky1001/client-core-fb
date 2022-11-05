@@ -11,7 +11,7 @@ const getMetaInfo = (title: string, description: string) => {
                 content: description,
             },
             { property: 'og:title', content: title },
-            { property: 'og:site_name', content: config.server.domain + 'foma-blog.ru' },
+            { property: 'og:site_name', content: config.router.siteName },
             { property: 'og:type', content: 'website' },
             { name: 'robots', content: 'index,follow' },
         ],
