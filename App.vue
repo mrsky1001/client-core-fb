@@ -7,7 +7,6 @@
             </div>
             <AppFooter></AppFooter>
             <SnackBar></SnackBar>
-            <CookieSnackBar></CookieSnackBar>
         </v-app>
     </div>
 </template>
@@ -19,10 +18,9 @@ import AppNavbar from '@/core/components/app/AppNavbar/AppNavbar.vue'
 import Component from 'vue-class-component'
 import AppFooter from '@/core/components/app/AppFooter/AppFooter.vue'
 import SnackBar from '@/core/components/app/SnackBar/SnackBar.vue'
-import CookieSnackBar from '@/core/components/app/CookieSnackBar/CookieSnackBar.vue'
 
 @Component({
-    components: { AppFooter, AppNavbar, SnackBar, CookieSnackBar },
+    components: { AppFooter, AppNavbar, SnackBar },
     // metaInfo: {
     //     title: config.router.metaTitle,
     //     meta: [
