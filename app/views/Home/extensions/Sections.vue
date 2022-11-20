@@ -65,6 +65,11 @@ export default class Sections extends Vue {
     flex-direction: column;
     align-items: flex-start;
     flex-wrap: nowrap;
+
+    .v-btn{
+        font-size: 16px;
+        text-transform: unset;
+    }
 }
 
 @media screen and (max-width: 1250px) {
