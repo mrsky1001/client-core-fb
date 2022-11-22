@@ -41,7 +41,7 @@ export const getPost = (postId: string, title = ''): Promise<Post> => {
         const url = postId ? `${urls.GET_POST_BY_ID}/${postId}` : `${urls.GET_POST_BY_TITLE}/${title}`
 
         api()
-            .get(url,{ config:{                domain: config.server.domain}})
+            .get(url, { params: { domain: config.server.domain } })
             .then((res: AxiosResponse) => {
                 responseHandler(res, null, false)
                     .then((data) => resolve(new Post(data.post)))
@@ -87,7 +87,7 @@ export const getPosts = (sectionId: string, lastCreateDate: Date, searchText = '
 export const getFiltersPosts = (): Promise<IPostsFilter[]> => {
     return new Promise<IPostsFilter[]>((resolve, reject) => {
         api()
-            .get(urls.GET_FILTERS_POSTS, { config:{                domain: config.server.domain}})
+            .get(urls.GET_FILTERS_POSTS, { params: { domain: config.server.domain } })
             .then((res: AxiosResponse) => {
                 responseHandler(res, undefined, false)
                     .then((data) => resolve(data.filtersPosts))
