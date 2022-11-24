@@ -50,7 +50,7 @@ export class HomeStore extends VuexModule {
     }
 
     @mutation setSections(val: ISection[]) {
-        this.sections = val
+        this.sections = val.sort((a, b) => a.name.localeCompare(b.name))
     }
 
     @mutation setSearchText(val: string) {
