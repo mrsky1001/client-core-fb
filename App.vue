@@ -225,6 +225,14 @@ $material-light: (
                     font-size: small !important;
                 }
 
+                code {
+                    white-space: pre;
+                    color: inherit;
+                    padding: 0;
+                    background: none;
+                    //font-size: 0.8rem;
+                }
+                
 
                 code.hljs {
                     display: block;
