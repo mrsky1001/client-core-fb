@@ -10,7 +10,7 @@
                     {{ post.annotation.text }}
                 </blockquote>
             </div>
-            <!--            <div v-highlightjs class="ProseMirror" v-html="post.content" />-->
+            <div class="ProseMirror" v-html="post.content" />
             <!--            <vue-highlightjs autodetect :code=""/>-->
         </div>
     </div>
