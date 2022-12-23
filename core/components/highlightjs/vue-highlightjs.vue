@@ -11,8 +11,6 @@ import Vue from 'vue'
 import Component from 'vue-class-component'
 import { Prop } from 'vue-property-decorator'
 import hljs from 'highlight.js'
-import javascript from 'highlight.js/lib/languages/javascript'
-hljs.registerLanguage('javascript', javascript)
 
 @Component
 export default class VueHighlightjs extends Vue {
