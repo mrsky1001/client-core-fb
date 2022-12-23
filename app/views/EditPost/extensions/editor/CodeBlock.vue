@@ -27,6 +27,7 @@ export default {
     props: nodeViewProps,
 
     data() {
+        console.log(this.extension.options.lowlight.listLanguages())
         return {
             languages: this.extension.options.lowlight.listLanguages(),
         }

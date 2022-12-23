@@ -10,18 +10,23 @@
                     {{ post.annotation.text }}
                 </blockquote>
             </div>
-            <div v-highlightjs class="ProseMirror" v-html="post.content" />
+            <!--            <div v-highlightjs class="ProseMirror" v-html="post.content" />-->
+            <!--            <vue-highlightjs autodetect :code=""/>-->
         </div>
     </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import Component from 'vue-class-component'
+// import Component from 'vue-class-component'
 import { Prop } from 'vue-property-decorator'
 import { IPost } from '@/core/models/interfaces/article/IPost'
+import Component from 'vue-class-component'
+import VueHighlightjs from '@/core/components/highlightjs/vue-highlightjs.vue'
 
-@Component
+@Component({
+    components: { VueHighlightjs },
+})
 export default class PostContent extends Vue {
     @Prop() post!: IPost
 }

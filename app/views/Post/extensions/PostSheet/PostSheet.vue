@@ -7,7 +7,7 @@
         <div class="my-sheet-container">
             <post-header :post="post" />
             <v-card-text>
-                <photo-post-content :post="post" />
+                <post-content :post="post" />
             </v-card-text>
 
             <v-card-actions class="btns-actions" :title="titleButtons">
@@ -40,10 +40,9 @@ import PostContent from '@/app/views/Post/extensions/PostContent/PostContent.vue
 import PostComments from '@/app/views/Post/extensions/PostComments/PostComments.vue'
 import { vxa } from '@/app/store/store.app'
 import { vxc } from '@/core/store/store.vuex'
-import PhotoPostContent from '@/app/views/PhotoPost/extensions/PostContent/PhotoPostContent.vue'
 
 @Component({
-    components: { PhotoPostContent, PostComments, PostHeader, PostContent },
+    components: { PostComments, PostHeader, PostContent },
 })
 export default class PostSheet extends Vue {
     authST = vxc.auth

@@ -9,15 +9,17 @@ import { Underline } from '@tiptap/extension-underline'
 import { TextStyle } from '@tiptap/extension-text-style'
 import { Dropcursor } from '@tiptap/extension-dropcursor'
 import { Placeholder } from '@tiptap/extension-placeholder'
-import CustomCodeBlock from '@/app/views/EditPost/extensions/editor/customElements/custom-code'
+// import CustomCodeBlock from '@/app/views/EditPost/extensions/editor/customElements/custom-code'
 import { Highlight } from '@tiptap/extension-highlight'
 import { getRandomQuotes } from '@/core/lib/editor/editor-quotes'
 import { Mention } from '@tiptap/extension-mention'
 import mentionConf from '@/app/views/EditPost/extensions/mention/mention-conf'
+// import { lowlight } from 'lowlight'
 import { lowlight } from 'lowlight'
 import StartKit from '@tiptap/starter-kit'
 import Document from '@tiptap/extension-document'
 import CustomImage from '@/app/views/EditPost/extensions/editor/customElements/custom-img'
+import CustomCodeBlock from '@/app/views/EditPost/extensions/editor/customElements/custom-code'
 
 const CustomEditor = (content: string, onUpdate: (_val: string) => void = (_val: string) => undefined): Editor => {
     const editor = new Editor({
@@ -39,6 +41,10 @@ const CustomEditor = (content: string, onUpdate: (_val: string) => void = (_val:
             Placeholder.configure({ placeholder: getRandomQuotes() }),
             Highlight.configure({ multicolor: true }),
             CustomCodeBlock.configure({ lowlight }),
+            // CodeBlockLowlight.configure({
+            //     lowlight,
+            //     languageClassPrefix: 'language-javascript',
+            // }),
             // @ts-ignore
             Mention.configure(mentionConf),
         ],
@@ -46,6 +52,9 @@ const CustomEditor = (content: string, onUpdate: (_val: string) => void = (_val:
     })
 
     editor.on('update', ({ editor }) => {
+        // console.log(editor.getHTML())
+        // console.log(editor.getText())
+        // console.log(editor.getJSON())
         onUpdate(editor.getHTML())
     })
 

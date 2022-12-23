@@ -8,11 +8,13 @@ const CustomCodeBlock = CodeBlockLowlight.extend({
         return VueNodeViewRenderer(CodeBlock)
     },
     addAttributes() {
+        console.log('addAttributes')
         return {
             ...(this.parent ? this.parent() : undefined),
             data: {
                 default: 'code-block',
                 renderHTML: (attributes) => {
+                    console.log('renderHTML', attributes)
                     return {
                         data: attributes.data,
                     }

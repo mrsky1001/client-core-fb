@@ -19,26 +19,27 @@ import customEditor from '@/app/views/EditPost/extensions/editor/customElements/
 import Section from '@/core/models/classes/article/Section'
 import { vxc } from '@/core/store/store.vuex'
 import Post from '@/core/models/classes/article/Post'
-import { Editor } from '@tiptap/vue-2'
-import CustomImage from '@/app/views/EditPost/extensions/editor/customElements/custom-img'
-import StartKit from '@tiptap/starter-kit'
-import Document from '@tiptap/extension-document'
-import { TextAlign } from '@tiptap/extension-text-align'
-import { Blockquote } from '@tiptap/extension-blockquote'
-import { Underline } from '@tiptap/extension-underline'
-import { Link } from '@tiptap/extension-link'
-import { Typography } from '@tiptap/extension-typography'
-import { TaskList } from '@tiptap/extension-task-list'
-import { TaskItem } from '@tiptap/extension-task-item'
-import { TextStyle } from '@tiptap/extension-text-style'
-import { Dropcursor } from '@tiptap/extension-dropcursor'
-import { Placeholder } from '@tiptap/extension-placeholder'
-import { getRandomQuotes } from '@/core/lib/editor/editor-quotes'
-import { Highlight } from '@tiptap/extension-highlight'
-import CustomCodeBlock from '@/app/views/EditPost/extensions/editor/customElements/custom-code'
-import { lowlight } from 'lowlight'
-import { Mention } from '@tiptap/extension-mention'
-import mentionConf from '@/app/views/EditPost/extensions/mention/mention-conf'
+// import { Editor } from '@tiptap/vue-2'
+// import CustomImage from '@/app/views/EditPost/extensions/editor/customElements/custom-img'
+// import StartKit from '@tiptap/starter-kit'
+// import Document from '@tiptap/extension-document'
+// import { TextAlign } from '@tiptap/extension-text-align'
+// import { Blockquote } from '@tiptap/extension-blockquote'
+// import { Underline } from '@tiptap/extension-underline'
+// import { Link } from '@tiptap/extension-link'
+// import { Typography } from '@tiptap/extension-typography'
+// import { TaskList } from '@tiptap/extension-task-list'
+// import { TaskItem } from '@tiptap/extension-task-item'
+// import { TextStyle } from '@tiptap/extension-text-style'
+// import { Dropcursor } from '@tiptap/extension-dropcursor'
+// import { Placeholder } from '@tiptap/extension-placeholder'
+// import { getRandomQuotes } from '@/core/lib/editor/editor-quotes'
+// import { Highlight } from '@tiptap/extension-highlight'
+// import { lowlight } from 'lowlight/lib/core'
+// import { Mention } from '@tiptap/extension-mention'
+// import mentionConf from '@/app/views/EditPost/extensions/mention/mention-conf'
+// import { CodeBlockLowlight } from '@tiptap/extension-code-block-lowlight'
+// import CustomEditor from '@/app/views/EditPost/extensions/editor/customElements/custom-editor'
 
 Vue.use(Vuex)
 
@@ -70,30 +71,36 @@ export class EditPostStore extends VuexModule {
     autoSaveTimer: NodeJS.Timer
     messageAutoSave = ''
     rules = []
-    editor = new Editor({
-        extensions: [
-            CustomImage,
-            StartKit,
-            Document,
-            TextAlign.configure({ types: ['heading', 'paragraph', 'image'] }),
-            Blockquote,
-            Underline,
-            Link,
-            Typography,
-            TaskList,
-            TaskItem,
-            TextStyle,
-            Dropcursor,
-            // ColorHighlighter,
-            // SmilieReplacer,
-            Placeholder.configure({ placeholder: getRandomQuotes() }),
-            Highlight.configure({ multicolor: true }),
-            CustomCodeBlock.configure({ lowlight }),
-            // @ts-ignore
-            Mention.configure(mentionConf),
-        ],
-        content: this.post.content,
-    })
+
+    editor = customEditor(this.post.content, (val: string) => this.setContent(val))
+    // editor = new Editor({
+    //     extensions: [
+    //         CustomImage,
+    //         StartKit,
+    //         Document,
+    //         TextAlign.configure({ types: ['heading', 'paragraph', 'image'] }),
+    //         Blockquote,
+    //         Underline,
+    //         Link,
+    //         Typography,
+    //         TaskList,
+    //         TaskItem,
+    //         TextStyle,
+    //         Dropcursor,
+    //         // ColorHighlighter,
+    //         // SmilieReplacer,
+    //         Placeholder.configure({ placeholder: getRandomQuotes() }),
+    //         Highlight.configure({ multicolor: true }),
+    //         // CustomCodeBlock.configure({ lowlight }),
+    //         CodeBlockLowlight.configure({
+    //             lowlight,
+    //             languageClassPrefix: 'language-javascript',
+    //         }),
+    //         // @ts-ignore
+    //         Mention.configure(mentionConf),
+    //     ],
+    //     content: this.post.content,
+    // })
 
     postImgs: string[] = []
 
@@ -151,6 +158,9 @@ export class EditPostStore extends VuexModule {
     }
 
     @mutation setContent(val: string) {
+        console.log(this.editor.getHTML())
+        console.log(this.editor.getText())
+        console.log(this.editor.getJSON())
         this.post.content = val
     }
 
